@@ -1,0 +1,36 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="control_panel:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/control_panel_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="control_panel/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="control_panel" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/required/c3p0-0.9.1.2.jar" />
+          <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/required/com.springsource.org.aopalliance-1.0.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/required/com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/required/commons-beanutils-1.7.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/required/commons-collections-3.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/required/commons-lang-2.5.jar" />
+          <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/required/commons-logging-1.1.3.jar" />
+          <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/required/commons-logging.jar" />
+          <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/required/ezmorph-1.0.3.jar" />
+          <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/required/hamcrest-core-1.3.jar" />
+          <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/required/json-lib-2.1-jdk15.jar" />
+          <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/required/jsp-api.jar" />
+          <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/required/junit4.4.jar" />
+          <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/required/log4j-api-2.3.jar" />
+          <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/required/log4j-core-2.3.jar" />
+          <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/required/mysql-connector-java-5.1.39-bin.jar" />
+          <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/required/servlet-api.jar" />
+          <element id="library" level="project" name="Spring MVC-4.3.8.RELEASE" />
+          <element id="library" level="project" name="Spring-4.3.8.RELEASE" />
+          <element id="library" level="project" name="Struts 2-2.3.20.1" />
+          <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/required/struts2-spring-plugin-2.5.8.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <package name="rollimage" extends="struts-default" namespace="/rollimage">
+        <action name="*" class="com.wiatec.control_panel.action.ActionRollImage" method="{1}">
+
+        </action>
+    </package>
+
+    <package name="adimage" extends="struts-default" namespace="/adimage">
+        <action name="*" class="com.wiatec.control_panel.action.ActionAdImage" method="{1}">
+
+        </action>
+    </package>
+
+    <package name="rolloverimage" extends="struts-default" namespace="/rolloverimage">
+        <action name="*" class="com.wiatec.control_panel.action.ActionRollOverImage" method="{1}">
+
+        </action>
+    </package>
+
+    <package name="kodiimage" extends="struts-default" namespace="/kodiimage">
+        <action name="*" class="com.wiatec.control_panel.action.ActionKodiImage" method="{1}">
+
+        </action>
+    </package>
+
+    <package name="video" extends="struts-default" namespace="/video">
+        <action name="*" class="com.wiatec.control_panel.action.ActionVideo" method="{1}">
+
+        </action>
+    </package>
+
+    <package name="advideo" extends="struts-default" namespace="/advideo">
+        <action name="*" class="com.wiatec.control_panel.action.ActionAdVideo" method="{1}">
+
+        </action>
+    </package>
+
+    <package name="bootadvideo" extends="struts-default" namespace="/bootadvideo">
+        <action name="*" class="com.wiatec.control_panel.action.ActionBootAdVideo" method="{1}">
+
+        </action>
+    </package>
+
+    <package name="kodivideo" extends="struts-default" namespace="/kodivideo">
+        <action name="*" class="com.wiatec.control_panel.action.ActionKodiVideo" method="{1}">
+
+        </action>
+    </package>
+
+
+
+    <package name="manager" extends="struts-default" namespace="/manager">
+        <action name="*" class="com.wiatec.control_panel.action.ActionManager" method="{1}">
+
+        </action>
+    </package>
+
+</struts>
