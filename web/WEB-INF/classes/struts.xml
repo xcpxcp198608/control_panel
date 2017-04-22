@@ -54,6 +54,17 @@
         </action>
     </package>
 
+    <package name="message" extends="struts-default" namespace="/message">
+        <action name="*" class="com.wiatec.control_panel.action.ActionMessage" method="{1}">
+
+        </action>
+    </package>
+    <package name="message1" extends="struts-default" namespace="/message1">
+        <action name="*" class="com.wiatec.control_panel.action.ActionMessage1" method="{1}">
+
+        </action>
+    </package>
+
 
 
     <package name="manager" extends="struts-default" namespace="/manager">

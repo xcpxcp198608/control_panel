@@ -5,6 +5,7 @@ import com.wiatec.control_panel.entities.*;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 /**
  * Created by xuchengpeng on 20/04/2017.
@@ -12,22 +13,27 @@ import org.springframework.jdbc.core.RowMapper;
 public abstract  class BaseDao <T> {
 
     protected JdbcTemplate jdbcTemplate;
+    protected NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     protected RowMapper<ImageInfo> imageInfoRowMapper ;
     protected RowMapper<VideoInfo> videoInfoRowMapper ;
     protected RowMapper<UserInfo> userInfoRowMapper ;
     protected RowMapper<MessageInfo> messageInfoRowMapper ;
     protected RowMapper<Message1Info> message1InfoRowMapper;
     protected RowMapper<ManagerInfo> managerInfoRowMapper;
+    protected RowMapper<DeviceInfo> deviceInfoRowMapper;
     protected String sql = "";
 
     public BaseDao() {
         jdbcTemplate = (JdbcTemplate) ApplicationContextHelper.getApplicationContext().getBean("jdbcTemplate");
+        namedParameterJdbcTemplate = (NamedParameterJdbcTemplate) ApplicationContextHelper
+                .getApplicationContext().getBean("namedParameterJdbcTemplate");
         imageInfoRowMapper = new BeanPropertyRowMapper<>(ImageInfo.class);
         videoInfoRowMapper = new BeanPropertyRowMapper<>(VideoInfo.class);
         userInfoRowMapper = new BeanPropertyRowMapper<>(UserInfo.class);
         messageInfoRowMapper = new BeanPropertyRowMapper<>(MessageInfo.class);
         message1InfoRowMapper = new BeanPropertyRowMapper<>(Message1Info.class);
         managerInfoRowMapper = new BeanPropertyRowMapper<>(ManagerInfo.class);
+        deviceInfoRowMapper = new BeanPropertyRowMapper<>(DeviceInfo.class);
     }
 
     protected String getTableName(String countryCode , String timeZone ){
