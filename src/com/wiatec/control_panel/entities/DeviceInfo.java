@@ -13,6 +13,7 @@ public class DeviceInfo {
     private String city;
     private String timeZone;
     private String currentLoginTime;
+    private String activeUserName;
 
     public int getId() {
         return id;
@@ -86,6 +87,14 @@ public class DeviceInfo {
         this.currentLoginTime = currentLoginTime;
     }
 
+    public String getActiveUserName() {
+        return activeUserName;
+    }
+
+    public void setActiveUserName(String activeUserName) {
+        this.activeUserName = activeUserName;
+    }
+
     @Override
     public String toString() {
         return "DeviceInfo{" +
@@ -98,6 +107,7 @@ public class DeviceInfo {
                 ", city='" + city + '\'' +
                 ", timeZone='" + timeZone + '\'' +
                 ", currentLoginTime='" + currentLoginTime + '\'' +
+                ", activeUserName='" + activeUserName + '\'' +
                 '}';
     }
 }

@@ -21,6 +21,8 @@ public abstract  class BaseDao <T> {
     protected RowMapper<Message1Info> message1InfoRowMapper;
     protected RowMapper<ManagerInfo> managerInfoRowMapper;
     protected RowMapper<DeviceInfo> deviceInfoRowMapper;
+    protected RowMapper<UpdateInfo> updateInfoRowMapper;
+
     protected String sql = "";
 
     public BaseDao() {
@@ -34,6 +36,8 @@ public abstract  class BaseDao <T> {
         message1InfoRowMapper = new BeanPropertyRowMapper<>(Message1Info.class);
         managerInfoRowMapper = new BeanPropertyRowMapper<>(ManagerInfo.class);
         deviceInfoRowMapper = new BeanPropertyRowMapper<>(DeviceInfo.class);
+        updateInfoRowMapper = new BeanPropertyRowMapper<>(UpdateInfo.class);
+
     }
 
     protected String getTableName(String countryCode , String timeZone ){

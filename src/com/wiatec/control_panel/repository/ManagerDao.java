@@ -34,4 +34,10 @@ public class ManagerDao extends BaseDao<ManagerInfo> {
         sql = "select countryCode from manager where username = ? and password = ?";
         return jdbcTemplate.queryForObject(sql ,String.class , managerInfo.getUserName() , managerInfo.getPassword());
     }
+
+    @Transactional
+    public String getTimeZone(ManagerInfo managerInfo){
+        sql = "select timeZone from manager where username = ? and password = ?";
+        return jdbcTemplate.queryForObject(sql ,String.class , managerInfo.getUserName() , managerInfo.getPassword());
+    }
 }

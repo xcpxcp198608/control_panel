@@ -23,4 +23,29 @@ public class RollOverImageService {
         imageInfoList.addAll(rollOverImageDao.getAll(countryCode , timeZone));
         return imageInfoList;
     }
+
+    @Transactional (readOnly = true)
+    public List<ImageInfo> getAll(String countryCode , String timeZone){
+        return rollOverImageDao.getAll(countryCode , timeZone);
+    }
+
+    @Transactional(readOnly = true)
+    public ImageInfo getImageById(int id , String countryCode , String timeZone){
+        return rollOverImageDao.getImageById(id , countryCode , timeZone);
+    }
+
+    @Transactional
+    public void insert(ImageInfo imageInfo , String countryCode , String timeZone){
+        rollOverImageDao.insert(imageInfo , countryCode , timeZone);
+    }
+
+    @Transactional
+    public void update(ImageInfo imageInfo , String countryCode , String timeZone){
+        rollOverImageDao.update(imageInfo , countryCode , timeZone);
+    }
+
+    @Transactional
+    public void delete(int id , String countryCode , String timeZone){
+        rollOverImageDao.delete(id, countryCode , timeZone);
+    }
 }

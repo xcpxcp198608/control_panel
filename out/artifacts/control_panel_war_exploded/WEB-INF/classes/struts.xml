@@ -8,25 +8,39 @@
 
     <package name="rollimage" extends="struts-default" namespace="/rollimage">
         <action name="*" class="com.wiatec.control_panel.action.ActionRollImage" method="{1}">
-
+            <result name="{1}">/WEB-INF/jsp/rollimage/{1}.jsp</result>
+            <result name="upload">/WEB-INF/jsp/rollimage/edit.jsp</result>
+            <result name="update" type="redirectAction">show</result>
+            <result name="delete" type="redirectAction">show</result>
+        </action>
+        <action name="login" class="com.wiatec.control_panel.action.ActionManager" method="login">
+            <result name="success" type="redirectAction">show</result>
+            <result name="failure">/index.jsp</result>
         </action>
     </package>
 
     <package name="adimage" extends="struts-default" namespace="/adimage">
         <action name="*" class="com.wiatec.control_panel.action.ActionAdImage" method="{1}">
-
+            <result name="{1}">/WEB-INF/jsp/adimage/{1}.jsp</result>
+            <result name="upload">/WEB-INF/jsp/adimage/edit.jsp</result>
+            <result name="update" type="redirectAction">show</result>
         </action>
     </package>
 
     <package name="rolloverimage" extends="struts-default" namespace="/rolloverimage">
         <action name="*" class="com.wiatec.control_panel.action.ActionRollOverImage" method="{1}">
-
+            <result name="{1}">/WEB-INF/jsp/rolloverimage/{1}.jsp</result>
+            <result name="upload">/WEB-INF/jsp/rolloverimage/edit.jsp</result>
+            <result name="update" type="redirectAction">show</result>
+            <result name="delete" type="redirectAction">show</result>
         </action>
     </package>
 
     <package name="kodiimage" extends="struts-default" namespace="/kodiimage">
         <action name="*" class="com.wiatec.control_panel.action.ActionKodiImage" method="{1}">
-
+            <result name="{1}">/WEB-INF/jsp/kodiimage/{1}.jsp</result>
+            <result name="upload">/WEB-INF/jsp/kodiimage/edit.jsp</result>
+            <result name="update" type="redirectAction">show</result>
         </action>
     </package>
 
@@ -56,19 +70,35 @@
 
     <package name="message" extends="struts-default" namespace="/message">
         <action name="*" class="com.wiatec.control_panel.action.ActionMessage" method="{1}">
-
+            <result name="{1}">/WEB-INF/jsp/message/{1}.jsp</result>
+            <result name="update" type="redirectAction">show</result>
+            <result name="delete" type="redirectAction">show</result>
         </action>
     </package>
+
     <package name="message1" extends="struts-default" namespace="/message1">
         <action name="*" class="com.wiatec.control_panel.action.ActionMessage1" method="{1}">
+            <result name="{1}">/WEB-INF/jsp/message1/{1}.jsp</result>
+            <result name="update" type="redirectAction">show</result>
+            <result name="delete" type="redirectAction">show</result>
+        </action>
+    </package>
+
+    <package name="update" extends="struts-default" namespace="/update">
+        <action name="*" class="com.wiatec.control_panel.action.ActionUpdate" method="{1}">
 
         </action>
     </package>
 
+    <package name="userdata" extends="struts-default" namespace="/userdata">
+        <action name="*" class="com.wiatec.control_panel.action.ActionUserData" method="{1}">
+
+        </action>
+    </package>
 
 
     <package name="manager" extends="struts-default" namespace="/manager">
-        <action name="*" class="com.wiatec.control_panel.action.ActionManager" method="{1}">
+        <action name="logout" class="com.wiatec.control_panel.action.ActionManager" method="logout">
 
         </action>
     </package>

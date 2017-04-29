@@ -16,6 +16,7 @@ public class ActionMessage extends BaseAction {
 
     private List<MessageInfo> messageInfoList;
     private MessageInfo messageInfo;
+    private int id;
     @Autowired
     private MessageService messageService;
 
@@ -24,6 +25,39 @@ public class ActionMessage extends BaseAction {
         out.println(JSONArray.fromObject(messageInfoList));
         out.flush();
         out.close();
+    }
+
+    public String show (){
+        checkSession();
+        messageInfoList = messageService.getAll(countryCode , timeZone);
+        return "show";
+    }
+
+    public String edit(){
+        checkSession();
+        if(id >0){
+            messageInfo =  messageService.getMessageById(id ,countryCode , timeZone);
+        }
+        return "edit";
+    }
+
+    public String update(){
+        checkSession();
+        if(id == 0 ){
+            messageService.insert(messageInfo , countryCode , timeZone);
+        }else{
+            messageInfo.setId(id);
+            messageService.update(messageInfo , countryCode , timeZone);
+        }
+        return "update";
+    }
+
+    public String delete (){
+        checkSession();
+        if(id >0){
+            messageService.delete(id , countryCode , timeZone);
+        }
+        return "delete";
     }
 
     public List<MessageInfo> getMessageInfoList() {
@@ -40,5 +74,13 @@ public class ActionMessage extends BaseAction {
 
     public void setMessageInfo(MessageInfo messageInfo) {
         this.messageInfo = messageInfo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
