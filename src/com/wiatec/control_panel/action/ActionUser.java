@@ -24,7 +24,7 @@ public class ActionUser extends BaseAction {
     private UserService userService;
 
     public void register(){
-        resultInfo = userService.register(userInfo , deviceInfo);
+        resultInfo = userService.register(userInfo , deviceInfo ,language);
         out.println(JSONObject.fromObject(resultInfo));
         out.flush();
         out.close();
@@ -56,6 +56,10 @@ public class ActionUser extends BaseAction {
         out.println(JSONObject.fromObject(resultInfo));
         out.flush();
         out.close();
+    }
+
+    public String goRegister(){
+        return "goRegister";
     }
 
     public UserInfo getUserInfo() {

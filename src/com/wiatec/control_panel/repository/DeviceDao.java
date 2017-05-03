@@ -24,8 +24,8 @@ public class DeviceDao extends BaseDao<DeviceInfo> {
     @Transactional
     public boolean insert (DeviceInfo deviceInfo){
         sql = "insert into device (mac , username , country , country_code , region_name , city , time_zone , " +
-                "current_login_time) values (:mac , :userName , :country ,:countryCode , :regionName , :city," +
-                ":timeZone ,:currentLoginTime)";
+                "current_login_time ,active_username) values (:mac , :userName , :country ,:countryCode , :regionName , :city," +
+                ":timeZone ,:currentLoginTime ,:activeUserName)";
         SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(deviceInfo);
         return namedParameterJdbcTemplate.update(sql , sqlParameterSource) == 1;
     }

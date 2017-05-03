@@ -30,7 +30,7 @@ public class UserService {
     private DeviceDao deviceDao;
 
     @Transactional
-    public ResultInfo register(UserInfo userInfo , DeviceInfo deviceInfo){
+    public ResultInfo register(UserInfo userInfo , DeviceInfo deviceInfo ,String language){
         ResultInfo resultInfo = new ResultInfo();
         if(userInfo.getUserName() == null || userInfo.getPassword() == null || userInfo.getEmail() == null){
             resultInfo.setCode(ResultInfo.CODE_INPUT_INFO_ERROR);
@@ -54,7 +54,7 @@ public class UserService {
         deviceInfo.setCurrentLoginTime("");
         if(userDao.insert(userInfo) && deviceDao.insert(deviceInfo)){
             EmailMaster emailMaster = new EmailMaster();
-            emailMaster.setEmailContent(userInfo.getUserName() , token , deviceInfo.getCountryCode());
+            emailMaster.setEmailContent(userInfo.getUserName() , token , language);
             emailMaster.send(userInfo.getEmail());
             resultInfo.setCode(ResultInfo.CODE_REGISTER_SUCCESS);
             resultInfo.setSatus(ResultInfo.STATUS_REGISTER_SUCCESS);

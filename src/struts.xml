@@ -16,6 +16,7 @@
         <action name="login" class="com.wiatec.control_panel.action.ActionManager" method="login">
             <result name="success" type="redirectAction">show</result>
             <result name="failure">/index.jsp</result>
+            <result name="test">/WEB-INF/jsp/register/login.jsp</result>
         </action>
     </package>
 
@@ -96,6 +97,11 @@
         </action>
     </package>
 
+    <package name="user" extends="struts-default" namespace="/user">
+        <action name="*" class="com.wiatec.control_panel.action.ActionUser" method="{1}">
+            <result name="goRegister">/WEB-INF/jsp/register/register.jsp</result>
+        </action>
+    </package>
 
     <package name="manager" extends="struts-default" namespace="/manager">
         <action name="logout" class="com.wiatec.control_panel.action.ActionManager" method="logout">

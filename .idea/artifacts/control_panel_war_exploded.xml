@@ -29,6 +29,8 @@
           <element id="library" level="project" name="Spring-4.3.8.RELEASE" />
           <element id="library" level="project" name="Struts 2-2.3.20.1" />
           <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/required/struts2-spring-plugin-2.5.8.jar" />
+          <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/jmail/activation.jar" />
+          <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/jmail/mail.jar" />
         </element>
       </element>
     </root>
