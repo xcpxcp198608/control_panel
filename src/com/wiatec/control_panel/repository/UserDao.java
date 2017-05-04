@@ -65,7 +65,7 @@ public class UserDao extends BaseDao<UserInfo> {
 
     @Transactional
     public boolean updateEmailStatus(UserInfo userInfo){
-        sql = "update user set email_status=:emailStatus where token=:token";
+        sql = "update user set email_status=1 where token=:token";
         SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(userInfo);
         return namedParameterJdbcTemplate.update(sql ,sqlParameterSource) == 1;
     }

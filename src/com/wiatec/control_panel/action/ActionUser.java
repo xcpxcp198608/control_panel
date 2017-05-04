@@ -46,7 +46,11 @@ public class ActionUser extends BaseAction {
 
     public void confirmEmail(){
         resultInfo = userService.confirmEmail(userInfo);
-        out.println(JSONObject.fromObject(resultInfo));
+        if(resultInfo.getCode() == ResultInfo.CODE_EMAIL_CONFIRM_SUCCESS){
+            out.println("ACTIVATION SUCCESS");
+        }else{
+            out.println("ACTIVATION FAILURE");
+        }
         out.flush();
         out.close();
     }
