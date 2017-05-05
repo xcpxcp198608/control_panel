@@ -3,6 +3,7 @@ package com.wiatec.control_panel.action;
 import com.wiatec.control_panel.entities.ImageInfo;
 import com.wiatec.control_panel.service.RollImageService;
 import com.wiatec.control_panel.utils.FileUtil;
+import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -27,7 +28,7 @@ public class ActionRollImage extends BaseAction{
 
     public void get(){
         imageInfoList = rollImageService.get(deviceInfo.getCountryCode() , deviceInfo.getTimeZone());
-        out.println(imageInfoList);
+        out.println(JSONArray.fromObject(imageInfoList));
         out.flush();
         out.close();
     }

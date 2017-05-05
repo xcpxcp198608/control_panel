@@ -25,7 +25,7 @@ public class BaseAction implements ServletResponseAware ,ServletRequestAware{
     protected HttpSession session;
     protected String countryCode;
     protected String timeZone;
-    protected String imagePath = "http://appota.gobeyondtv.co:8081/launcher/image/" ;
+    protected String imagePath = "http://appota.gobeyondtv.co:8081/control_panel/out/artifacts/control_panel_war_exploded/image/" ;
 //    protected String imagePath = "http://appotaeu.gobeyondtv.co:8081/launcher/image/" ; //europe server
 
     @Override
