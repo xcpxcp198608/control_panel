@@ -37,7 +37,8 @@ public class UserDao extends BaseDao<UserInfo> {
 
     @Transactional
     public boolean insert (UserInfo userInfo){
-        sql = "insert into user (username , password , email , token) values (:userName ,:password ,:email ,:token)";
+        sql = "insert into user (username , password , email , token , firstname , lastname) values " +
+                "(:userName ,:password ,:email ,:token ,:firstName ,:lastName)";
         SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(userInfo);
         return namedParameterJdbcTemplate.update(sql , sqlParameterSource) == 1;
     }

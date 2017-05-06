@@ -12,6 +12,8 @@ public class UserInfo {
     private String token;
     private short level;
     private short emailStatus;
+    private String firstName;
+    private String lastName;
 
     public int getId() {
         return id;
@@ -69,6 +71,22 @@ public class UserInfo {
         this.emailStatus = emailStatus;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
@@ -79,6 +97,8 @@ public class UserInfo {
                 ", token='" + token + '\'' +
                 ", level=" + level +
                 ", emailStatus=" + emailStatus +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
 }

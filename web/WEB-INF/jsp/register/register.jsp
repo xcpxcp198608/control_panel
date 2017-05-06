@@ -31,6 +31,8 @@
         <s:textfield name="userInfo.userName" label="UserName"/>
         <s:textfield name="userInfo.password" label="Password"/>
         <s:textfield name="userInfo.email" label="Email"/>
+        <s:textfield name="userInfo.firstName" label="FirstName"/>
+        <s:textfield name="userInfo.lastName" label="LastName"/>
         <s:textfield name="deviceInfo.mac" label="Mac"/>
         <s:textfield name="language" label="Language"/>
         <s:submit value="Register"/>
