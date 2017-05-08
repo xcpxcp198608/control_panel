@@ -69,7 +69,7 @@ public class EmailMaster {
 			message.setSubject(emailSubject);
 			Multipart multipart = new MimeMultipart();
 			MimeBodyPart mimeBodyPart = new MimeBodyPart();
-			mimeBodyPart.setContent(emailContent,"text/html");
+			mimeBodyPart.setContent(emailContent,"text/html ; charset=utf-8");
 			multipart.addBodyPart(mimeBodyPart);
 			message.setContent(multipart);
 			message.setSentDate(new Date());
@@ -152,7 +152,7 @@ public class EmailMaster {
 			stringBuilder.append("<a href='http://appota.gobeyondtv.co:8080/control_panel/user/confirmEmail?userInfo.token="+token+"'>AKTIVOVAŤ MÔJ ÚČET</a>"+"<br/><br/>");
 			stringBuilder.append("Ak máte akékoľvek otázky alebo ak máte problémy, kontaktujte náš tím podpory nasupport@legacy.direct, ktorý Vám rád pomôže. Prípadne môžete kontaktovať náš Support Desk."+"<br/><br/>");
 			stringBuilder.append("Legacy Direct"+"<br/>");
-		}else if("Czekh".equals(language)){
+		}else if("Czech".equals(language)){
 			stringBuilder.append("Dear "+userName+":<br/>");
 			stringBuilder.append("<br/>");
 			stringBuilder.append("BTVi3 od společnosti Legacy Direct"+"<br/>");
@@ -180,10 +180,17 @@ public class EmailMaster {
 			stringBuilder.append("If you have any questions or if you’re encountering problems, our support team at support@legacy.direct is happy to assist you. Alternatively you can visit our Support Desk."+"<br/><br/>");
 			stringBuilder.append("Legacy Direct"+"<br/>");
 		}
-
-
-
 		this.emailContent = stringBuilder.toString();
 	}
-	
+
+	public void setResetPasswordContent(String userName ,String token){
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("Dear "+userName+":<br/>");
+		stringBuilder.append("<br/>");
+		stringBuilder.append("BTVi3 by Legacy Direct"+"<br/>");
+		stringBuilder.append("To finish your sign up process, please click on the button below to activate your account"+"<br/><br/>");
+		stringBuilder.append("<a href='http://appota.gobeyondtv.co:8080/control_panel/user/resetp?userInfo.token="+token+"'>RESET PASSWORD</a>"+"<br/><br/>");
+		stringBuilder.append("Legacy Direct"+"<br/>");
+		this.emailContent = stringBuilder.toString();
+	}
 }

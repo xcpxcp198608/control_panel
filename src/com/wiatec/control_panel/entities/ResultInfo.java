@@ -8,6 +8,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class ResultInfo {
 
+    public static final int CODE_REQUEST_SUCCESS = 11;
+    public static final String STATUS_REQUEST_SUCCESS = "request success";
+
+    public static final int CODE_REQUEST_FAILURE = 12;
+    public static final String STATUS_REQUEST_FAILURE = "request failure";
+
     public static final int CODE_INPUT_INFO_ERROR = 100;
     public static final String STATUS_INPUT_INFO_ERROR = "input info error";
     public static final int CODE_USER_NAME_EXISTS = 101;
@@ -35,10 +41,11 @@ public class ResultInfo {
     public static final String STATUS_EMAIL_CONFIRM_FAILURE = "active failure";
 
     private int code;
-    private String satus;
+    private String status;
     private int loginCount;
     private String token;
     private int userLevel;
+    private String extra;
 
     public int getCode() {
         return code;
@@ -48,12 +55,12 @@ public class ResultInfo {
         this.code = code;
     }
 
-    public String getSatus() {
-        return satus;
+    public String getStatus() {
+        return status;
     }
 
-    public void setSatus(String satus) {
-        this.satus = satus;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getLoginCount() {
@@ -80,14 +87,23 @@ public class ResultInfo {
         this.userLevel = userLevel;
     }
 
+    public String getExtra() {
+        return extra;
+    }
+
+    public void setExtra(String extra) {
+        this.extra = extra;
+    }
+
     @Override
     public String toString() {
         return "ResultInfo{" +
                 "code=" + code +
-                ", satus='" + satus + '\'' +
+                ", status='" + status + '\'' +
                 ", loginCount=" + loginCount +
                 ", token='" + token + '\'' +
                 ", userLevel=" + userLevel +
+                ", extra='" + extra + '\'' +
                 '}';
     }
 }

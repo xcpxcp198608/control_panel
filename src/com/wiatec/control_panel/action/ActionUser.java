@@ -4,6 +4,7 @@ import com.sun.xml.internal.rngom.parse.host.Base;
 import com.wiatec.control_panel.entities.DeviceInfo;
 import com.wiatec.control_panel.entities.ResultInfo;
 import com.wiatec.control_panel.entities.UserInfo;
+import com.wiatec.control_panel.repository.UserDao;
 import com.wiatec.control_panel.service.UserService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,12 @@ public class ActionUser extends BaseAction {
     private ResultInfo resultInfo;
     private String language;
     private int count;
+    private String p1;
+    private String p2;
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserDao userDao;
 
     public void register(){
         resultInfo = userService.register(userInfo , deviceInfo ,language);
@@ -58,6 +63,29 @@ public class ActionUser extends BaseAction {
     public void checkLevel(){
         resultInfo = userService.checkUserLevel(userInfo);
         out.println(JSONObject.fromObject(resultInfo));
+        out.flush();
+        out.close();
+    }
+
+    public String goreset(){
+        return "goreset";
+    }
+
+    public void requestUpdateP(){
+        resultInfo = userService.resetPassword(userInfo);
+        out.println(JSONObject.fromObject(resultInfo));
+        out.flush();
+        out.close();
+    }
+
+    public String resetp(){
+        userInfo = userDao.get(userInfo);
+        return "resetp";
+    }
+
+    public void updatep(){
+        resultInfo = userService.updatePassword(userInfo ,p1 ,p1);
+        out.println(resultInfo.getStatus());
         out.flush();
         out.close();
     }
@@ -108,5 +136,21 @@ public class ActionUser extends BaseAction {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public String getP1() {
+        return p1;
+    }
+
+    public void setP1(String p1) {
+        this.p1 = p1;
+    }
+
+    public String getP2() {
+        return p2;
+    }
+
+    public void setP2(String p2) {
+        this.p2 = p2;
     }
 }

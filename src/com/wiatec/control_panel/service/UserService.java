@@ -34,17 +34,17 @@ public class UserService {
         ResultInfo resultInfo = new ResultInfo();
         if(userInfo.getUserName() == null || userInfo.getPassword() == null || userInfo.getEmail() == null){
             resultInfo.setCode(ResultInfo.CODE_INPUT_INFO_ERROR);
-            resultInfo.setSatus(ResultInfo.STATUS_INPUT_INFO_ERROR);
+            resultInfo.setStatus(ResultInfo.STATUS_INPUT_INFO_ERROR);
             return resultInfo;
         }
         if(userDao.isUserNameExists(userInfo)){
             resultInfo.setCode(ResultInfo.CODE_USER_NAME_EXISTS);
-            resultInfo.setSatus(ResultInfo.STATUS_USER_NAME_EXISTS);
+            resultInfo.setStatus(ResultInfo.STATUS_USER_NAME_EXISTS);
             return resultInfo;
         }
         if(userDao.isEmailExists(userInfo)){
             resultInfo.setCode(ResultInfo.CODE_EMAIL_EXISTS);
-            resultInfo.setSatus(ResultInfo.STATUS_EMAIL_EXISTS);
+            resultInfo.setStatus(ResultInfo.STATUS_EMAIL_EXISTS);
             return resultInfo;
         }
         String token = createToken(userInfo);
@@ -57,10 +57,11 @@ public class UserService {
             emailMaster.setEmailContent(userInfo.getUserName() , token , language);
             emailMaster.send(userInfo.getEmail());
             resultInfo.setCode(ResultInfo.CODE_REGISTER_SUCCESS);
-            resultInfo.setSatus(ResultInfo.STATUS_REGISTER_SUCCESS);
+            resultInfo.setStatus(ResultInfo.STATUS_REGISTER_SUCCESS + " please check your email and activation your account" +
+                    ", sometime the email received spend a few time, please be patient.");
         }else{
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
-            resultInfo.setSatus(ResultInfo.STATUS_REGISTER_FAILURE);
+            resultInfo.setStatus(ResultInfo.STATUS_REGISTER_FAILURE);
         }
         return resultInfo;
     }
@@ -70,12 +71,12 @@ public class UserService {
         ResultInfo resultInfo = new ResultInfo();
         if(!userDao.validate(userInfo)){
             resultInfo.setCode(ResultInfo.CODE_LOGIN_INFO_ERROR);
-            resultInfo.setSatus(ResultInfo.STATUS_LOGIN_INFO_ERROR);
+            resultInfo.setStatus(ResultInfo.STATUS_LOGIN_INFO_ERROR);
             return resultInfo;
         }
         if(!userDao.validateEmailStatus(userInfo)){
             resultInfo.setCode(ResultInfo.CODE_EMAIL_VALIDATE_ERROR);
-            resultInfo.setSatus(ResultInfo.STATUS_EMAIL_VALIDATE_ERROR);
+            resultInfo.setStatus(ResultInfo.STATUS_EMAIL_VALIDATE_ERROR);
             return resultInfo;
         }
         String token = createToken(userInfo);
@@ -111,10 +112,12 @@ public class UserService {
                 deviceDao.insert(deviceInfo);
             }
         }
+        String lastName = userDao.getLastName(userInfo)+"";
         resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS);
-        resultInfo.setSatus(ResultInfo.STATUS_LOGIN_SUCCESS);
+        resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS);
         resultInfo.setLoginCount(count);
         resultInfo.setToken(token);
+        resultInfo.setExtra(lastName);
         return resultInfo;
     }
 
@@ -122,7 +125,7 @@ public class UserService {
         ResultInfo resultInfo = new ResultInfo();
         if(!userDao.isUserNameExists(userInfo)){
             resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
-            resultInfo.setSatus(ResultInfo.STATUS_LOGIN_ERROR);
+            resultInfo.setStatus(ResultInfo.STATUS_LOGIN_ERROR);
             return resultInfo;
         }
         HttpSession session = SessionListener.getSession(userInfo.getUserName());
@@ -131,17 +134,17 @@ public class UserService {
             session.setAttribute("userName",userInfo.getUserName());
             session.setAttribute("count",count);
             resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS);
-            resultInfo.setSatus(ResultInfo.STATUS_LOGIN_SUCCESS);
+            resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS);
             resultInfo.setLoginCount(count);
         }else{
             int currentCount = (int) session.getAttribute("count");
             if(currentCount == count){
                 resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS);
-                resultInfo.setSatus(ResultInfo.STATUS_LOGIN_SUCCESS);
+                resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS);
                 resultInfo.setLoginCount(count);
             }else{
                 resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
-                resultInfo.setSatus(ResultInfo.STATUS_LOGIN_ERROR + "currentCount:"+currentCount +"count"+count);
+                resultInfo.setStatus(ResultInfo.STATUS_LOGIN_ERROR + "currentCount:"+currentCount +"count"+count);
             }
         }
         return resultInfo;
@@ -152,15 +155,15 @@ public class UserService {
         ResultInfo resultInfo = new ResultInfo();
         if(! userDao.isTokenExists(userInfo)){
             resultInfo.setCode(ResultInfo.CODE_EMAIL_CONFIRM_FAILURE);
-            resultInfo.setSatus(ResultInfo.STATUS_EMAIL_CONFIRM_FAILURE);
+            resultInfo.setStatus(ResultInfo.STATUS_EMAIL_CONFIRM_FAILURE);
             return resultInfo;
         }
         if(userDao.updateEmailStatus(userInfo)){
             resultInfo.setCode(ResultInfo.CODE_EMAIL_CONFIRM_SUCCESS);
-            resultInfo.setSatus(ResultInfo.STATUS_EMAIL_CONFIRM_SUCCESS);
+            resultInfo.setStatus(ResultInfo.STATUS_EMAIL_CONFIRM_SUCCESS);
         }else{
             resultInfo.setCode(ResultInfo.CODE_EMAIL_CONFIRM_FAILURE);
-            resultInfo.setSatus(ResultInfo.STATUS_EMAIL_CONFIRM_FAILURE);
+            resultInfo.setStatus(ResultInfo.STATUS_EMAIL_CONFIRM_FAILURE);
         }
         return resultInfo;
     }
@@ -168,10 +171,47 @@ public class UserService {
     @Transactional
     public ResultInfo checkUserLevel(UserInfo userInfo){
         ResultInfo resultInfo = new ResultInfo();
+        resultInfo.setCode(ResultInfo.CODE_REQUEST_SUCCESS);
+        resultInfo.setStatus(ResultInfo.STATUS_REQUEST_SUCCESS);
         resultInfo.setUserLevel(userDao.getLevel(userInfo));
         return resultInfo;
     }
 
+    @Transactional
+    public ResultInfo resetPassword(UserInfo userInfo){
+        String token = userDao.getToken(userInfo);
+        ResultInfo resultInfo = new ResultInfo();
+        if(token != null){
+            EmailMaster emailMaster = new EmailMaster();
+            emailMaster.setResetPasswordContent(userInfo.getUserName() , token);
+            emailMaster.send(userInfo.getEmail());
+            resultInfo.setCode(ResultInfo.CODE_REQUEST_SUCCESS);
+            resultInfo.setStatus(ResultInfo.STATUS_REQUEST_SUCCESS + " please check your email, sometime the email " +
+                    "received spend a few time, please be patient.");
+        }else{
+            resultInfo.setCode(ResultInfo.CODE_REQUEST_FAILURE);
+            resultInfo.setStatus(ResultInfo.STATUS_REQUEST_FAILURE);
+        }
+        return resultInfo;
+    }
+
+    public ResultInfo updatePassword(UserInfo userInfo , String p1 , String p2){
+        ResultInfo resultInfo = new ResultInfo();
+        if(p1.equals(p2)){
+            userInfo.setPassword(p1);
+            if(userDao.updatePassword(userInfo)) {
+                resultInfo.setCode(ResultInfo.CODE_REQUEST_SUCCESS);
+                resultInfo.setStatus("password reset success");
+            }else{
+                resultInfo.setCode(ResultInfo.CODE_REQUEST_FAILURE);
+                resultInfo.setStatus("password reset error");
+            }
+        }else{
+            resultInfo.setCode(ResultInfo.CODE_REQUEST_FAILURE);
+            resultInfo.setStatus("password different");
+        }
+        return resultInfo;
+    }
 
     private String createToken(UserInfo userInfo){
         try {

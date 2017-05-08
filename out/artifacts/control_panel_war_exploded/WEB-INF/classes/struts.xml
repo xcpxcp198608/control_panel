@@ -45,6 +45,18 @@
         </action>
     </package>
 
+    <package name="opportunityimage" extends="struts-default" namespace="/opportunityimage">
+        <action name="*" class="com.wiatec.control_panel.action.ActionOpportunityImage" method="{1}">
+
+        </action>
+    </package>
+
+    <package name="manualimage" extends="struts-default" namespace="/manualimage">
+        <action name="*" class="com.wiatec.control_panel.action.ActionManualImage" method="{1}">
+
+        </action>
+    </package>
+
     <package name="video" extends="struts-default" namespace="/video">
         <action name="*" class="com.wiatec.control_panel.action.ActionVideo" method="{1}">
 
@@ -100,6 +112,8 @@
     <package name="user" extends="struts-default" namespace="/user">
         <action name="*" class="com.wiatec.control_panel.action.ActionUser" method="{1}">
             <result name="goRegister">/WEB-INF/jsp/register/register.jsp</result>
+            <result name="goreset">/WEB-INF/jsp/register/goreset.jsp</result>
+            <result name="resetp">/WEB-INF/jsp/register/reset.jsp</result>
         </action>
     </package>
 
