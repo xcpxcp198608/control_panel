@@ -28,7 +28,7 @@ public class SessionListener implements HttpSessionListener ,HttpSessionAttribut
             String userName = (String) httpSessionBindingEvent.getValue();
             HttpSession httpSession = sessionMap.remove(userName);
             if(httpSession != null){
-                httpSession.removeAttribute("KEY");
+                httpSession.removeAttribute(KEY);
             }
             sessionMap.put(userName, httpSessionBindingEvent.getSession());
         }

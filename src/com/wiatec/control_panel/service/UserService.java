@@ -91,7 +91,7 @@ public class UserService {
         }else{
             session.setAttribute("userName" ,userInfo.getUserName());
             count = (int) session.getAttribute("count");
-            count ++;
+            count += 1;
             session.setAttribute("count", count);
         }
         deviceInfo.setUserName(userInfo.getUserName());
@@ -129,22 +129,24 @@ public class UserService {
             return resultInfo;
         }
         HttpSession session = SessionListener.getSession(userInfo.getUserName());
-        if(session ==null){
+        if(session == null){
             session = request.getSession();
             session.setAttribute("userName",userInfo.getUserName());
             session.setAttribute("count",count);
             resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS);
             resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS);
             resultInfo.setLoginCount(count);
+            resultInfo.setUserLevel(userDao.getLevel(userInfo));
         }else{
             int currentCount = (int) session.getAttribute("count");
             if(currentCount == count){
-                resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS);
-                resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS);
+                resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS );
+                resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS + " currentCount: "+currentCount +" count: "+count);
                 resultInfo.setLoginCount(count);
+                resultInfo.setUserLevel(userDao.getLevel(userInfo));
             }else{
                 resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
-                resultInfo.setStatus(ResultInfo.STATUS_LOGIN_ERROR + "currentCount:"+currentCount +"count"+count);
+                resultInfo.setStatus(ResultInfo.STATUS_LOGIN_ERROR + " currentCount: "+currentCount +" count: "+count);
             }
         }
         return resultInfo;
