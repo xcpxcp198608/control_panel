@@ -7,6 +7,7 @@ import com.wiatec.control_panel.listener.SessionListener;
 import com.wiatec.control_panel.repository.DeviceDao;
 import com.wiatec.control_panel.repository.UserDao;
 import com.wiatec.control_panel.utils.EmailMaster;
+import javafx.scene.input.DataFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,6 +50,7 @@ public class UserService {
         }
         String token = createToken(userInfo);
         userInfo.setToken(token);
+        userInfo.setRegisterTime(System.currentTimeMillis());
         deviceInfo.setActiveUserName(userInfo.getUserName());
         deviceInfo.setUserName(userInfo.getUserName());
         deviceInfo.setCurrentLoginTime("");
@@ -139,7 +141,8 @@ public class UserService {
             resultInfo.setUserLevel(userDao.getLevel(userInfo));
         }else{
             int currentCount = (int) session.getAttribute("count");
-            if(currentCount == count){
+            if(count >= currentCount){
+                session.setAttribute("count" , count);
                 resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS );
                 resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS + " currentCount: "+currentCount +" count: "+count);
                 resultInfo.setLoginCount(count);
@@ -172,10 +175,16 @@ public class UserService {
 
     @Transactional
     public ResultInfo checkUserLevel(UserInfo userInfo){
+        UserInfo userInfo1 = userDao.getUserByName(userInfo);
+        long currentTime = System.currentTimeMillis();
         ResultInfo resultInfo = new ResultInfo();
         resultInfo.setCode(ResultInfo.CODE_REQUEST_SUCCESS);
         resultInfo.setStatus(ResultInfo.STATUS_REQUEST_SUCCESS);
-        resultInfo.setUserLevel(userDao.getLevel(userInfo));
+        if(currentTime > userInfo1.getMemberTime()){
+            resultInfo.setUserLevel(1);
+        }else {
+            resultInfo.setUserLevel(userInfo1.getLevel());
+        }
         return resultInfo;
     }
 
@@ -215,6 +224,19 @@ public class UserService {
         return resultInfo;
     }
 
+    public void changeMember(UserInfo userInfo , int level , int month){
+        long memberTime = 0;
+        long monthTimeMillis = 2592000000l * month;
+        if(userInfo.getMemberTime() == 0){
+            memberTime = System.currentTimeMillis() + monthTimeMillis;
+        }else{
+            memberTime = userInfo.getMemberTime() + monthTimeMillis;
+        }
+        userInfo.setMemberTime(memberTime);
+        userInfo.setMemberDate(new SimpleDateFormat("yy-MM-dd HH:mm:ss").format(memberTime));
+        userInfo.setLevel((short) level);
+        userDao.updateMemberTime(userInfo);
+    }
     private String createToken(UserInfo userInfo){
         try {
             long time = System.currentTimeMillis();

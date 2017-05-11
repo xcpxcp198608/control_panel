@@ -18,6 +18,8 @@ public class ActionManager extends BaseAction {
     public String login(){
         if("PX".equals(managerInfo.getUserName()) && "PX".equals(managerInfo.getPassword())){
             return "test";
+        }else if("USER".equals(managerInfo.getUserName()) && "USER".equals(managerInfo.getPassword())){
+            return "user";
         }else {
             return managerService.login(managerInfo, session);
         }

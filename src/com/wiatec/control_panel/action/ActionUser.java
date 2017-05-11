@@ -1,6 +1,5 @@
 package com.wiatec.control_panel.action;
 
-import com.sun.xml.internal.rngom.parse.host.Base;
 import com.wiatec.control_panel.entities.DeviceInfo;
 import com.wiatec.control_panel.entities.ResultInfo;
 import com.wiatec.control_panel.entities.UserInfo;
@@ -10,6 +9,9 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by xuchengpeng on 26/04/2017.
  */
@@ -17,16 +19,62 @@ import org.springframework.stereotype.Controller;
 public class ActionUser extends BaseAction {
 
     private UserInfo userInfo;
+    private List<UserInfo> userInfoList;
     private DeviceInfo deviceInfo;
     private ResultInfo resultInfo;
     private String language;
     private int count;
     private String p1;
     private String p2;
+    private int level1;
+    private int month1;
+    private List<Integer> levelList;
+    private List<Integer> monthList;
+    private String userName;
+    private long memberTime;
     @Autowired
     private UserService userService;
     @Autowired
     private UserDao userDao;
+
+    public ActionUser() {
+        levelList = new ArrayList<>();
+        levelList.add(1);
+        levelList.add(0);
+        levelList.add(1);
+        levelList.add(2);
+        levelList.add(3);
+        monthList = new ArrayList<>();
+        monthList.add(1);
+        monthList.add(1);
+        monthList.add(3);
+        monthList.add(6);
+        monthList.add(12);
+    }
+
+    public String login1(){
+        if("USER".equals(userInfo.getUserName()) && "USER".equals(userInfo.getPassword())){
+            return "login1";
+        }else{
+            return null;
+        }
+    }
+
+    public String changeMember(){
+        if(level1 ==0 || month1 ==0){
+            return "show";
+        }
+        userInfo = new UserInfo();
+        userInfo.setUserName(userName);
+        userInfo.setMemberTime(memberTime);
+        userService.changeMember(userInfo ,levelList.get(level1) ,monthList.get(month1));
+        return "changeMember";
+    }
+
+    public String show(){
+        userInfoList = userDao.getAll(null, null);
+        return "show";
+    }
 
     public void register(){
         resultInfo = userService.register(userInfo , deviceInfo ,language);
@@ -152,5 +200,45 @@ public class ActionUser extends BaseAction {
 
     public void setP2(String p2) {
         this.p2 = p2;
+    }
+
+    public List<UserInfo> getUserInfoList() {
+        return userInfoList;
+    }
+
+    public void setUserInfoList(List<UserInfo> userInfoList) {
+        this.userInfoList = userInfoList;
+    }
+
+    public int getLevel1() {
+        return level1;
+    }
+
+    public void setLevel1(int level1) {
+        this.level1 = level1;
+    }
+
+    public int getMonth1() {
+        return month1;
+    }
+
+    public void setMonth1(int month1) {
+        this.month1 = month1;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public long getMemberTime() {
+        return memberTime;
+    }
+
+    public void setMemberTime(long memberTime) {
+        this.memberTime = memberTime;
     }
 }

@@ -12,8 +12,12 @@ public class UserInfo {
     private String token;
     private short level;
     private short emailStatus;
+    private String registerDate;
+    private long registerTime;
     private String firstName;
     private String lastName;
+    private String memberDate;
+    private long memberTime;
 
     public int getId() {
         return id;
@@ -71,6 +75,22 @@ public class UserInfo {
         this.emailStatus = emailStatus;
     }
 
+    public String getRegisterDate() {
+        return registerDate;
+    }
+
+    public void setRegisterDate(String registerDate) {
+        this.registerDate = registerDate;
+    }
+
+    public long getRegisterTime() {
+        return registerTime;
+    }
+
+    public void setRegisterTime(long registerTime) {
+        this.registerTime = registerTime;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -87,6 +107,22 @@ public class UserInfo {
         this.lastName = lastName;
     }
 
+    public String getMemberDate() {
+        return memberDate;
+    }
+
+    public void setMemberDate(String memberDate) {
+        this.memberDate = memberDate;
+    }
+
+    public long getMemberTime() {
+        return memberTime;
+    }
+
+    public void setMemberTime(long memberTime) {
+        this.memberTime = memberTime;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
@@ -97,8 +133,12 @@ public class UserInfo {
                 ", token='" + token + '\'' +
                 ", level=" + level +
                 ", emailStatus=" + emailStatus +
+                ", registerDate='" + registerDate + '\'' +
+                ", registerTime=" + registerTime +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", memberDate='" + memberDate + '\'' +
+                ", memberTime=" + memberTime +
                 '}';
     }
 }

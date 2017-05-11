@@ -24,20 +24,20 @@ public class ManagerDao extends BaseDao<ManagerInfo> {
         if(managerInfo == null){
             return false;
         }
-        sql = "select count(*) from manager where username=? and password =?";
+        sql = "select count(*) from manager where binary username=? and binary password =?";
         int count = jdbcTemplate.queryForObject(sql ,Integer.class , managerInfo.getUserName() , managerInfo.getPassword());
         return count == 1;
     }
 
     @Transactional
     public String getCountryCode(ManagerInfo managerInfo){
-        sql = "select countryCode from manager where username = ? and password = ?";
+        sql = "select countryCode from manager where binary username = ? and binary password = ?";
         return jdbcTemplate.queryForObject(sql ,String.class , managerInfo.getUserName() , managerInfo.getPassword());
     }
 
     @Transactional
     public String getTimeZone(ManagerInfo managerInfo){
-        sql = "select timeZone from manager where username = ? and password = ?";
+        sql = "select timeZone from manager where binary username = ? and binary password = ?";
         return jdbcTemplate.queryForObject(sql ,String.class , managerInfo.getUserName() , managerInfo.getPassword());
     }
 }

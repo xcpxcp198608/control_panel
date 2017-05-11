@@ -114,6 +114,9 @@
             <result name="goRegister">/WEB-INF/jsp/register/register.jsp</result>
             <result name="goreset">/WEB-INF/jsp/register/goreset.jsp</result>
             <result name="resetp">/WEB-INF/jsp/register/reset.jsp</result>
+            <result name="login1" type="redirectAction">show</result>
+            <result name="show">/WEB-INF/jsp/user/show.jsp</result>
+            <result name="changeMember" type="redirectAction">show</result>
         </action>
     </package>
 
