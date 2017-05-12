@@ -14,6 +14,7 @@ public class ApplicationContextHelper implements ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         mApplicationContext = applicationContext;
+        System.setProperty("user.timezone","GMT-8");
     }
 
     public static ApplicationContext getApplicationContext(){

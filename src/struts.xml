@@ -6,7 +6,21 @@
 
 <struts>
 
-    <package name="rollimage" extends="struts-default" namespace="/rollimage">
+    <package name="error" extends="struts-default">
+        <global-results>
+            <result name="error">error.jsp</result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error">
+
+            </exception-mapping>
+        </global-exception-mappings>
+    </package>
+
+    <package name="rollimage" extends="error" namespace="/rollimage">
+
+        
         <action name="*" class="com.wiatec.control_panel.action.ActionRollImage" method="{1}">
             <result name="{1}">/WEB-INF/jsp/rollimage/{1}.jsp</result>
             <result name="upload">/WEB-INF/jsp/rollimage/edit.jsp</result>
@@ -20,7 +34,8 @@
         </action>
     </package>
 
-    <package name="adimage" extends="struts-default" namespace="/adimage">
+    <package name="adimage" extends="error" namespace="/adimage">
+
         <action name="*" class="com.wiatec.control_panel.action.ActionAdImage" method="{1}">
             <result name="{1}">/WEB-INF/jsp/adimage/{1}.jsp</result>
             <result name="upload">/WEB-INF/jsp/adimage/edit.jsp</result>
@@ -28,7 +43,7 @@
         </action>
     </package>
 
-    <package name="rolloverimage" extends="struts-default" namespace="/rolloverimage">
+    <package name="rolloverimage" extends="error" namespace="/rolloverimage">
         <action name="*" class="com.wiatec.control_panel.action.ActionRollOverImage" method="{1}">
             <result name="{1}">/WEB-INF/jsp/rolloverimage/{1}.jsp</result>
             <result name="upload">/WEB-INF/jsp/rolloverimage/edit.jsp</result>
@@ -37,7 +52,7 @@
         </action>
     </package>
 
-    <package name="kodiimage" extends="struts-default" namespace="/kodiimage">
+    <package name="kodiimage" extends="error" namespace="/kodiimage">
         <action name="*" class="com.wiatec.control_panel.action.ActionKodiImage" method="{1}">
             <result name="{1}">/WEB-INF/jsp/kodiimage/{1}.jsp</result>
             <result name="upload">/WEB-INF/jsp/kodiimage/edit.jsp</result>
@@ -45,43 +60,43 @@
         </action>
     </package>
 
-    <package name="opportunityimage" extends="struts-default" namespace="/opportunityimage">
+    <package name="opportunityimage" extends="error" namespace="/opportunityimage">
         <action name="*" class="com.wiatec.control_panel.action.ActionOpportunityImage" method="{1}">
 
         </action>
     </package>
 
-    <package name="manualimage" extends="struts-default" namespace="/manualimage">
+    <package name="manualimage" extends="error" namespace="/manualimage">
         <action name="*" class="com.wiatec.control_panel.action.ActionManualImage" method="{1}">
 
         </action>
     </package>
 
-    <package name="video" extends="struts-default" namespace="/video">
+    <package name="video" extends="error" namespace="/video">
         <action name="*" class="com.wiatec.control_panel.action.ActionVideo" method="{1}">
 
         </action>
     </package>
 
-    <package name="advideo" extends="struts-default" namespace="/advideo">
+    <package name="advideo" extends="error" namespace="/advideo">
         <action name="*" class="com.wiatec.control_panel.action.ActionAdVideo" method="{1}">
 
         </action>
     </package>
 
-    <package name="bootadvideo" extends="struts-default" namespace="/bootadvideo">
+    <package name="bootadvideo" extends="error" namespace="/bootadvideo">
         <action name="*" class="com.wiatec.control_panel.action.ActionBootAdVideo" method="{1}">
 
         </action>
     </package>
 
-    <package name="kodivideo" extends="struts-default" namespace="/kodivideo">
+    <package name="kodivideo" extends="error" namespace="/kodivideo">
         <action name="*" class="com.wiatec.control_panel.action.ActionKodiVideo" method="{1}">
 
         </action>
     </package>
 
-    <package name="message" extends="struts-default" namespace="/message">
+    <package name="message" extends="error" namespace="/message">
         <action name="*" class="com.wiatec.control_panel.action.ActionMessage" method="{1}">
             <result name="{1}">/WEB-INF/jsp/message/{1}.jsp</result>
             <result name="update" type="redirectAction">show</result>
@@ -89,7 +104,7 @@
         </action>
     </package>
 
-    <package name="message1" extends="struts-default" namespace="/message1">
+    <package name="message1" extends="error" namespace="/message1">
         <action name="*" class="com.wiatec.control_panel.action.ActionMessage1" method="{1}">
             <result name="{1}">/WEB-INF/jsp/message1/{1}.jsp</result>
             <result name="update" type="redirectAction">show</result>
@@ -97,19 +112,19 @@
         </action>
     </package>
 
-    <package name="update" extends="struts-default" namespace="/update">
+    <package name="update" extends="error" namespace="/update">
         <action name="*" class="com.wiatec.control_panel.action.ActionUpdate" method="{1}">
 
         </action>
     </package>
 
-    <package name="userdata" extends="struts-default" namespace="/userdata">
+    <package name="userdata" extends="error" namespace="/userdata">
         <action name="*" class="com.wiatec.control_panel.action.ActionUserData" method="{1}">
 
         </action>
     </package>
 
-    <package name="user" extends="struts-default" namespace="/user">
+    <package name="user" extends="error" namespace="/user">
         <action name="*" class="com.wiatec.control_panel.action.ActionUser" method="{1}">
             <result name="goRegister">/WEB-INF/jsp/register/register.jsp</result>
             <result name="goreset">/WEB-INF/jsp/register/goreset.jsp</result>
@@ -120,7 +135,7 @@
         </action>
     </package>
 
-    <package name="manager" extends="struts-default" namespace="/manager">
+    <package name="manager" extends="error" namespace="/manager">
         <action name="logout" class="com.wiatec.control_panel.action.ActionManager" method="logout">
 
         </action>

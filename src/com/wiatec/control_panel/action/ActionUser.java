@@ -56,7 +56,7 @@ public class ActionUser extends BaseAction {
         if("USER".equals(userInfo.getUserName()) && "USER".equals(userInfo.getPassword())){
             return "login1";
         }else{
-            return null;
+            throw new RuntimeException("user info error");
         }
     }
 
