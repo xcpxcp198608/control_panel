@@ -98,6 +98,12 @@ public class UserDao extends BaseDao<List<UserInfo>> {
     }
 
     @Transactional (readOnly = true)
+    public String getRegisterTime(UserInfo userInfo){
+        sql = "select registertime from user where binary username=?";
+        return jdbcTemplate.queryForObject(sql , String.class , userInfo.getUserName());
+    }
+
+    @Transactional (readOnly = true)
     public String getLastName(UserInfo userInfo){
         sql = "select lastname from user where binary username=?";
         return jdbcTemplate.queryForObject(sql , String.class , userInfo.getUserName());

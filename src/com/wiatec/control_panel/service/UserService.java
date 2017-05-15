@@ -141,6 +141,13 @@ public class UserService {
             resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS);
             resultInfo.setLoginCount(count);
             resultInfo.setUserLevel(userDao.getLevel(userInfo));
+            long currentTime = System.currentTimeMillis();
+            long experienceLimitTime = Long.parseLong(userDao.getRegisterTime(userInfo))+604800000;
+            if(currentTime > experienceLimitTime){
+                resultInfo.setExtra("false");
+            }else{
+                resultInfo.setExtra("true");
+            }
         }else{
             int currentCount = (int) session.getAttribute("count");
             if(count >= currentCount){
@@ -149,6 +156,13 @@ public class UserService {
                 resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS + " currentCount: "+currentCount +" count: "+count);
                 resultInfo.setLoginCount(count);
                 resultInfo.setUserLevel(userDao.getLevel(userInfo));
+                long currentTime = System.currentTimeMillis();
+                long experienceLimitTime = Long.parseLong(userDao.getRegisterTime(userInfo))+604800000;
+                if(currentTime > experienceLimitTime){
+                    resultInfo.setExtra("false");
+                }else{
+                    resultInfo.setExtra("true");
+                }
             }else{
                 resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
                 resultInfo.setStatus(ResultInfo.STATUS_LOGIN_ERROR + " currentCount: "+currentCount +" count: "+count);
