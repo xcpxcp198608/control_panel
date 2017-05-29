@@ -10,16 +10,17 @@
 <head>
     <base href="<%=basePath%>">
 
-    <title>Login</title>
+    <title>STATUS</title>
 
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="This is my page">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
     <!--
     <link rel="stylesheet" type="text/css" href="css/base.css">
     <script type="application/javascript" language="JavaScript" src="js/base.js"/>
@@ -29,17 +30,12 @@
 </head>
 
 <body>
-    Login<hr/>
-    <s:form method="POST" namespace="/user" action="login">
-        <s:textfield name="userInfo.userName" label="UserName"/>
-        <s:textfield name="userInfo.password" label="Password"/>
-        <s:textfield name="deviceInfo.mac" label="Mac"/>
-        <s:textfield name="deviceInfo.city" label="City"/>
-        <s:submit value="Login"/>
-    </s:form>
+    <h1>STATUS</h1>
+    <hr/>
+    CurrentCount: <s:property value="userSessionMap.size()"/><br/>
+    <s:iterator value="userSessionMap" id="column">
+        <s:property value="key"/>
+    </s:iterator>
 
-    <a href="/control_panel/user/goRegister">Register</a><br/>
-    <a href="/control_panel/user/goreset">Forgot Password</a><br/>
-    <a href="/control_panel/user/status">Status</a><br/>
 </body>
 </html>

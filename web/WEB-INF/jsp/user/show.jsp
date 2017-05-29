@@ -31,8 +31,9 @@
 <body>
     <table border="1px" cellspacing="0px" cellpadding="0px" width="100%">
         <tr><th>Id</th><th>UserName</th><th>Email</th><th>FirstName</th><th>LastName</th>
-            <th>RegisterDate</th><th>UserLevel</th><th>MemberExpireDate</th><th>Operation</th></tr>
+            <th>RegisterDate</th><th>Status</th><th>UserLevel</th><th>MemberExpireDate</th><th>Operation</th></tr>
     <s:iterator value="userInfoList">
+
         <tr>
             <td align="center">${id}</td>
             <td align="center">${userName}</td>
@@ -40,6 +41,7 @@
             <td align="center">${firstName}</td>
             <td align="center">${lastName}</td>
             <td align="center">${registerDate}</td>
+            <td align="center">${status}</td>
             <td align="center">${level}</td>
             <td align="center">${memberDate}</td>
             <td>

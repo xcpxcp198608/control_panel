@@ -3,14 +3,17 @@ package com.wiatec.control_panel.action;
 import com.wiatec.control_panel.entities.DeviceInfo;
 import com.wiatec.control_panel.entities.ResultInfo;
 import com.wiatec.control_panel.entities.UserInfo;
+import com.wiatec.control_panel.listener.SessionListener;
 import com.wiatec.control_panel.repository.UserDao;
 import com.wiatec.control_panel.service.UserService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by xuchengpeng on 26/04/2017.
@@ -32,6 +35,7 @@ public class ActionUser extends BaseAction {
     private List<Integer> monthList;
     private String userName;
     private long memberTime;
+    private Map<String, HttpSession> userSessionMap;
     @Autowired
     private UserService userService;
     @Autowired
@@ -73,6 +77,13 @@ public class ActionUser extends BaseAction {
 
     public String show(){
         userInfoList = userDao.getAll(null, null);
+        for(UserInfo userInfo : userInfoList){
+            if(userInfo.getEmailStatus() == 1){
+                userInfo.setStatus("ACTIVE");
+            }else{
+                userInfo.setStatus("NEGATIVE");
+            }
+        }
         return "show";
     }
 
@@ -91,7 +102,7 @@ public class ActionUser extends BaseAction {
     }
 
     public void checkRepeat(){
-        resultInfo = userService.checkRepeat(userInfo , count , request);
+        resultInfo = userService.checkRepeat(userInfo, deviceInfo, count , request);
         out.println(JSONObject.fromObject(resultInfo));
         out.flush();
         out.close();
@@ -136,6 +147,11 @@ public class ActionUser extends BaseAction {
         out.println(resultInfo.getStatus());
         out.flush();
         out.close();
+    }
+
+    public String status(){
+        userSessionMap = SessionListener.sessionMap;
+        return "status";
     }
 
     public String goRegister(){
@@ -240,5 +256,13 @@ public class ActionUser extends BaseAction {
 
     public void setMemberTime(long memberTime) {
         this.memberTime = memberTime;
+    }
+
+    public Map<String, HttpSession> getUserSessionMap() {
+        return userSessionMap;
+    }
+
+    public void setUserSessionMap(Map<String, HttpSession> userSessionMap) {
+        this.userSessionMap = userSessionMap;
     }
 }

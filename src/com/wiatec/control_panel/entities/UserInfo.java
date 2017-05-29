@@ -18,6 +18,7 @@ public class UserInfo {
     private String lastName;
     private String memberDate;
     private long memberTime;
+    private String status;
 
     public int getId() {
         return id;
@@ -123,6 +124,14 @@ public class UserInfo {
         this.memberTime = memberTime;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
@@ -139,6 +148,7 @@ public class UserInfo {
                 ", lastName='" + lastName + '\'' +
                 ", memberDate='" + memberDate + '\'' +
                 ", memberTime=" + memberTime +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

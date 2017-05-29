@@ -24,8 +24,8 @@ public class DeviceDao extends BaseDao<DeviceInfo> {
     @Transactional
     public boolean insert (DeviceInfo deviceInfo){
         sql = "insert into device (mac , username , country , country_code , region_name , city , time_zone , " +
-                "current_login_time ,active_username) values (:mac , :userName , :country ,:countryCode , :regionName , :city," +
-                ":timeZone ,:currentLoginTime ,:activeUserName)";
+                "current_login_time ,active_username ,register_time) values (:mac , :userName , :country ,:countryCode , :regionName , :city," +
+                ":timeZone ,:currentLoginTime ,:activeUserName, :registerTime)";
         SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(deviceInfo);
         return namedParameterJdbcTemplate.update(sql , sqlParameterSource) == 1;
     }
@@ -57,6 +57,15 @@ public class DeviceDao extends BaseDao<DeviceInfo> {
                 "current_login_time=:currentLoginTime where mac=:mac";
         SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(deviceInfo);
         return namedParameterJdbcTemplate.update(sql ,sqlParameterSource) >= 1;
+    }
+
+    public String getRegisterTime(DeviceInfo deviceInfo){
+        if(isMacExists(deviceInfo)){
+            return null;
+        }else {
+            sql = "select register_time from device where mac = ?";
+            return jdbcTemplate.queryForObject(sql, String.class, deviceInfo.getMac());
+        }
     }
 
     public void delete (DeviceInfo deviceInfo){

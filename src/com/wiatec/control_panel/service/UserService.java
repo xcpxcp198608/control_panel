@@ -54,6 +54,7 @@ public class UserService {
         deviceInfo.setActiveUserName(userInfo.getUserName());
         deviceInfo.setUserName(userInfo.getUserName());
         deviceInfo.setCurrentLoginTime("");
+        deviceInfo.setRegisterTime(System.currentTimeMillis());
         if(userDao.insert(userInfo) && deviceDao.insert(deviceInfo)){
             EmailMaster emailMaster = new EmailMaster();
             emailMaster.setEmailContent(userInfo.getUserName() , token , language);
@@ -125,7 +126,7 @@ public class UserService {
         return resultInfo;
     }
 
-    public ResultInfo checkRepeat(UserInfo userInfo , int count , HttpServletRequest request){
+    public ResultInfo checkRepeat(UserInfo userInfo ,DeviceInfo deviceInfo, int count , HttpServletRequest request){
         ResultInfo resultInfo = new ResultInfo();
         if(!userDao.isUserNameExists(userInfo)){
             resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
@@ -142,7 +143,13 @@ public class UserService {
             resultInfo.setLoginCount(count);
             resultInfo.setUserLevel(userDao.getLevel(userInfo));
             long currentTime = System.currentTimeMillis();
-            long experienceLimitTime = Long.parseLong(userDao.getRegisterTime(userInfo))+604800000;
+            String deviceRegisterTime = deviceDao.getRegisterTime(deviceInfo);
+            long experienceLimitTime;
+            if(deviceRegisterTime == null){
+                experienceLimitTime = 0;
+            }else {
+                experienceLimitTime = Long.parseLong(deviceDao.getRegisterTime(deviceInfo)) + 604800000;
+            }
             if(currentTime > experienceLimitTime){
                 resultInfo.setExtra("false");
             }else{
@@ -157,7 +164,13 @@ public class UserService {
                 resultInfo.setLoginCount(count);
                 resultInfo.setUserLevel(userDao.getLevel(userInfo));
                 long currentTime = System.currentTimeMillis();
-                long experienceLimitTime = Long.parseLong(userDao.getRegisterTime(userInfo))+604800000;
+                long experienceLimitTime;
+                String deviceRegisterTime = deviceDao.getRegisterTime(deviceInfo);
+                if(deviceRegisterTime == null){
+                    experienceLimitTime = 0;
+                }else {
+                    experienceLimitTime = Long.parseLong(deviceDao.getRegisterTime(deviceInfo)) + 604800000;
+                }
                 if(currentTime > experienceLimitTime){
                     resultInfo.setExtra("false");
                 }else{
@@ -211,10 +224,15 @@ public class UserService {
         if(token != null){
             EmailMaster emailMaster = new EmailMaster();
             emailMaster.setResetPasswordContent(userInfo.getUserName() , token);
-            emailMaster.send(userInfo.getEmail());
-            resultInfo.setCode(ResultInfo.CODE_REQUEST_SUCCESS);
-            resultInfo.setStatus(ResultInfo.STATUS_REQUEST_SUCCESS + " please check your email, sometime the email " +
-                    "received spend a few time, please be patient.");
+            if(emailMaster.send(userInfo.getEmail())) {
+                resultInfo.setCode(ResultInfo.CODE_REQUEST_SUCCESS);
+                resultInfo.setStatus(ResultInfo.STATUS_REQUEST_SUCCESS + " please check your email, sometime the email " +
+                        "received spend a few time, please be patient.");
+            }else{
+                resultInfo.setCode(ResultInfo.CODE_REQUEST_FAILURE);
+                resultInfo.setStatus(ResultInfo.STATUS_REQUEST_FAILURE);
+            }
+            emailMaster = null;
         }else{
             resultInfo.setCode(ResultInfo.CODE_REQUEST_FAILURE);
             resultInfo.setStatus(ResultInfo.STATUS_REQUEST_FAILURE);

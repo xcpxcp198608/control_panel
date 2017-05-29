@@ -14,6 +14,7 @@ public class DeviceInfo {
     private String timeZone;
     private String currentLoginTime;
     private String activeUserName;
+    private long registerTime;
 
     public int getId() {
         return id;
@@ -95,6 +96,14 @@ public class DeviceInfo {
         this.activeUserName = activeUserName;
     }
 
+    public long getRegisterTime() {
+        return registerTime;
+    }
+
+    public void setRegisterTime(long registerTime) {
+        this.registerTime = registerTime;
+    }
+
     @Override
     public String toString() {
         return "DeviceInfo{" +
@@ -108,6 +117,7 @@ public class DeviceInfo {
                 ", timeZone='" + timeZone + '\'' +
                 ", currentLoginTime='" + currentLoginTime + '\'' +
                 ", activeUserName='" + activeUserName + '\'' +
+                ", registerTime=" + registerTime +
                 '}';
     }
 }
