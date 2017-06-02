@@ -37,6 +37,7 @@
         <s:textfield name="userInfo.firstName" label="FirstName"/>
         <s:textfield name="userInfo.lastName" label="LastName"/>
         <s:textfield name="deviceInfo.mac" label="Mac"/>
+        <s:textfield name="deviceInfo.ethernetMac" label="EthernetMac"/>
         <s:textfield name="language" label="Language"/>
         <s:submit value="Register"/>
     </s:form>

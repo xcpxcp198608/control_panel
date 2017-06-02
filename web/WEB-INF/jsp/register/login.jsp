@@ -34,6 +34,7 @@
         <s:textfield name="userInfo.userName" label="UserName"/>
         <s:textfield name="userInfo.password" label="Password"/>
         <s:textfield name="deviceInfo.mac" label="Mac"/>
+        <s:textfield name="deviceInfo.ethernetMac" label="EthernetMac"/>
         <s:textfield name="deviceInfo.city" label="City"/>
         <s:submit value="Login"/>
     </s:form>

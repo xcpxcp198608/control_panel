@@ -31,7 +31,7 @@ public class EmailMaster {
 
 		String sendAddress = "bactivation@legacy.direct";
 		String userName = "bactivation@legacy.direct";
-		String password ="blegacydirect1#";
+		String password ="Legacy123#";
 
 		String emailSubject = "WELCOME TO BTVi3";
 		Properties properties;
@@ -65,8 +65,8 @@ public class EmailMaster {
 		session = Session.getDefaultInstance(properties, null);
 		message = new MimeMessage(session);
 		try {
-			System.out.println("start");
-			System.out.println(emailContent);
+//			System.out.println("start");
+//			System.out.println(emailContent);
 			message.setFrom(new InternetAddress(sendAddress));
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(receiverAddress));
 			message.setSubject(emailSubject);
@@ -178,7 +178,7 @@ public class EmailMaster {
 			stringBuilder.append("<br/>");
 			stringBuilder.append("BTVi3 by Legacy Direct"+"<br/>");
 			stringBuilder.append("Thank you for registering your BTVi3."+"<br/>");
-			stringBuilder.append("To finish your sign up process, please click on the button below to activate your account"+"<br/><br/>");
+			stringBuilder.append("To finish your sign up process, please click on the link below to activate your account"+"<br/><br/>");
 			stringBuilder.append("<a href='http://www.ldlegacy.com:8080/control_panel/user/confirmEmail?userInfo.token="+token+"'>ACTIVATE MY ACCOUNT</a>"+"<br/><br/>");
 			stringBuilder.append("If you have any questions or if you’re encountering problems, our support team at support@legacy.direct is happy to assist you. Alternatively you can visit our Support Desk."+"<br/><br/>");
 			stringBuilder.append("Legacy Direct"+"<br/>");
@@ -191,7 +191,7 @@ public class EmailMaster {
 		stringBuilder.append("Dear "+userName+":<br/>");
 		stringBuilder.append("<br/>");
 		stringBuilder.append("BTVi3 by Legacy Direct"+"<br/>");
-		stringBuilder.append("To finish your sign up process, please click on the button below to activate your account"+"<br/><br/>");
+		stringBuilder.append("You have requested to reset your password.  Please click the link below to finalize the process."+"<br/><br/>");
 		stringBuilder.append("<a href='http://www.ldlegacy.com:8080/control_panel/user/resetp?userInfo.token="+token+"'>RESET PASSWORD</a>"+"<br/><br/>");
 		stringBuilder.append("Legacy Direct"+"<br/>");
 		this.emailContent = stringBuilder.toString();

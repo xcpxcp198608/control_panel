@@ -55,18 +55,28 @@ public class UserService {
         deviceInfo.setUserName(userInfo.getUserName());
         deviceInfo.setCurrentLoginTime("");
         deviceInfo.setRegisterTime(System.currentTimeMillis());
-        if(userDao.insert(userInfo) && deviceDao.insert(deviceInfo)){
-            EmailMaster emailMaster = new EmailMaster();
-            emailMaster.setEmailContent(userInfo.getUserName() , token , language);
-            emailMaster.send(userInfo.getEmail());
-            resultInfo.setCode(ResultInfo.CODE_REGISTER_SUCCESS);
-            resultInfo.setStatus(ResultInfo.STATUS_REGISTER_SUCCESS + " please check your email and activation your account" +
-                    ", sometime the email received spend a few time, please be patient.");
-        }else{
+        System.out.println(userInfo);
+        System.out.println(deviceInfo);
+        if(deviceDao.isActiveUserNameExists(deviceInfo)){
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
-            resultInfo.setStatus(ResultInfo.STATUS_REGISTER_FAILURE);
+            resultInfo.setStatus(ResultInfo.STATUS_REGISTER_FAILURE+ " the user name exists");
+            return resultInfo;
+        }else {
+            if (userDao.insert(userInfo) && deviceDao.insert(deviceInfo)) {
+                EmailMaster emailMaster = new EmailMaster();
+                emailMaster.setEmailContent(userInfo.getUserName(), token, language);
+                emailMaster.send(userInfo.getEmail());
+                resultInfo.setCode(ResultInfo.CODE_REGISTER_SUCCESS);
+                resultInfo.setStatus(ResultInfo.STATUS_REGISTER_SUCCESS + " please check your email and activation your account" +
+                        ", sometime the email received spend a few time, please be patient.");
+                System.out.println(resultInfo);
+                return resultInfo;
+            } else {
+                resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
+                resultInfo.setStatus(ResultInfo.STATUS_REGISTER_FAILURE);
+                return resultInfo;
+            }
         }
-        return resultInfo;
     }
 
     @Transactional
@@ -103,26 +113,25 @@ public class UserService {
         String currentTime = new SimpleDateFormat("yy-MM-dd HH:mm:ss").format(System.currentTimeMillis());
         deviceInfo.setCurrentLoginTime(currentTime);
         if(deviceDao.isMacExists(deviceInfo)){
-            if(deviceDao.isUserNameExists(deviceInfo)){
-                deviceDao.cleanUserName(deviceInfo);
-                deviceDao.update(deviceInfo);
-            }else{
-                deviceDao.update(deviceInfo);
-            }
+            deviceDao.updateByMac(deviceInfo);
+            String lastName = userDao.getLastName(userInfo)+"";
+            resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS);
+            resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS);
+            resultInfo.setLoginCount(count);
+            resultInfo.setToken(token);
+            resultInfo.setExtra(lastName);
+        }else if(deviceDao.isEthernetMacExists(deviceInfo)){
+            deviceDao.updateByEthernetMac(deviceInfo);
+            String lastName = userDao.getLastName(userInfo)+"";
+            resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS);
+            resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS);
+            resultInfo.setLoginCount(count);
+            resultInfo.setToken(token);
+            resultInfo.setExtra(lastName);
         }else{
-            if(deviceDao.isUserNameExists(deviceInfo)){
-                deviceDao.cleanUserName(deviceInfo);
-                deviceDao.insert(deviceInfo);
-            }else{
-                deviceDao.insert(deviceInfo);
-            }
+            resultInfo.setCode(ResultInfo.CODE_LOGIN_INFO_ERROR);
+            resultInfo.setStatus(ResultInfo.STATUS_LOGIN_INFO_ERROR + " this device does not register");
         }
-        String lastName = userDao.getLastName(userInfo)+"";
-        resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS);
-        resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS);
-        resultInfo.setLoginCount(count);
-        resultInfo.setToken(token);
-        resultInfo.setExtra(lastName);
         return resultInfo;
     }
 
@@ -138,50 +147,39 @@ public class UserService {
             session = request.getSession();
             session.setAttribute("userName",userInfo.getUserName());
             session.setAttribute("count",count);
-            resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS);
-            resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS);
-            resultInfo.setLoginCount(count);
-            resultInfo.setUserLevel(userDao.getLevel(userInfo));
-            long currentTime = System.currentTimeMillis();
-            String deviceRegisterTime = deviceDao.getRegisterTime(deviceInfo);
-            long experienceLimitTime;
-            if(deviceRegisterTime == null){
-                experienceLimitTime = 0;
-            }else {
-                experienceLimitTime = Long.parseLong(deviceDao.getRegisterTime(deviceInfo)) + 604800000;
-            }
-            if(currentTime > experienceLimitTime){
-                resultInfo.setExtra("false");
-            }else{
-                resultInfo.setExtra("true");
-            }
+            setCheckResult(resultInfo,count,userInfo,deviceInfo);
         }else{
             int currentCount = (int) session.getAttribute("count");
             if(count >= currentCount){
                 session.setAttribute("count" , count);
-                resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS );
-                resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS + " currentCount: "+currentCount +" count: "+count);
-                resultInfo.setLoginCount(count);
-                resultInfo.setUserLevel(userDao.getLevel(userInfo));
-                long currentTime = System.currentTimeMillis();
-                long experienceLimitTime;
-                String deviceRegisterTime = deviceDao.getRegisterTime(deviceInfo);
-                if(deviceRegisterTime == null){
-                    experienceLimitTime = 0;
-                }else {
-                    experienceLimitTime = Long.parseLong(deviceDao.getRegisterTime(deviceInfo)) + 604800000;
-                }
-                if(currentTime > experienceLimitTime){
-                    resultInfo.setExtra("false");
-                }else{
-                    resultInfo.setExtra("true");
-                }
+                setCheckResult(resultInfo,count,userInfo,deviceInfo);
             }else{
                 resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
                 resultInfo.setStatus(ResultInfo.STATUS_LOGIN_ERROR + " currentCount: "+currentCount +" count: "+count);
             }
         }
         return resultInfo;
+    }
+
+    private void setCheckResult(ResultInfo resultInfo, int count,UserInfo userInfo,DeviceInfo deviceInfo){
+        resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS);
+        resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS);
+        resultInfo.setLoginCount(count);
+        resultInfo.setUserLevel(userDao.getLevel(userInfo));
+        long currentTime = System.currentTimeMillis();
+        deviceInfo.setActiveUserName(userInfo.getUserName());
+        String deviceRegisterTime = deviceDao.getRegisterTime(deviceInfo);
+        long experienceLimitTime;
+        if(deviceRegisterTime == null){
+            experienceLimitTime = 0;
+        }else {
+            experienceLimitTime = Long.parseLong(deviceRegisterTime) + 604800000;
+        }
+        if(currentTime > experienceLimitTime){
+            resultInfo.setExtra("false");
+        }else{
+            resultInfo.setExtra("true");
+        }
     }
 
     @Transactional
