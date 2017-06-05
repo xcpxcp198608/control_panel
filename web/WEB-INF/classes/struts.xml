@@ -133,6 +133,9 @@
             <result name="show">/WEB-INF/jsp/user/show.jsp</result>
             <result name="changeMember" type="redirectAction">show</result>
             <result name="status">/WEB-INF/jsp/user/status.jsp</result>
+            <result name="active" type="redirectAction">show</result>
+            <result name="delete" type="redirectAction">show</result>
+            <result name="search" type="redirectAction">show</result>
         </action>
     </package>
 

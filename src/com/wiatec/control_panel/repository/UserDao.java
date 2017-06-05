@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 /**
@@ -22,24 +23,31 @@ public class UserDao extends BaseDao<List<UserInfo>> {
 
     @Override
     public List<UserInfo> getAll(String countryCode, String timeZone) {
-        sql = "select * from user";
+        sql = "select id, username, password, email, token, level, registerdate, registertime, email_status," +
+                "firstname, lastname, memberdate, membertime  from user";
         RowMapper<UserInfo> rowMapper = new BeanPropertyRowMapper<>(UserInfo.class);
         return jdbcTemplate.query(sql,rowMapper);
     }
 
     @Transactional (readOnly = true)
     public UserInfo get(UserInfo userInfo){
-        sql = "select * from user where token=?";
+        sql = "select id, username, password, email, token, level, registerdate, registertime, email_status," +
+                "firstname, lastname, memberdate, membertime from user where token=?";
         RowMapper<UserInfo> rowMapper = new BeanPropertyRowMapper<>(UserInfo.class);
         return jdbcTemplate.query(sql , rowMapper , userInfo.getToken()).get(0);
     }
 
     @Transactional (readOnly = true)
     public List<UserInfo> search(String key, String condition){
-        sql = "SELECT id, username, password, email, token, level, registerdate, registertime, email_status," +
-                "firstname, lastname, memberdate, membertime where ? = ?";
+        if("username".equals(key)) {
+            sql = "select id, username, password, email, token, level, registerdate, registertime, email_status," +
+                    "firstname, lastname, memberdate, membertime from user where " + key + " like " + "'%"+condition+"%'";
+        }else{
+            sql = "select id, username, password, email, token, level, registerdate, registertime, email_status," +
+                    "firstname, lastname, memberdate, membertime from user where " + key + " = " + condition;
+        }
         RowMapper<UserInfo> rowMapper = new BeanPropertyRowMapper<>(UserInfo.class);
-        return jdbcTemplate.query(sql , rowMapper , key, condition);
+        return jdbcTemplate.query(sql , rowMapper);
     }
 
     @Transactional (readOnly = true)
@@ -144,5 +152,17 @@ public class UserDao extends BaseDao<List<UserInfo>> {
         return namedParameterJdbcTemplate.update(sql , sqlParameterSource) == 1;
     }
 
+    @Transactional
+    public boolean active(UserInfo userInfo){
+        sql = "update user set email_status = 1 where username =:userName";
+        SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(userInfo);
+        return namedParameterJdbcTemplate.update(sql ,sqlParameterSource) == 1;
+    }
 
+    @Transactional
+    public boolean delete(UserInfo userInfo){
+        sql = "delete from user where username=:userName";
+        SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(userInfo);
+        return namedParameterJdbcTemplate.update(sql ,sqlParameterSource) == 1;
+    }
 }

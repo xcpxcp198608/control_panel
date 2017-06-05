@@ -7,7 +7,6 @@ import com.wiatec.control_panel.listener.SessionListener;
 import com.wiatec.control_panel.repository.DeviceDao;
 import com.wiatec.control_panel.repository.UserDao;
 import com.wiatec.control_panel.utils.EmailMaster;
-import javafx.scene.input.DataFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +17,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 /**
  * Created by xuchengpeng on 26/04/2017.
@@ -244,6 +244,7 @@ public class UserService {
         return resultInfo;
     }
 
+    @Transactional
     public ResultInfo updatePassword(UserInfo userInfo , String p1 , String p2){
         ResultInfo resultInfo = new ResultInfo();
         if(p1.equals(p2)){
@@ -262,6 +263,7 @@ public class UserService {
         return resultInfo;
     }
 
+    @Transactional
     public void changeMember(UserInfo userInfo , int level , int month){
         long memberTime = 0;
         long monthTimeMillis = 2592000000l * month;
@@ -275,6 +277,29 @@ public class UserService {
         userInfo.setLevel((short) level);
         userDao.updateMemberTime(userInfo);
     }
+
+    //control panel 激活用户email
+    @Transactional
+    public boolean active(String userName){
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserName(userName);
+        return userDao.active(userInfo);
+    }
+
+    //control panel 删除用户
+    @Transactional
+    public boolean delete(String userName){
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserName(userName);
+        return userDao.delete(userInfo);
+    }
+
+    @Transactional
+    public List<UserInfo> search(String key, String condition){
+        List<UserInfo> list = userDao.search(key, condition);
+        return list;
+    }
+
     private String createToken(UserInfo userInfo){
         try {
             long time = System.currentTimeMillis();

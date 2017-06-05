@@ -38,6 +38,9 @@ public class ActionUser extends BaseAction {
     private String userName;
     private long memberTime;
     private Map<String, HttpSession> userSessionMap;
+    private int searchKey;
+    private String condition;
+    private List<String> searchKeyList;
     @Autowired
     private UserService userService;
     @Autowired
@@ -59,6 +62,12 @@ public class ActionUser extends BaseAction {
         monthList.add(3);
         monthList.add(6);
         monthList.add(12);
+        searchKeyList = new ArrayList<>();
+        searchKeyList.add("1");
+        searchKeyList.add("id");
+        searchKeyList.add("username");
+        searchKeyList.add("email_status");
+        searchKeyList.add("level");
     }
 
     public String login1(){
@@ -82,18 +91,27 @@ public class ActionUser extends BaseAction {
 
     public String show(){
         userInfoList = userDao.getAll(null, null);
-        for(UserInfo userInfo : userInfoList){
-            if(userInfo.getEmailStatus() == 1){
-                userInfo.setStatus("ACTIVE");
-            }else{
-                userInfo.setStatus("NEGATIVE");
-            }
-        }
+        setEmailStatus(userInfoList);
         return "show";
     }
 
-    public String search(){
-        return "search";
+    public String search() {
+        userInfoList = userService.search(searchKeyList.get(searchKey), condition);
+        System.out.println(userInfoList);
+        setEmailStatus(userInfoList);
+        return "show";
+    }
+
+    private void setEmailStatus(List<UserInfo> userInfoList){
+        if (userInfoList != null && userInfoList.size() > 0) {
+            for (UserInfo userInfo : userInfoList) {
+                if (userInfo.getEmailStatus() == 1) {
+                    userInfo.setStatus("ACTIVE");
+                } else {
+                    userInfo.setStatus("NEGATIVE");
+                }
+            }
+        }
     }
 
     public void register(){
@@ -126,6 +144,16 @@ public class ActionUser extends BaseAction {
         }
         out.flush();
         out.close();
+    }
+
+    public String active(){
+        userService.active(userName);
+        return "active";
+    }
+
+    public String delete(){
+        userService.delete(userName);
+        return "delete";
     }
 
     public void checkLevel(){
@@ -288,5 +316,21 @@ public class ActionUser extends BaseAction {
 
     public void setDeviceInfoList(List<DeviceInfo> deviceInfoList) {
         this.deviceInfoList = deviceInfoList;
+    }
+
+    public int getSearchKey() {
+        return searchKey;
+    }
+
+    public void setSearchKey(int searchKey) {
+        this.searchKey = searchKey;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
 }

@@ -25,40 +25,71 @@
     <link rel="stylesheet" type="text/css" href="css/base.css">
     <script type="application/javascript" language="JavaScript" src="js/base.js"></script>
     <link rel="shortcut icon" href="img/xxx.ico">
+    <style type="text/css">
+        table tr:nth-child(odd){
+            background: #adcccc;
+        }
+        a:hover{
+            text-decoration: none;
+            color: white;
+        }
+    </style>
 
 </head>
 
-<body>
-    <div style="height: 70px">
-
-
+<body style="background-color: #dcdcdc">
+    <div style="height: 50px; background-color: #000000; color: #d5d5d5; width: 100%">
+        <a style="width: 100%; display: block; line-height: 50px;font-size: 30px;color: white;
+            margin: auto; text-align: center; font-family: Times; text-decoration: none"
+           href="/control_panel/user/show">User Control Panel</a>
+    </div><br/>
+    <div style="height: 30px; width: 90%; margin: auto">
+        <s:form method="POST" namespace="/user" action="search" theme="simple">
+            Search:
+            <s:select name="searchKey" label="search" list="#{1:'id', 2:'username', 3:'status', 4:'level'}"
+                      listKey="key" listValue="value"/>
+            <s:textfield name="condition"/>
+            <s:submit value="search"/>
+        </s:form>
     </div>
-    <div style="width: 85%; margin: auto" >
-        <table border="1px" cellspacing="0px" cellpadding="0px" width="100%">
-        <tr style="height: 40px; font-size: 18px"><th>Item</th><th>Id</th><th>UserName</th><th>Email</th><th>FirstName</th><th>LastName</th>
-            <th>RegisterDate</th><th>Status</th><th>UserLevel</th><th>MemberExpireDate</th><th>Operation</th></tr>
+    <div style="width: 90%; margin: auto" >
+        <table border="1px" cellspacing="0px" cellpadding="0px" width="100%" bgcolor="white">
+        <tr style="height: 40px; font-size: 16px; background-color: #000000; color: #d5d5d5" >
+            <th>Item</th><th>Id</th><th>UserName</th><th>Email</th><th>Name</th><th>RegisterDate</th>
+            <th>Status</th><th>UserLevel</th><th>MemberExpireDate</th><th>Operation</th><th>Delete</th>
+        </tr>
         <s:iterator value="userInfoList" status="s">
-        <tr>
+        <tr style="font-size: 11px; height: 30px; line-height: 30px ; text-align: center">
             <td align="center" width="3%">${s.index+1}</td>
             <td align="center" width="3%">${id}</td>
             <td align="center" width="8%">${userName}</td>
-            <td align="center" width="18%">${email}</td>
-            <td align="center" width="5%">${firstName}</td>
-            <td align="center" width="5%">${lastName}</td>
-            <td align="center" width="14%">${registerDate}</td>
-            <td align="center" width="10%">${status}</td>
+            <td align="center" width="14%">${email}</td>
+            <td align="center" width="8%">${firstName} ${lastName}</td>
+            <td align="center" width="12%">${registerDate}</td>
+            <td align="center" width="12%">
+                <s:form action="active" method="POST" theme="simple" namespace="/user">
+                    ${status}<s:hidden name="userName"/>
+                    <s:submit value="Active"/>
+                </s:form>
+
+            </td>
             <td align="center" width="5%">${level}</td>
-            <td align="center" width="14%">${memberDate}</td>
+            <td align="center" width="12%">${memberDate}</td>
             <td align="center" width="15%">
-                <s:form method="POST" action="changeMember" namespace="/user">
+                <s:form method="POST" action="changeMember" namespace="/user" theme="simple">
                     <s:hidden name="userName"/>
                     <s:hidden name="memberTime"/>
                     <s:select name="level1" label="Level" list="#{1:0 , 2:1 , 3:2 , 4:3}" listKey="key" listValue="value"
-                                headerKey="0" headerValue="Select"/>
+                                headerKey="0" headerValue="Level"/>
                     <s:select name="month1" label="Month" list="#{1:0 , 2:1 , 3:3 , 4:6 , 5:12}" listKey="key" listValue="value"
-                              headerKey="0" headerValue="Select"/>
+                              headerKey="0" headerValue="Month"/>
                     <s:submit value="confirm"/>
                 </s:form>
+            </td>
+            <td align="center" width="8%">
+                <a href="/control_panel/user/delete?userName=${userName}">
+                    <img src="img/delete1.png" alt="delete" width="20px" height="20px">
+                </a>
             </td>
         </tr>
         </s:iterator>
