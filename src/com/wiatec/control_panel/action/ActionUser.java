@@ -97,7 +97,6 @@ public class ActionUser extends BaseAction {
 
     public String search() {
         userInfoList = userService.search(searchKeyList.get(searchKey), condition);
-        System.out.println(userInfoList);
         setEmailStatus(userInfoList);
         return "show";
     }
