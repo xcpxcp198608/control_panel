@@ -35,6 +35,14 @@ public class UserDao extends BaseDao<List<UserInfo>> {
     }
 
     @Transactional (readOnly = true)
+    public List<UserInfo> search(String key, String condition){
+        sql = "SELECT id, username, password, email, token, level, registerdate, registertime, email_status," +
+                "firstname, lastname, memberdate, membertime where ? = ?";
+        RowMapper<UserInfo> rowMapper = new BeanPropertyRowMapper<>(UserInfo.class);
+        return jdbcTemplate.query(sql , rowMapper , key, condition);
+    }
+
+    @Transactional (readOnly = true)
     public UserInfo getUserByName(UserInfo userInfo){
         sql = "select * from user where username=?";
         RowMapper<UserInfo> rowMapper = new BeanPropertyRowMapper<>(UserInfo.class);

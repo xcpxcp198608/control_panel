@@ -4,6 +4,7 @@ import com.wiatec.control_panel.entities.DeviceInfo;
 import com.wiatec.control_panel.entities.ResultInfo;
 import com.wiatec.control_panel.entities.UserInfo;
 import com.wiatec.control_panel.listener.SessionListener;
+import com.wiatec.control_panel.repository.DeviceDao;
 import com.wiatec.control_panel.repository.UserDao;
 import com.wiatec.control_panel.service.UserService;
 import net.sf.json.JSONObject;
@@ -23,6 +24,7 @@ public class ActionUser extends BaseAction {
 
     private UserInfo userInfo;
     private List<UserInfo> userInfoList;
+    private List<DeviceInfo> deviceInfoList;
     private DeviceInfo deviceInfo;
     private ResultInfo resultInfo;
     private String language;
@@ -40,6 +42,8 @@ public class ActionUser extends BaseAction {
     private UserService userService;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private DeviceDao deviceDao;
 
     public ActionUser() {
         levelList = new ArrayList<>();
@@ -49,7 +53,8 @@ public class ActionUser extends BaseAction {
         levelList.add(2);
         levelList.add(3);
         monthList = new ArrayList<>();
-        monthList.add(1);
+        monthList.add(0);
+        monthList.add(0);
         monthList.add(1);
         monthList.add(3);
         monthList.add(6);
@@ -85,6 +90,10 @@ public class ActionUser extends BaseAction {
             }
         }
         return "show";
+    }
+
+    public String search(){
+        return "search";
     }
 
     public void register(){
@@ -151,6 +160,13 @@ public class ActionUser extends BaseAction {
 
     public String status(){
         userSessionMap = SessionListener.sessionMap;
+        for (Map.Entry<String, HttpSession> entry: userSessionMap.entrySet()){
+            DeviceInfo deviceInfo = deviceDao.getInfoByUserName(entry.getKey());
+            if(deviceInfo != null){
+                deviceInfoList = new ArrayList<>();
+                deviceInfoList.add(deviceInfo);
+            }
+        }
         return "status";
     }
 
@@ -264,5 +280,13 @@ public class ActionUser extends BaseAction {
 
     public void setUserSessionMap(Map<String, HttpSession> userSessionMap) {
         this.userSessionMap = userSessionMap;
+    }
+
+    public List<DeviceInfo> getDeviceInfoList() {
+        return deviceInfoList;
+    }
+
+    public void setDeviceInfoList(List<DeviceInfo> deviceInfoList) {
+        this.deviceInfoList = deviceInfoList;
     }
 }

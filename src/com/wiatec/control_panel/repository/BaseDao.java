@@ -57,16 +57,25 @@ public abstract  class BaseDao <T> {
         }else if("JP".equals(countryCode)){
             tableName = tableName+"";
         }else if("US".equals(countryCode)){
-            if("America/Los_Angeles".equals(timeZone) || "America/Boise".equals(timeZone) || "America/Phoenix".equals(timeZone)){
+            if("America/Los_Angeles".equals(timeZone) ||
+                    "America/Boise".equals(timeZone) ||
+                    "losangeles".equals(timeZone) ||
+                    "America/Phoenix".equals(timeZone)){
                 tableName = tableName+"";
-            }else if("America/Chicago".equals(timeZone) || "America/Kentucky/Louisville".equals(timeZone)
-                    ||"America/Indianan/Indianapolis".equals(timeZone) ||"America/Detroit".equals(timeZone)){
+            }else if("America/Chicago".equals(timeZone) ||
+                    "America/Kentucky/Louisville".equals(timeZone) ||
+                    "America/Indianan/Indianapolis".equals(timeZone) ||
+                    "chicago".equals(timeZone) ||
+                    "America/Detroit".equals(timeZone)){
                 tableName = tableName+"_chicago";
-            }else if("America/Denver".equals(timeZone)){
+            }else if("America/Denver".equals(timeZone)||
+                    "denver".equals(timeZone)){
                 tableName = tableName+"_denver";
-            }else if("Pacific/Honolulu".equals(timeZone)){
+            }else if("Pacific/Honolulu".equals(timeZone)||
+                    "honolulu".equals(timeZone)){
                 tableName = tableName+"_honolulu";
-            }else if("America/New_York".equals(timeZone)){
+            }else if("America/New_York".equals(timeZone)||
+                    "newyork".equals(timeZone)){
                 tableName = tableName+"_new_york";
             }else {
                 tableName = tableName+"";

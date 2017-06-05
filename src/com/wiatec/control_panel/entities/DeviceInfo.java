@@ -14,6 +14,7 @@ public class DeviceInfo {
     private String city;
     private String timeZone;
     private String currentLoginTime;
+    private String activeTime;
     private String activeUserName;
     private long registerTime;
 
@@ -97,6 +98,14 @@ public class DeviceInfo {
         this.currentLoginTime = currentLoginTime;
     }
 
+    public String getActiveTime() {
+        return activeTime;
+    }
+
+    public void setActiveTime(String activeTime) {
+        this.activeTime = activeTime;
+    }
+
     public String getActiveUserName() {
         return activeUserName;
     }
@@ -126,6 +135,7 @@ public class DeviceInfo {
                 ", city='" + city + '\'' +
                 ", timeZone='" + timeZone + '\'' +
                 ", currentLoginTime='" + currentLoginTime + '\'' +
+                ", activeTime='" + activeTime + '\'' +
                 ", activeUserName='" + activeUserName + '\'' +
                 ", registerTime=" + registerTime +
                 '}';

@@ -35,6 +35,7 @@ public class ActionRollImage extends BaseAction{
 
     public String show(){
         checkSession();
+        System.out.println(countryCode + timeZone);
         imageInfoList = rollImageService.getAll(countryCode , timeZone);
         return "show";
     }

@@ -30,12 +30,26 @@
 </head>
 
 <body>
-    <h1>STATUS</h1>
+    <h1>CURRENT USER STATUS</h1>
     <hr/>
-    CurrentCount: <s:property value="userSessionMap.size()"/><br/>
-    <s:iterator value="userSessionMap" id="column">
-        <s:property value="key"/>
-    </s:iterator>
+    <h3>Current Online Count: <s:property value="userSessionMap.size()"/><h3/>
+    <table width="100%" border="1px" cellpadding="0px" cellspacing="0px">
+        <tr><th>Item</th><th>UserName</th><th>Country</th><th>RegionName</th><th>TimeZone</th>
+            <th>City</th><th>Mac</th><th>EthernetMac</th></tr>
+        <s:iterator value="deviceInfoList">
+            <tr>
+                <td align="center">${id}</td>
+                <td align="center">${userName}</td>
+                <td align="center">${country}</td>
+                <td align="center">${regionName}</td>
+                <td align="center">${timeZone}</td>
+                <td align="center">${city}</td>
+                <td align="center">${mac}</td>
+                <td align="center">${ethernetMac}</td>
+            </tr>
+        </s:iterator>
+
+    </table>
 
 </body>
 </html>

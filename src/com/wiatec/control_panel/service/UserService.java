@@ -113,6 +113,9 @@ public class UserService {
         String currentTime = new SimpleDateFormat("yy-MM-dd HH:mm:ss").format(System.currentTimeMillis());
         deviceInfo.setCurrentLoginTime(currentTime);
         if(deviceDao.isMacExists(deviceInfo)){
+            if(deviceDao.isUserNameExists(deviceInfo)){
+                deviceDao.cleanUserName(deviceInfo);
+            }
             deviceDao.updateByMac(deviceInfo);
             String lastName = userDao.getLastName(userInfo)+"";
             resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS);
@@ -121,6 +124,9 @@ public class UserService {
             resultInfo.setToken(token);
             resultInfo.setExtra(lastName);
         }else if(deviceDao.isEthernetMacExists(deviceInfo)){
+            if(deviceDao.isUserNameExists(deviceInfo)){
+                deviceDao.cleanUserName(deviceInfo);
+            }
             deviceDao.updateByEthernetMac(deviceInfo);
             String lastName = userDao.getLastName(userInfo)+"";
             resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS);
