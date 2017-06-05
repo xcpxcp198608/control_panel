@@ -62,10 +62,10 @@
         <tr style="font-size: 11px; height: 30px; line-height: 30px ; text-align: center">
             <td align="center" width="3%">${s.index+1}</td>
             <td align="center" width="3%">${id}</td>
-            <td align="center" width="8%">${userName}</td>
-            <td align="center" width="14%">${email}</td>
+            <td align="center" width="7%">${userName}</td>
+            <td align="center" width="13%">${email}</td>
             <td align="center" width="8%">${firstName} ${lastName}</td>
-            <td align="center" width="12%">${registerDate}</td>
+            <td align="center" width="11%">${registerDate}</td>
             <td align="center" width="12%">
                 <s:form action="active" method="POST" theme="simple" namespace="/user">
                     ${status}<s:hidden name="userName"/>
@@ -75,7 +75,7 @@
             </td>
             <td align="center" width="5%">${level}</td>
             <td align="center" width="12%">${memberDate}</td>
-            <td align="center" width="15%">
+            <td align="center" width="18%">
                 <s:form method="POST" action="changeMember" namespace="/user" theme="simple">
                     <s:hidden name="userName"/>
                     <s:hidden name="memberTime"/>
@@ -87,7 +87,7 @@
                 </s:form>
             </td>
             <td align="center" width="8%">
-                <a href="/control_panel/user/delete?userName=${userName}">
+                <a href="/control_panel/user/delete?userName=${userName}" onclick="return confirm('Confirm Delete')">
                     <img src="img/delete1.png" alt="delete" width="20px" height="20px">
                 </a>
             </td>
