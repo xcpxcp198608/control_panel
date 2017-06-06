@@ -46,8 +46,8 @@
     <div style="height: 30px; width: 90%; margin: auto">
         <s:form method="POST" namespace="/user" action="search" theme="simple">
             Search:
-            <s:select name="searchKey" label="search" list="#{1:'id', 2:'username', 3:'status', 4:'level'}"
-                      listKey="key" listValue="value"/>
+            <s:select name="searchKey" label="search" listKey="key" listValue="value"
+                      list="#{1:'id', 2:'firstname',3:'lastname', 4:'email', 5:'username', 6:'status', 7:'level'}"/>
             <s:textfield name="condition"/>
             <s:submit value="search"/>
         </s:form>

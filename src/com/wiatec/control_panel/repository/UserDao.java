@@ -39,7 +39,7 @@ public class UserDao extends BaseDao<List<UserInfo>> {
 
     @Transactional (readOnly = true)
     public List<UserInfo> search(String key, String condition){
-        if("username".equals(key)) {
+        if("firstname".equals(key)|| "lastname".equals(key) || "email".equals(key) || "username".equals(key)) {
             sql = "select id, username, password, email, token, level, registerdate, registertime, email_status," +
                     "firstname, lastname, memberdate, membertime from user where " + key + " like " + "'%"+condition+"%'";
         }else{
@@ -52,7 +52,8 @@ public class UserDao extends BaseDao<List<UserInfo>> {
 
     @Transactional (readOnly = true)
     public UserInfo getUserByName(UserInfo userInfo){
-        sql = "select * from user where username=?";
+        sql = "select id, username, password, email, token, level, registerdate, registertime, email_status," +
+                "firstname, lastname, memberdate, membertime  from user where username=?";
         RowMapper<UserInfo> rowMapper = new BeanPropertyRowMapper<>(UserInfo.class);
         return jdbcTemplate.queryForObject(sql , rowMapper , userInfo.getUserName());
     }

@@ -33,42 +33,20 @@ public class ActionUser extends BaseAction {
     private String p2;
     private int level1;
     private int month1;
-    private List<Integer> levelList;
-    private List<Integer> monthList;
+    private int[] levelArray = {1,0,1,2,3};
+    private int[] monthArray = {0, 0, 1, 3, 6, 12};
     private String userName;
     private long memberTime;
     private Map<String, HttpSession> userSessionMap;
     private int searchKey;
     private String condition;
-    private List<String> searchKeyList;
+    private String[] searchKeyArray = {"1", "id", "firstname", "lastname", "email", "username", "email_status", "level"};
     @Autowired
     private UserService userService;
     @Autowired
     private UserDao userDao;
     @Autowired
     private DeviceDao deviceDao;
-
-    public ActionUser() {
-        levelList = new ArrayList<>();
-        levelList.add(1);
-        levelList.add(0);
-        levelList.add(1);
-        levelList.add(2);
-        levelList.add(3);
-        monthList = new ArrayList<>();
-        monthList.add(0);
-        monthList.add(0);
-        monthList.add(1);
-        monthList.add(3);
-        monthList.add(6);
-        monthList.add(12);
-        searchKeyList = new ArrayList<>();
-        searchKeyList.add("1");
-        searchKeyList.add("id");
-        searchKeyList.add("username");
-        searchKeyList.add("email_status");
-        searchKeyList.add("level");
-    }
 
     public String login1(){
         if("USER".equals(userInfo.getUserName()) && "USER".equals(userInfo.getPassword())){
@@ -85,7 +63,7 @@ public class ActionUser extends BaseAction {
         userInfo = new UserInfo();
         userInfo.setUserName(userName);
         userInfo.setMemberTime(memberTime);
-        userService.changeMember(userInfo ,levelList.get(level1) ,monthList.get(month1));
+        userService.changeMember(userInfo ,levelArray[level1] ,monthArray[month1]);
         return "changeMember";
     }
 
@@ -96,7 +74,7 @@ public class ActionUser extends BaseAction {
     }
 
     public String search() {
-        userInfoList = userService.search(searchKeyList.get(searchKey), condition);
+        userInfoList = userService.search(searchKeyArray[searchKey], condition);
         setEmailStatus(userInfoList);
         return "show";
     }

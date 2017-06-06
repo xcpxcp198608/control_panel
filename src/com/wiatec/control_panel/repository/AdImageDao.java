@@ -22,13 +22,13 @@ public class AdImageDao extends BaseDao<ImageInfo> {
     @Override
     @Transactional (readOnly = true)
     public ImageInfo getAll(String countryCode, String timeZone) {
-        sql = "select * from "+getTableName(countryCode , timeZone);
+        sql = "select id, name, url, link from "+getTableName(countryCode , timeZone);
         return jdbcTemplate.queryForObject(sql , imageInfoRowMapper);
     }
 
     @Transactional (readOnly = true)
     public ImageInfo getImageById(int id , String countryCode , String timeZone){
-        sql = "select * from "+getTableName(countryCode , timeZone)+" where id = ?";
+        sql = "select id, name, url, link from "+getTableName(countryCode , timeZone)+" where id = ?";
         return jdbcTemplate.queryForObject(sql , imageInfoRowMapper , id);
     }
 
