@@ -104,9 +104,7 @@ public class UserService {
         }else{
             session.setAttribute("userName" ,userInfo.getUserName());
             count = (int) session.getAttribute("count");
-            if( !(userInfo.getLevel() == 10)){
-                count += 1;
-            }
+            count += 1;
             session.setAttribute("count", count);
         }
         deviceInfo.setUserName(userInfo.getUserName());

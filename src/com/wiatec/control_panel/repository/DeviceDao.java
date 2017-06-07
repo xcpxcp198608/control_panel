@@ -36,16 +36,24 @@ public class DeviceDao extends BaseDao<DeviceInfo> {
 
     @Transactional (readOnly = true)
     public boolean isMacExists(DeviceInfo deviceInfo){
-        sql = "select count(*) from device where mac = ? ";
-        int count = jdbcTemplate.queryForObject(sql , Integer.class , deviceInfo.getMac());
-        return count >= 1;
+        if(deviceInfo.getMac() == null || "".equals(deviceInfo.getMac())){
+            return false;
+        }else {
+            sql = "select count(*) from device where mac = ? ";
+            int count = jdbcTemplate.queryForObject(sql, Integer.class, deviceInfo.getMac());
+            return count >= 1;
+        }
     }
 
     @Transactional (readOnly = true)
     public boolean isEthernetMacExists(DeviceInfo deviceInfo){
-        sql = "select count(*) from device where ethernetMac = ?";
-        int count = jdbcTemplate.queryForObject(sql , Integer.class , deviceInfo.getEthernetMac());
-        return count >= 1;
+        if(deviceInfo.getEthernetMac() == null || "".equals(deviceInfo.getEthernetMac())){
+            return false;
+        }else {
+            sql = "select count(*) from device where ethernetMac = ?";
+            int count = jdbcTemplate.queryForObject(sql, Integer.class, deviceInfo.getEthernetMac());
+            return count >= 1;
+        }
     }
 
     @Transactional (readOnly = true)
@@ -107,7 +115,7 @@ public class DeviceDao extends BaseDao<DeviceInfo> {
 
     @Transactional
     public boolean updateByEthernetMac (DeviceInfo deviceInfo){
-        sql = "update device set mac=:mac username=:userName , country=:country , country_code=:countryCode, " +
+        sql = "update device set mac=:mac, username=:userName , country=:country , country_code=:countryCode, " +
                 "region_name=:regionName ,city=:city ,time_zone=:timeZone ," +
                 "current_login_time=:currentLoginTime where ethernetMac=:ethernetMac";
         SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(deviceInfo);
