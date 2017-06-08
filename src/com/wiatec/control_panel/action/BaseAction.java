@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 /**
  * Created by xuchengpeng on 20/04/2017.
@@ -45,6 +46,11 @@ public class BaseAction implements ServletResponseAware ,ServletRequestAware{
     @Override
     public void setServletRequest(HttpServletRequest httpServletRequest) {
         request = httpServletRequest;
+        try {
+            request.setCharacterEncoding("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         session = httpServletRequest.getSession();
         countryCode = (String) session.getAttribute("countryCode");
         timeZone = (String) session.getAttribute("timeZone");

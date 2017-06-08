@@ -139,6 +139,20 @@
         </action>
     </package>
 
+    <package name="user1" extends="error" namespace="/user1">
+        <action name="*" class="com.wiatec.control_panel.action.ActionUser1" method="{1}">
+            <result name="goRegister">/WEB-INF/jsp/register1/register.jsp</result>
+            <result name="goreset">/WEB-INF/jsp/register1/goreset.jsp</result>
+            <result name="resetp">/WEB-INF/jsp/register1/reset.jsp</result>
+            <result name="login1" type="redirectAction">show</result>
+            <result name="show">/WEB-INF/jsp/user1/show.jsp</result>
+            <result name="changeMember" type="redirectAction">show</result>
+            <result name="status">/WEB-INF/jsp/user1/status.jsp</result>
+            <result name="active" type="redirectAction">show</result>
+            <result name="delete" type="redirectAction">show</result>
+        </action>
+    </package>
+
     <package name="manager" extends="error" namespace="/manager">
         <action name="logout" class="com.wiatec.control_panel.action.ActionManager" method="logout">
 

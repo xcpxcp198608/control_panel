@@ -10,7 +10,7 @@
 <head>
     <base href="<%=basePath%>">
 
-    <title>RESET</title>
+    <title>Register</title>
 
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
@@ -29,13 +29,16 @@
 </head>
 
 <body>
-    <s:form action="updatep" method="POST" namespace="/user">
-        <s:hidden name="userInfo.userName"/>
-        <s:hidden name="userInfo.email"/>
-        <s:hidden name="userInfo.token"/>
-        <s:textfield name="p1" label="New Passowrd" type="password"/>
-        <s:textfield name="p2" label="Confirm Passowrd" type="password"/>
-        <s:submit value="Confirm"/>
+    Register<hr/>
+    <s:form method="POST" namespace="/user1" action="register">
+        <s:textfield name="user1Info.userName" label="UserName"/>
+        <s:textfield name="user1Info.password" label="Password"/>
+        <s:textfield name="user1Info.email" label="Email"/>
+        <s:textfield name="user1Info.firstName" label="FirstName"/>
+        <s:textfield name="user1Info.lastName" label="LastName"/>
+        <s:textfield name="user1Info.ethernetMac" label="EthernetMac"/>
+        <s:textfield name="language" label="Language"/>
+        <s:submit value="Register"/>
     </s:form>
 
 </body>

@@ -29,10 +29,10 @@
 </head>
 
 <body>
-    <s:form action="updatep" method="POST" namespace="/user">
-        <s:hidden name="userInfo.userName"/>
-        <s:hidden name="userInfo.email"/>
-        <s:hidden name="userInfo.token"/>
+    <s:form action="updatep" method="POST" namespace="/user1">
+        <s:hidden name="user1Info.userName"/>
+        <s:hidden name="user1Info.email"/>
+        <s:hidden name="user1Info.token"/>
         <s:textfield name="p1" label="New Passowrd" type="password"/>
         <s:textfield name="p2" label="Confirm Passowrd" type="password"/>
         <s:submit value="Confirm"/>

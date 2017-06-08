@@ -51,7 +51,6 @@
         <s:textfield name="user1Info.password" label="Password"/>
         <s:textfield name="user1Info.mac" label="Mac"/>
         <s:textfield name="user1Info.ethernetMac" label="EthernetMac"/>
-        <s:textfield name="user1Info.city" label="City"/>
         <s:submit value="Login"/>
     </s:form>
 

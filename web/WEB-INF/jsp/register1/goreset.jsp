@@ -29,12 +29,9 @@
 </head>
 
 <body>
-    <s:form action="updatep" method="POST" namespace="/user">
-        <s:hidden name="userInfo.userName"/>
-        <s:hidden name="userInfo.email"/>
-        <s:hidden name="userInfo.token"/>
-        <s:textfield name="p1" label="New Passowrd" type="password"/>
-        <s:textfield name="p2" label="Confirm Passowrd" type="password"/>
+    <s:form method="POST" namespace="/user1" action="requestUpdateP">
+        <s:textfield name="user1Info.userName" label="UserName"/>
+        <s:textfield name="user1Info.email" label="Email"/>
         <s:submit value="Confirm"/>
     </s:form>
 

@@ -9,6 +9,7 @@ public class User1Info {
     private String userName;
     private String password;
     private String email;
+    private String phone;
     private String firstName;
     private String lastName;
     private int level;
@@ -24,6 +25,9 @@ public class User1Info {
     private long activeTime;
     private String memberDate;
     private long memberTime;
+    private String lastLoginDate;
+
+    private String status;
 
     public int getId() {
         return id;
@@ -55,6 +59,14 @@ public class User1Info {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getFirstName() {
@@ -177,6 +189,22 @@ public class User1Info {
         this.memberTime = memberTime;
     }
 
+    public String getLastLoginDate() {
+        return lastLoginDate;
+    }
+
+    public void setLastLoginDate(String lastLoginDate) {
+        this.lastLoginDate = lastLoginDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "User1Info{" +
@@ -184,6 +212,7 @@ public class User1Info {
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", level=" + level +
@@ -199,6 +228,8 @@ public class User1Info {
                 ", activeTime=" + activeTime +
                 ", memberDate='" + memberDate + '\'' +
                 ", memberTime=" + memberTime +
+                ", lastLoginDate='" + lastLoginDate + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }
