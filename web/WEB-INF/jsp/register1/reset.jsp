@@ -33,8 +33,8 @@
         <s:hidden name="user1Info.userName"/>
         <s:hidden name="user1Info.email"/>
         <s:hidden name="user1Info.token"/>
-        <s:textfield name="p1" label="New Passowrd" type="password"/>
-        <s:textfield name="p2" label="Confirm Passowrd" type="password"/>
+        <s:textfield name="p1" label="New Password" type="password"/>
+        <s:textfield name="p2" label="Confirm Password" type="password"/>
         <s:submit value="Confirm"/>
     </s:form>
 

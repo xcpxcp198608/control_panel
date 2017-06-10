@@ -68,7 +68,9 @@
             <td align="center" width="11%">${registerDate}</td>
             <td align="center" width="12%">
                 <s:form action="active" method="POST" theme="simple" namespace="/user">
-                    ${status}<s:hidden name="userName"/>
+                    <s:if test="emailStatus == 1">ACTIVE</s:if>
+                    <s:else>NEGATIVE</s:else>
+                    <s:hidden name="userName"/>
                     <s:submit value="Active"/>
                 </s:form>
 

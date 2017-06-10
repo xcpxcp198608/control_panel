@@ -31,37 +31,48 @@ public class User1Service {
     public ResultInfo register(User1Info user1Info, String language){
         if(TextUtils.isEmpty(user1Info.getUserName())){
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
-            resultInfo.setStatus(ResultInfo.STATUS_REGISTER_FAILURE + "username error");
+            resultInfo.setStatus("username error");
             return resultInfo;
         }
         if(TextUtils.isEmpty(user1Info.getPassword())){
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
-            resultInfo.setStatus(ResultInfo.STATUS_REGISTER_FAILURE + "password error");
+            resultInfo.setStatus("password error");
             return resultInfo;
         }
         if(TextUtils.isEmpty(user1Info.getEmail())){
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
-            resultInfo.setStatus(ResultInfo.STATUS_REGISTER_FAILURE + "email error");
+            resultInfo.setStatus("email error");
             return resultInfo;
         }
         if(TextUtils.isEmpty(user1Info.getPhone())){
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
-            resultInfo.setStatus(ResultInfo.STATUS_REGISTER_FAILURE + "phone error");
+            resultInfo.setStatus("phone error");
+            return resultInfo;
+        }
+        if(TextUtils.isEmpty(user1Info.getMac())){
+            resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
+            resultInfo.setStatus("S/N error");
+            return resultInfo;
+        }
+        if(!user1Info.getMac().startsWith("5c:41:e7")){
+            resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
+            resultInfo.setStatus("S/N format error");
             return resultInfo;
         }
         if(user1Dao.isUserNameExists(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
-            resultInfo.setStatus(ResultInfo.STATUS_REGISTER_FAILURE + "username exists, please create another username");
+            resultInfo.setStatus("username exists, please create another username");
             return resultInfo;
         }
         if(user1Dao.isEmailExists(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
-            resultInfo.setStatus(ResultInfo.STATUS_REGISTER_FAILURE + "email exists, please use another email");
+            resultInfo.setStatus("email exists, please use another email");
             return resultInfo;
         }
-        if(user1Dao.isEthernetMacExists(user1Info)){
+        if(user1Dao.isMacExists(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
-            resultInfo.setStatus(ResultInfo.STATUS_REGISTER_FAILURE + "This BTVi3 already registered before, please contact customer support. ");
+            resultInfo.setStatus("This BTVi3 already registered before, " +
+                    "please contact customer support. ");
             return resultInfo;
         }
         user1Info.setToken(TokenUtils.create(user1Info.getUserName(), user1Info.getPassword()));
@@ -73,13 +84,13 @@ public class User1Service {
             emailMaster.setEmailContent1(user1Info.getUserName(), user1Info.getToken() , language);
             emailMaster.send(user1Info.getEmail());
             resultInfo.setCode(ResultInfo.CODE_REGISTER_SUCCESS);
-            resultInfo.setStatus(ResultInfo.STATUS_REGISTER_SUCCESS + " Please check your email to confirm and activate " +
-                    "the account. The activation email may take up to 60 minutes to arrive, if you didn't get the email, " +
-                    "please contact customer service.");
+            resultInfo.setStatus(" Please check your email to confirm and activate the account. " +
+                    "The activation email may take up to 60 minutes to arrive, if you didn't get " +
+                    "the email, please contact customer service.");
             return resultInfo;
         }else {
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
-            resultInfo.setStatus(ResultInfo.STATUS_REGISTER_FAILURE + "error code 101");
+            resultInfo.setStatus("error code 101");
             return resultInfo;
         }
     }
@@ -88,38 +99,43 @@ public class User1Service {
     public ResultInfo login(User1Info user1Info, HttpServletRequest request){
         if(TextUtils.isEmpty(user1Info.getUserName())){
             resultInfo.setCode(ResultInfo.CODE_LOGIN_INFO_ERROR);
-            resultInfo.setStatus(ResultInfo.STATUS_LOGIN_INFO_ERROR + "username error");
+            resultInfo.setStatus("username error");
             return resultInfo;
         }
         if(TextUtils.isEmpty(user1Info.getPassword())){
             resultInfo.setCode(ResultInfo.CODE_LOGIN_INFO_ERROR);
-            resultInfo.setStatus(ResultInfo.STATUS_LOGIN_INFO_ERROR + "password error");
+            resultInfo.setStatus("password error");
+            return resultInfo;
+        }
+        if(TextUtils.isEmpty(user1Info.getMac())){
+            resultInfo.setCode(ResultInfo.CODE_LOGIN_INFO_ERROR);
+            resultInfo.setStatus("S/N information error");
             return resultInfo;
         }
         if(!user1Dao.validate(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
-            resultInfo.setStatus(ResultInfo.STATUS_LOGIN_ERROR + "username and password not match");
+            resultInfo.setStatus("username and password not match");
             return resultInfo;
         }
         if(!user1Dao.validateEmail(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
-            resultInfo.setStatus(ResultInfo.STATUS_LOGIN_ERROR + "email no validate");
+            resultInfo.setStatus("Account is not activated, please make sure to check the email to activate it.");
             return resultInfo;
         }
-        if(!user1Dao.isEthernetMacExists(user1Info)){
+        if(!user1Dao.isMacExists(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
-            resultInfo.setStatus(ResultInfo.STATUS_LOGIN_ERROR + "this device is not registered");
+            resultInfo.setStatus("this device is not registered");
             return resultInfo;
         }
-        if(!user1Dao.validateEthernetMac(user1Info)){
+        if(!user1Dao.validateMacAndUserName(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
-            resultInfo.setStatus(ResultInfo.STATUS_LOGIN_ERROR + "username and this BTVi3 S/N do not match");
+            resultInfo.setStatus("username and this BTVi3 S/N do not match");
             return resultInfo;
         }
         user1Info.setToken(TokenUtils.create(user1Info.getUserName(), user1Info.getPassword()));
         if(!user1Dao.updateToken(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
-            resultInfo.setStatus(ResultInfo.STATUS_LOGIN_ERROR + "token update failure");
+            resultInfo.setStatus("token update failure");
             return resultInfo;
         }
         user1Info.setLastLoginDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(System.currentTimeMillis())));
@@ -181,14 +197,20 @@ public class User1Service {
         resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS);
         resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS);
         resultInfo.setLoginCount(count);
+
         //获取用户会员日期，如果超过当前日期将等级设置为1，否则返回当前等级
+        int level = user1Dao.getLevel(user1Info);
         Long memberTime = user1Dao.getMemberTime(user1Info);
-        if(memberTime < System.currentTimeMillis()){
-            resultInfo.setUserLevel(1);
+        if(level == 0){
+            resultInfo.setUserLevel(level);
         }else {
-            resultInfo.setUserLevel(user1Dao.getLevel(user1Info));
+            if (memberTime < System.currentTimeMillis()) {
+                resultInfo.setUserLevel(1);
+            } else {
+                resultInfo.setUserLevel(user1Dao.getLevel(user1Info));
+            }
         }
-         //判断用户注册时间到现在时间是否超过7天，没有超出返回true，用于live play判断是否在7天预览期
+        //判断用户注册时间到现在时间是否超过7天，没有超出返回true，用于live play判断是否在7天预览期
         long currentTime = System.currentTimeMillis();
         long deviceActiveTime = user1Dao.getActiveTime(user1Info);
         long experienceLimitTime = deviceActiveTime + 604800000;
@@ -204,27 +226,27 @@ public class User1Service {
         System.out.println(user1Info);
         if(!user1Dao.isUserNameExists(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_REQUEST_FAILURE);
-            resultInfo.setStatus(ResultInfo.STATUS_REQUEST_FAILURE + "username not exists");
+            resultInfo.setStatus("username not exists");
             return resultInfo;
         }
         if(!user1Dao.isEmailExists(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_REQUEST_FAILURE);
-            resultInfo.setStatus(ResultInfo.STATUS_REQUEST_FAILURE + "email not exists");
+            resultInfo.setStatus("email not exists");
             return resultInfo;
         }
         String currentToken = user1Dao.getToken(user1Info);
         if(currentToken == null){
             resultInfo.setCode(ResultInfo.CODE_REQUEST_FAILURE);
-            resultInfo.setStatus(ResultInfo.STATUS_REQUEST_FAILURE + "token get error");
+            resultInfo.setStatus("token get error");
             return resultInfo;
         }
         EmailMaster emailMaster = new EmailMaster();
         emailMaster.setResetPasswordContent1(user1Info.getUserName(), currentToken);
         emailMaster.send(user1Info.getEmail());
         resultInfo.setCode(ResultInfo.CODE_REQUEST_SUCCESS);
-        resultInfo.setStatus(ResultInfo.STATUS_REQUEST_SUCCESS + " Please check your email to confirm and activate " +
-                "the account. The activation email may take up to 60 minutes to arrive, if you didn't get the email, " +
-                "please contact customer service.");
+        resultInfo.setStatus("Please check your email to confirm and reset the account password. " +
+                "The reset email may take up to 60 minutes to arrive, if you didn't get the " +
+                "email, please contact customer service.");
         return resultInfo;
     }
 
@@ -232,12 +254,12 @@ public class User1Service {
     public ResultInfo updatePassword(User1Info user1Info , String p1 , String p2){
         if(!user1Dao.isTokenExists(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_REQUEST_FAILURE);
-            resultInfo.setStatus(ResultInfo.STATUS_REQUEST_FAILURE + "token not exists");
+            resultInfo.setStatus("token not exists");
             return resultInfo;
         }
         if(!p1.equals(p2)){
             resultInfo.setCode(ResultInfo.CODE_REQUEST_FAILURE);
-            resultInfo.setStatus(ResultInfo.STATUS_REQUEST_FAILURE + "password confirmation not match");
+            resultInfo.setStatus("password confirmation not match");
             return resultInfo;
         }
         user1Info.setPassword(p1);
@@ -247,7 +269,7 @@ public class User1Service {
             resultInfo.setStatus(ResultInfo.STATUS_REQUEST_SUCCESS);
         }else{
             resultInfo.setCode(ResultInfo.CODE_REQUEST_FAILURE);
-            resultInfo.setStatus(ResultInfo.STATUS_REQUEST_FAILURE + "password reset error");
+            resultInfo.setStatus("password reset error");
         }
         return resultInfo;
     }
@@ -256,7 +278,7 @@ public class User1Service {
     public ResultInfo confirmEmail(User1Info user1Info){
         if(!user1Dao.isTokenExists(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_EMAIL_CONFIRM_FAILURE);
-            resultInfo.setStatus(ResultInfo.STATUS_EMAIL_CONFIRM_FAILURE + "token invalidate");
+            resultInfo.setStatus("token invalidate");
             return resultInfo;
         }
         if(user1Dao.updateEmailStatusByToken(user1Info)){
@@ -267,7 +289,7 @@ public class User1Service {
             user1Dao.updateToken(user1Info);
         }else{
             resultInfo.setCode(ResultInfo.CODE_EMAIL_CONFIRM_FAILURE);
-            resultInfo.setStatus(ResultInfo.STATUS_EMAIL_CONFIRM_FAILURE + "error code 102");
+            resultInfo.setStatus("error code 102");
         }
         return resultInfo;
     }

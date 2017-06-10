@@ -46,6 +46,10 @@ public class BaseAction implements ServletResponseAware ,ServletRequestAware{
     @Override
     public void setServletRequest(HttpServletRequest httpServletRequest) {
         request = httpServletRequest;
+        String ref = request.getHeader("Referer");
+        if(!ref.startsWith("http://localhost:8080/control_panel/")){
+            throw new RuntimeException("Invalid access");
+        }
         try {
             request.setCharacterEncoding("UTF-8");
         } catch (UnsupportedEncodingException e) {

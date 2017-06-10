@@ -37,6 +37,10 @@ public class ActionUser1 extends BaseAction {
     private int[] monthArray = {0, 0, 1, 3, 6, 12};
     private Map<String , HttpSession> userSessionMap;
 
+    private int currentPage = 1;
+    private int totalPage;
+    private int countOfPage = 15;
+
     @Autowired
     private User1Service user1Service;
     @Autowired
@@ -134,8 +138,7 @@ public class ActionUser1 extends BaseAction {
      * @return 跳转到(/WEB-INF/jsp/user1/show.jsp)
      */
     public String show() {
-        user1InfoList = user1Dao.getAll(null, null);
-        setEmailStatus(user1InfoList);
+        user1InfoList = user1Dao.getAll(null , null);
         System.out.println(user1InfoList);
         return "show";
     }
@@ -146,24 +149,29 @@ public class ActionUser1 extends BaseAction {
      */
     public String search() {
         user1InfoList = user1Service.search(selectionArray[searchKey], condition);
-        setEmailStatus(user1InfoList);
         return "show";
     }
 
     /**
-     * 根据emailStatus 设置显示ACTIVE 和 NEGATIVE
-     * @param user1InfoList 需要设置的用户列表
+     * 根据检索条件和页数信息分页显示信息
+     * @return
      */
-    private void setEmailStatus(List<User1Info> user1InfoList) {
-        if (user1InfoList != null && user1InfoList.size() > 0) {
-            for (User1Info user1Info : user1InfoList) {
-                if (user1Info.getEmailStatus() == 1) {
-                    user1Info.setStatus("ACTIVE");
-                } else {
-                    user1Info.setStatus("NEGATIVE");
-                }
-            }
+    public String showByPage(){
+        totalPage = user1Dao.getTotalCountByCondition(selectionArray[searchKey], condition) / countOfPage;
+        if(totalPage < 1){
+            totalPage = 1;
         }
+        if(currentPage > totalPage){
+            currentPage = totalPage;
+        }
+        if(currentPage < 1){
+            currentPage = 1;
+        }
+        System.out.println(currentPage);
+        System.out.println(totalPage);
+        user1InfoList = user1Dao.searchOfPage(selectionArray[searchKey], condition,currentPage ,countOfPage);
+        System.out.println(user1InfoList);
+        return "show";
     }
 
     /**
@@ -218,10 +226,12 @@ public class ActionUser1 extends BaseAction {
     public String status(){
         userSessionMap = SessionListener.sessionMap;
         user1InfoList = new ArrayList<>();
-        for (Map.Entry<String, HttpSession> entry: userSessionMap.entrySet()){
-            User1Info user1Info = user1Dao.getUserInfoByUserName(entry.getKey());
-            if(user1Info != null){
-                user1InfoList.add(user1Info);
+        if(userSessionMap.size() > 0){
+            for (Map.Entry<String, HttpSession> entry: userSessionMap.entrySet()){
+                User1Info user1Info = user1Dao.getUserInfoByUserName(entry.getKey());
+                if(user1Info != null){
+                    user1InfoList.add(user1Info);
+                }
             }
         }
         return "status";
@@ -341,5 +351,29 @@ public class ActionUser1 extends BaseAction {
 
     public void setUserSessionMap(Map<String, HttpSession> userSessionMap) {
         this.userSessionMap = userSessionMap;
+    }
+
+    public int getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    public int getTotalPage() {
+        return totalPage;
+    }
+
+    public void setTotalPage(int totalPage) {
+        this.totalPage = totalPage;
+    }
+
+    public int getCountOfPage() {
+        return countOfPage;
+    }
+
+    public void setCountOfPage(int countOfPage) {
+        this.countOfPage = countOfPage;
     }
 }

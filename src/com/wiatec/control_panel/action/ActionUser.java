@@ -69,26 +69,12 @@ public class ActionUser extends BaseAction {
 
     public String show(){
         userInfoList = userDao.getAll(null, null);
-        setEmailStatus(userInfoList);
         return "show";
     }
 
     public String search() {
         userInfoList = userService.search(searchKeyArray[searchKey], condition);
-        setEmailStatus(userInfoList);
         return "show";
-    }
-
-    private void setEmailStatus(List<UserInfo> userInfoList){
-        if (userInfoList != null && userInfoList.size() > 0) {
-            for (UserInfo userInfo : userInfoList) {
-                if (userInfo.getEmailStatus() == 1) {
-                    userInfo.setStatus("ACTIVE");
-                } else {
-                    userInfo.setStatus("NEGATIVE");
-                }
-            }
-        }
     }
 
     public void register(){
@@ -165,10 +151,10 @@ public class ActionUser extends BaseAction {
 
     public String status(){
         userSessionMap = SessionListener.sessionMap;
+        deviceInfoList = new ArrayList<>();
         for (Map.Entry<String, HttpSession> entry: userSessionMap.entrySet()){
             DeviceInfo deviceInfo = deviceDao.getInfoByUserName(entry.getKey());
             if(deviceInfo != null){
-                deviceInfoList = new ArrayList<>();
                 deviceInfoList.add(deviceInfo);
             }
         }

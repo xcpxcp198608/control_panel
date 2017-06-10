@@ -64,10 +64,10 @@ public class User1Dao extends BaseDao<List<User1Info>> {
     }
 
     @Transactional(readOnly = true)
-    public boolean validateEthernetMac(User1Info user1Info){
-        sql = "select ethernetMac from user1 where userName = ?";
-        String ethernetMac = jdbcTemplate.queryForObject(sql , String.class, user1Info.getUserName());
-        return user1Info.getEthernetMac().equals(ethernetMac);
+    public boolean validateMacAndUserName(User1Info user1Info){
+        sql = "select mac from user1 where userName = ?";
+        String mac = jdbcTemplate.queryForObject(sql , String.class, user1Info.getUserName());
+        return user1Info.getMac().equals(mac);
     }
 
     @Transactional(readOnly = true)
@@ -135,6 +135,13 @@ public class User1Dao extends BaseDao<List<User1Info>> {
     }
 
     @Transactional(readOnly = true)
+    public boolean isMacExists(User1Info user1Info){
+        sql = "select count(*) from user1 where mac = ?";
+        int count = jdbcTemplate.queryForObject(sql , Integer.class , user1Info.getMac());
+        return count == 1;
+    }
+
+    @Transactional(readOnly = true)
     public boolean isTokenExists(User1Info user1Info){
         sql = "select count(*) from user1 where token = ?";
         int count = jdbcTemplate.queryForObject(sql , Integer.class , user1Info.getToken());
@@ -193,11 +200,11 @@ public class User1Dao extends BaseDao<List<User1Info>> {
         }
         if("userName".equals(selection) || "firstName".equals(selection) ||
                 "lastName".equals(selection) || "email".equals(selection)){
-            sql = "select id, username, password, email, phone, firstname, lastname, level, emailStatus, mac," +
+            sql = "select id, username, email, phone, firstname, lastname, level, emailStatus, mac," +
                     "ethernetMac, country, region, city, timeZone, token, activeDate, activeTime," +
                     "memberDate, memberTime from user1 where " + selection + " like " + "'%"+condition+"%'";
         }else if("id".equals(selection) || "level".equals(selection) || "emailStatus".equals(selection)){
-            sql = "select id, username, password, email, phone, firstname, lastname, level, emailStatus, mac," +
+            sql = "select id, username, email, phone, firstname, lastname, level, emailStatus, mac," +
                     "ethernetMac, country, region, city, timeZone, token, activeDate, activeTime," +
                     "memberDate, memberTime from user1 where " + selection + " = " + condition;
         }else{
@@ -212,5 +219,74 @@ public class User1Dao extends BaseDao<List<User1Info>> {
         sql = "delete from user1 where userName=:userName";
         SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(user1Info);
         return namedParameterJdbcTemplate.update(sql , sqlParameterSource) == 1;
+    }
+
+    /**
+     * 获取当前数据库数据总数
+     * @return
+     */
+    @Transactional(readOnly = true)
+    public Integer getTotalCount(){
+        sql = "select count(*) from user1";
+        return jdbcTemplate.queryForObject(sql,Integer.class);
+    }
+
+    /**
+     * 根据当前需要显示的页数获取数据
+     */
+    @Transactional(readOnly = true)
+    public List<User1Info> getCurrentPageData(int currentPage, int countOfPage){
+        int from = (currentPage - 1) * countOfPage + 1;
+        sql ="select id, userName, email, phone, firstName, lastName, level, emailStatus," +
+                "mac, ethernetMac, country, region, city, timeZone, activeDate, activeTime," +
+                "memberDate, memberTime FROM user1 LIMIT ? , ?";
+        return jdbcTemplate.query(sql , new BeanPropertyRowMapper<>(User1Info.class), from, countOfPage);
+    }
+
+    /**
+     * 获取当前数据库数据总数
+     * @return
+     */
+    @Transactional(readOnly = true)
+    public Integer getTotalCountByCondition(String selection, String condition){
+        if(TextUtils.isEmpty(selection) || TextUtils.isEmpty(condition)){
+            sql="select count(*) from user1 ";
+        }else if("userName".equals(selection) || "firstName".equals(selection) ||
+                "lastName".equals(selection) || "email".equals(selection)){
+            sql = "select count(*) from user1 where " + selection + " like " + "'%"+condition+"%'";
+        }else if("id".equals(selection) || "level".equals(selection) || "emailStatus".equals(selection)){
+            sql = "select count(*) from user1 where " + selection + " = " + condition;
+        }else{
+            return 0;
+        }
+        return jdbcTemplate.queryForObject(sql,Integer.class);
+    }
+
+
+
+    @Transactional(readOnly = true)
+    public List<User1Info> searchOfPage(String selection, String condition, int currentPage,
+                                        int countOfPage){
+        int from = (currentPage -1)*countOfPage;
+        if(TextUtils.isEmpty(selection) || TextUtils.isEmpty(condition)){
+            sql="select id, username, email, phone, firstname, lastname, level, emailStatus, mac," +
+                    "ethernetMac, country, region, city, timeZone, token, activeDate, activeTime," +
+                    "memberDate, memberTime from user1 LIMIT "+from +" , "+countOfPage;
+        }else if("userName".equals(selection) || "firstName".equals(selection) ||
+                "lastName".equals(selection) || "email".equals(selection)){
+            sql = "select id, username, email, phone, firstname, lastname, level, emailStatus, mac," +
+                    "ethernetMac, country, region, city, timeZone, token, activeDate, activeTime," +
+                    "memberDate, memberTime from user1 where " + selection + " like " + "'%"+condition+"%'"+
+                    " LIMIT "+from +" , "+countOfPage;
+        }else if("id".equals(selection) || "level".equals(selection) || "emailStatus".equals(selection)){
+            sql = "select id, username, email, phone, firstname, lastname, level, emailStatus, mac," +
+                    "ethernetMac, country, region, city, timeZone, token, activeDate, activeTime," +
+                    "memberDate, memberTime from user1 where " + selection + " = " + condition+
+                    " LIMIT "+from +" , "+countOfPage;
+        }else{
+            return null;
+        }
+        RowMapper<User1Info> rowMapper = new BeanPropertyRowMapper<>(User1Info.class);
+        return jdbcTemplate.query(sql, rowMapper);
     }
 }
