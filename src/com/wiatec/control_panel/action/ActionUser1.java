@@ -37,9 +37,10 @@ public class ActionUser1 extends BaseAction {
     private int[] monthArray = {0, 0, 1, 3, 6, 12};
     private Map<String , HttpSession> userSessionMap;
 
-    private int currentPage = 1;
+    private int currentPage;
     private int totalPage;
-    private int countOfPage = 15;
+    private static final int COUNT_OF_PAGE = 15;
+    private int turn;
 
     @Autowired
     private User1Service user1Service;
@@ -127,6 +128,7 @@ public class ActionUser1 extends BaseAction {
      */
     public String login1() {
         if ("USER".equals(user1Info.getUserName()) && "USER".equals(user1Info.getPassword())) {
+            session.setAttribute("countryCode","USER");
             return "login1";
         } else {
             throw new RuntimeException("user info error");
@@ -157,7 +159,13 @@ public class ActionUser1 extends BaseAction {
      * @return
      */
     public String showByPage(){
-        totalPage = user1Dao.getTotalCountByCondition(selectionArray[searchKey], condition) / countOfPage;
+        checkSession();
+        if(turn == 2){ //next page
+            currentPage += 1;
+        }else if(turn == 1){ //previous page
+            currentPage -= 1;
+        }
+        totalPage = user1Dao.getTotalCountByCondition(selectionArray[searchKey], condition) / COUNT_OF_PAGE;
         if(totalPage < 1){
             totalPage = 1;
         }
@@ -167,10 +175,7 @@ public class ActionUser1 extends BaseAction {
         if(currentPage < 1){
             currentPage = 1;
         }
-        System.out.println(currentPage);
-        System.out.println(totalPage);
-        user1InfoList = user1Dao.searchOfPage(selectionArray[searchKey], condition,currentPage ,countOfPage);
-        System.out.println(user1InfoList);
+        user1InfoList = user1Dao.searchOfPage(selectionArray[searchKey], condition,currentPage , COUNT_OF_PAGE);
         return "show";
     }
 
@@ -185,7 +190,6 @@ public class ActionUser1 extends BaseAction {
         }else{
             throw new RuntimeException("active failure");
         }
-
     }
 
     /**
@@ -247,7 +251,6 @@ public class ActionUser1 extends BaseAction {
         user1Service.delete(user1Info);
         return "delete";
     }
-
 
     public List<User1Info> getUser1InfoList() {
         return user1InfoList;
@@ -369,11 +372,11 @@ public class ActionUser1 extends BaseAction {
         this.totalPage = totalPage;
     }
 
-    public int getCountOfPage() {
-        return countOfPage;
+    public int getTurn() {
+        return turn;
     }
 
-    public void setCountOfPage(int countOfPage) {
-        this.countOfPage = countOfPage;
+    public void setTurn(int turn) {
+        this.turn = turn;
     }
 }

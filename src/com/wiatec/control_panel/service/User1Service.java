@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by xuchengpeng on 07/06/2017.
+ * user handler
  */
 @Service
 public class User1Service {
@@ -27,6 +27,14 @@ public class User1Service {
     private User1Dao user1Dao;
     private ResultInfo resultInfo = new ResultInfo();
 
+    /**
+     * user register
+     * @param user1Info user info what user commit
+     *        REQUIRED: (userName , password , email , phone , firstName , lastName , mac , etherNetMac)
+     *        OPTIONAL： (country , region , city , timeZone)
+     * @param language the email language of user select when register
+     * @return result
+     */
     @Transactional
     public ResultInfo register(User1Info user1Info, String language){
         if(TextUtils.isEmpty(user1Info.getUserName())){
@@ -51,7 +59,12 @@ public class User1Service {
         }
         if(TextUtils.isEmpty(user1Info.getMac())){
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
-            resultInfo.setStatus("S/N error");
+            resultInfo.setStatus("S/N(W) error");
+            return resultInfo;
+        }
+        if(TextUtils.isEmpty(user1Info.getEthernetMac())){
+            resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
+            resultInfo.setStatus("S/N(E) error");
             return resultInfo;
         }
         if(!user1Info.getMac().startsWith("5c:41:e7")){
@@ -71,7 +84,13 @@ public class User1Service {
         }
         if(user1Dao.isMacExists(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
-            resultInfo.setStatus("This BTVi3 already registered before, " +
+            resultInfo.setStatus("This BTVi3(W) already registered before, " +
+                    "please contact customer support. ");
+            return resultInfo;
+        }
+        if(user1Dao.isEthernetMacExists(user1Info)){
+            resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
+            resultInfo.setStatus("This BTVi3(E) already registered before, " +
                     "please contact customer support. ");
             return resultInfo;
         }
@@ -95,6 +114,14 @@ public class User1Service {
         }
     }
 
+    /**
+     * user login
+     * @param user1Info user info
+     *        REQUIRED: (userName , password , mac)
+     *        OPTIONAL: (country , region , city , timeZone)
+     * @param request servlet request
+     * @return result
+     */
     @Transactional
     public ResultInfo login(User1Info user1Info, HttpServletRequest request){
         if(TextUtils.isEmpty(user1Info.getUserName())){
@@ -162,6 +189,13 @@ public class User1Service {
         return resultInfo;
     }
 
+    /**
+     * check user login status
+     * @param user1Info user info (userName)
+     * @param count the last login count from server session and store in user device
+     * @param request servlet request
+     * @return  result
+     */
     @Transactional
     public ResultInfo checkRepeat(User1Info user1Info , int count, HttpServletRequest request){
 //        System.out.println(user1Info);
@@ -193,11 +227,13 @@ public class User1Service {
         return resultInfo;
     }
 
+    /**
+     * set user level and 7 days experience period
+     */
     private void setCheckResult(ResultInfo resultInfo, int count, User1Info user1Info){
         resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS);
         resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS);
         resultInfo.setLoginCount(count);
-
         //获取用户会员日期，如果超过当前日期将等级设置为1，否则返回当前等级
         int level = user1Dao.getLevel(user1Info);
         Long memberTime = user1Dao.getMemberTime(user1Info);
@@ -221,6 +257,11 @@ public class User1Service {
         }
     }
 
+    /**
+     * user wang reset password
+     * @param user1Info user info （userName , email）
+     * @return
+     */
     @Transactional
     public ResultInfo resetPassword(User1Info user1Info){
         System.out.println(user1Info);
@@ -235,9 +276,9 @@ public class User1Service {
             return resultInfo;
         }
         String currentToken = user1Dao.getToken(user1Info);
-        if(currentToken == null){
+        if(TextUtils.isEmpty(currentToken)){
             resultInfo.setCode(ResultInfo.CODE_REQUEST_FAILURE);
-            resultInfo.setStatus("token get error");
+            resultInfo.setStatus("token get error , please try again");
             return resultInfo;
         }
         EmailMaster emailMaster = new EmailMaster();
@@ -250,6 +291,13 @@ public class User1Service {
         return resultInfo;
     }
 
+    /**
+     * user press down RESET PASSWORD after received the reset email
+     * @param user1Info reset info (token)
+     * @param p1 the new password
+     * @param p2 confirm new password
+     * @return
+     */
     @Transactional
     public ResultInfo updatePassword(User1Info user1Info , String p1 , String p2){
         if(!user1Dao.isTokenExists(user1Info)){
@@ -274,6 +322,11 @@ public class User1Service {
         return resultInfo;
     }
 
+    /**
+     * user press down ACTIVE ACCOUNT after received the reset email
+     * @param user1Info token info from email link
+     * @return active result
+     */
     @Transactional
     public ResultInfo confirmEmail(User1Info user1Info){
         if(!user1Dao.isTokenExists(user1Info)){
@@ -294,6 +347,12 @@ public class User1Service {
         return resultInfo;
     }
 
+    /**
+     * update user member level
+     * @param user1Info user info (userName)
+     * @param level target level
+     * @param month validate time
+     */
     @Transactional
     public void updateLevel(User1Info user1Info , int level , int month){
         long memberTime;
@@ -310,16 +369,33 @@ public class User1Service {
         user1Dao.updateLevel(user1Info);
     }
 
+    /**
+     * administrator active user email when user can not active account
+     * @param user1Info
+     * @return
+     */
     @Transactional
     public boolean active(User1Info user1Info){
         return user1Dao.updateEmailStatusByUserName(user1Info);
     }
 
+    /**
+     * administrator search the user info by selection and condition
+     * @param selection search selection mapping the column in user1 table
+     *                  (id , userName , email, firstName , lastName , emailStatus , )
+     * @param condition
+     * @return
+     */
     @Transactional
     public List<User1Info> search(String selection, String condition){
         return user1Dao.search(selection , condition);
     }
 
+    /**
+     * administrator delete user
+     * @param user1Info
+     * @return
+     */
     @Transactional
     public boolean delete(User1Info user1Info){
         return user1Dao.delete(user1Info);

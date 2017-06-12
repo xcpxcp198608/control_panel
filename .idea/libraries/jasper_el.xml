@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="jasper-el">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/base/jasper-el.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/base/jasper.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/base/javassist-3.11.0.GA.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/base/json-lib-2.1-jdk15.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -130,6 +130,7 @@
       <library>
         <CLASSES>
           <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/json-lib-2.1-jdk15.jar!/" />
+          <root url="jar://$USER_HOME$/CodeLibraries/java/jee/base/json-lib-2.1-jdk15.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -148,6 +149,7 @@
       <library>
         <CLASSES>
           <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/junit4.4.jar!/" />
+          <root url="jar://$USER_HOME$/CodeLibraries/java/jee/base/junit4.4.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -184,6 +186,7 @@
       <library>
         <CLASSES>
           <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/servlet-api.jar!/" />
+          <root url="jar://$USER_HOME$/CodeLibraries/java/jee/base/servlet-api.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -216,5 +219,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="asm-3.3" level="project" />
+    <orderEntry type="library" name="jasper-el" level="project" />
   </component>
 </module>

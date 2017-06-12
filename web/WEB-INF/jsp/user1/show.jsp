@@ -37,10 +37,10 @@
 
 </head>
 
-<body style="background-color: #dcdcdc">
+<body style="background-color: #dcdcdc ; font-family: Arial">
     <div style="height: 50px; background-color: #000000; color: #d5d5d5; width: 100%">
-        <a style="width: 100%; display: block; line-height: 50px;font-size: 30px;color: white;
-            margin: auto; text-align: center; font-family: Times; text-decoration: none"
+        <a style="width: 100%; display: block; line-height: 50px;font-size: 35px;color: white;
+            margin: auto; text-align: center; font-family: Arial; text-decoration: none"
            href="/control_panel/user1/show">User Control Panel</a>
     </div><br/>
     <div style="height: 30px; width: 90%; margin: auto">
@@ -48,7 +48,6 @@
             <tr>
                 <td width="84%">
                     <s:form method="POST" namespace="/user1" action="showByPage" theme="simple">
-                        Search:
                         <s:select name="searchKey" label="search" listKey="key" listValue="value"
                                   list="#{1:'Id', 2:'FirstName',3:'LastName', 4:'Email', 5:'UserName', 6:'Status', 7:'Level'}"/>
                         <s:textfield name="condition"/>
@@ -58,7 +57,8 @@
                 <td width="3%">
                     <s:if test="currentPage > 1">
                     <s:form method="POST" namespace="/user1" action="showByPage" theme="simple">
-                        <s:hidden name="currentPage" value="currentPage -1 "/>
+                        <s:hidden name="currentPage"/>
+                        <s:hidden name="turn" value="1"/>
                         <s:submit value="<"/>
                     </s:form>
                     </s:if>
@@ -71,7 +71,8 @@
                 <td width="3%">
                     <s:if test="currentPage < totalPage">
                     <s:form method="POST" namespace="/user1" action="showByPage" theme="simple">
-                        <s:hidden name="currentPage" value="currentPage + 1 "/>
+                        <s:hidden name="currentPage"/>
+                        <s:hidden name="turn" value="2"/>
                         <s:submit value=">"/>
                     </s:form>
                     </s:if>
@@ -103,7 +104,7 @@
                 <s:form action="active" method="POST" theme="simple" namespace="/user1">
                     <s:hidden name="userName"/>
                     <s:if test="emailStatus == 1">ACTIVE</s:if>
-                    <s:else>NEGATIVE <s:submit value="Active"/></s:else>
+                    <s:else><span style="color: red">NEGATIVE</span><s:submit value="Active"/></s:else>
                 </s:form>
             </td>
             <td align="center" width="5%">${level}</td>

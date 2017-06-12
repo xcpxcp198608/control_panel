@@ -1,0 +1,35 @@
+<component name="libraryTable">
+  <library name="asm-3.3">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/asm-3.3.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/asm-commons-3.3.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/asm-tree-3.3.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/c3p0-0.9.1.2.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/com.springsource.org.aopalliance-1.0.0.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/commons-beanutils-1.7.0.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/commons-codec-1.10.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/commons-collections-3.1.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/commons-fileupload-1.3.2.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/commons-io-2.2.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/commons-lang-2.5.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/commons-logging-1.1.3.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/commons-logging.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/ezmorph-1.0.3.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/freemarker-2.3.22.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/hamcrest-core-1.3.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/jasper-el.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/jasper.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/javassist-3.11.0.GA.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/jsp-api.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/jstl.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/log4j-api-2.3.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/log4j-core-2.3.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/mybatis-3.4.4.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/mysql-connector-java-5.1.39-bin.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/struts2-spring-plugin-2.5.8.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

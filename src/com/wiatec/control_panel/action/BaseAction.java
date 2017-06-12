@@ -46,10 +46,6 @@ public class BaseAction implements ServletResponseAware ,ServletRequestAware{
     @Override
     public void setServletRequest(HttpServletRequest httpServletRequest) {
         request = httpServletRequest;
-        String ref = request.getHeader("Referer");
-        if(!ref.startsWith("http://localhost:8080/control_panel/")){
-            throw new RuntimeException("Invalid access");
-        }
         try {
             request.setCharacterEncoding("UTF-8");
         } catch (UnsupportedEncodingException e) {
@@ -62,14 +58,8 @@ public class BaseAction implements ServletResponseAware ,ServletRequestAware{
     }
 
     protected boolean checkSession (){
-        if(countryCode ==null){
-            try {
-                response.sendRedirect("control_panel/rollimage/login");
-            } catch (IOException e) {
-                e.printStackTrace();
-                return false;
-            }
-            return false;
+        if(countryCode == null){
+            throw new RuntimeException("login error");
         }else{
             return true;
         }

@@ -31,6 +31,8 @@
           <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/required/struts2-spring-plugin-2.5.8.jar" />
           <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/jmail/activation.jar" />
           <element id="file-copy" path="$USER_HOME$/CodeLibraries/java/jee/jmail/mail.jar" />
+          <element id="library" level="project" name="asm-3.3" />
+          <element id="library" level="project" name="jasper-el" />
         </element>
       </element>
     </root>

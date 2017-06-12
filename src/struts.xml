@@ -146,10 +146,10 @@
             <result name="resetp">/WEB-INF/jsp/register1/reset.jsp</result>
             <result name="login1" type="redirectAction">showByPage</result>
             <result name="show">/WEB-INF/jsp/user1/show.jsp</result>
-            <result name="changeMember" type="redirectAction">show</result>
+            <result name="changeMember" type="redirectAction">showByPage</result>
             <result name="status">/WEB-INF/jsp/user1/status.jsp</result>
-            <result name="active" type="redirectAction">show</result>
-            <result name="delete" type="redirectAction">show</result>
+            <result name="active" type="redirectAction">showByPage</result>
+            <result name="delete" type="redirectAction">showByPage</result>
         </action>
     </package>
 
