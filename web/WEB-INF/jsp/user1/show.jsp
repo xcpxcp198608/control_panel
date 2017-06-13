@@ -59,6 +59,8 @@
                     <s:form method="POST" namespace="/user1" action="showByPage" theme="simple">
                         <s:hidden name="currentPage"/>
                         <s:hidden name="turn" value="1"/>
+                        <s:hidden name="searchKey"/>
+                        <s:hidden name="condition"/>
                         <s:submit value="<"/>
                     </s:form>
                     </s:if>
@@ -73,6 +75,8 @@
                     <s:form method="POST" namespace="/user1" action="showByPage" theme="simple">
                         <s:hidden name="currentPage"/>
                         <s:hidden name="turn" value="2"/>
+                        <s:hidden name="searchKey"/>
+                        <s:hidden name="condition"/>
                         <s:submit value=">"/>
                     </s:form>
                     </s:if>
