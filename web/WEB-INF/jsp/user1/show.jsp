@@ -41,7 +41,7 @@
     <div style="height: 50px; background-color: #000000; color: #d5d5d5; width: 100%">
         <a style="width: 100%; display: block; line-height: 50px;font-size: 35px;color: white;
             margin: auto; text-align: center; font-family: Arial; text-decoration: none"
-           href="/control_panel/user1/show">User Control Panel</a>
+           href="/control_panel/user1/showByPage">User Control Panel</a>
     </div><br/>
     <div style="height: 30px; width: 90%; margin: auto">
         <table bgcolor="#dcdcdc" cellspacing="0px" cellpadding="0px" width="100%">
