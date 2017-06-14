@@ -59,12 +59,12 @@ public class User1Service {
         }
         if(TextUtils.isEmpty(user1Info.getMac())){
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
-            resultInfo.setStatus("S/N(W) error");
+            resultInfo.setStatus("Please goto settings->network to turn on WIFI (s/n)");
             return resultInfo;
         }
         if(TextUtils.isEmpty(user1Info.getEthernetMac())){
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
-            resultInfo.setStatus("S/N(E) error");
+            resultInfo.setStatus("s/n(e) error");
             return resultInfo;
         }
         if(!user1Info.getMac().startsWith("5c:41:e7")){
@@ -136,7 +136,7 @@ public class User1Service {
         }
         if(TextUtils.isEmpty(user1Info.getMac())){
             resultInfo.setCode(ResultInfo.CODE_LOGIN_INFO_ERROR);
-            resultInfo.setStatus("S/N information error");
+            resultInfo.setStatus("S/N(W) information error");
             return resultInfo;
         }
         if(!user1Dao.validate(user1Info)){
@@ -364,7 +364,7 @@ public class User1Service {
             memberTime = user1Info.getMemberTime() + perMonthTimeMillis;
         }
         user1Info.setMemberTime(memberTime);
-        user1Info.setMemberDate(new SimpleDateFormat("yy-MM-dd HH:mm:ss").format(memberTime));
+        user1Info.setMemberDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(memberTime));
         user1Info.setLevel(level);
         user1Dao.updateLevel(user1Info);
     }
@@ -389,6 +389,15 @@ public class User1Service {
     @Transactional
     public List<User1Info> search(String selection, String condition){
         return user1Dao.search(selection , condition);
+    }
+
+    /**
+     * get all of user information by username
+     * @param userName
+     * @return
+     */
+    public User1Info details(String userName){
+        return user1Dao.getUserInfoByUserName(userName);
     }
 
     /**

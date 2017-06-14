@@ -93,12 +93,11 @@
     <div style="width: 90%; margin: auto" >
         <table id="data" border="1px" cellspacing="0px" cellpadding="0px" width="100%" bgcolor="white">
         <tr style="height: 40px; font-size: 16px; background-color: #000000; color: #d5d5d5" >
-            <th>Item</th><th>Id</th><th>UserName</th><th>Email</th><th>Name</th><th>RegisterDate</th>
-            <th>Status</th><th>UserLevel</th><th>MemberExpireDate</th><th>Operation</th><th>Delete</th>
+            <th>Id</th><th>UserName</th><th>Email</th><th>Name</th><th>RegisterDate</th><th>Status</th>
+            <th>UserLevel</th><th>MemberExpireDate</th><th>Operation</th><th>Details</th><th>Delete</th>
         </tr>
         <s:iterator value="user1InfoList" status="s">
-        <tr style="font-size: 11px; height: 30px; line-height: 30px ; text-align: center">
-            <td align="center" width="3%">${s.index+1}</td>
+        <tr style="font-size: 11px; height: 28px; line-height: 30px ; text-align: center">
             <td align="center" width="3%">${id}</td>
             <td align="center" width="7%">${userName}</td>
             <td align="center" width="13%">${email}</td>
@@ -124,7 +123,10 @@
                     <s:submit value="confirm"/>
                 </s:form>
             </td>
-            <td align="center" width="8%">
+            <td width="5%">
+                <a href="/control_panel/user1/details?userName=${userName}"><img src="img/details.png" alt="details"></a>
+            </td>
+            <td align="center" width="6%">
                 <a href="/control_panel/user1/delete?userName=${userName}" onclick="return confirm('Confirm Delete')">
                     <img src="img/delete1.png" alt="delete" width="20px" height="20px">
                 </a>

@@ -242,6 +242,15 @@ public class ActionUser1 extends BaseAction {
     }
 
     /**
+     * show user details by username
+     * @return
+     */
+    public String details(){
+        user1Info = user1Service.details(userName);
+        return "details";
+    }
+
+    /**
      * user control panel delete user by username
      * @return 通过redirect跳转到(/WEB-INF/jsp/user1/show.jsp)
      */

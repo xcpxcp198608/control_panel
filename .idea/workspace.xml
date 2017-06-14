@@ -2,8 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="35d59a9f-5afb-427b-a383-ee646d5103bd" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/img/details.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/user1/details.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/user1/show1.jsp" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/jasper_el.xml" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/asm_3_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/activation.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/c3p0-0.9.1.2.jar" afterPath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/c3p0-0.9.1.2.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/com.springsource.org.aopalliance-1.0.0.jar" afterPath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/com.springsource.org.aopalliance-1.0.0.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar" afterPath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/commons-beanutils-1.7.0.jar" afterPath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/commons-beanutils-1.7.0.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/commons-collections-3.1.jar" afterPath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/commons-collections-3.1.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/commons-lang-2.5.jar" afterPath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/commons-lang-2.5.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/commons-logging-1.1.3.jar" afterPath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/commons-logging-1.1.3.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/commons-logging.jar" afterPath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/commons-logging.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/ezmorph-1.0.3.jar" afterPath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/ezmorph-1.0.3.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/hamcrest-core-1.3.jar" afterPath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/hamcrest-core-1.3.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/json-lib-2.1-jdk15.jar" afterPath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/json-lib-2.1-jdk15.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/log4j-api-2.3.jar" afterPath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/log4j-api-2.3.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/log4j-core-2.3.jar" afterPath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/log4j-core-2.3.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/mysql-connector-java-5.1.39-bin.jar" afterPath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/mysql-connector-java-5.1.39-bin.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/struts2-spring-plugin-2.5.8.jar" afterPath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/lib/struts2-spring-plugin-2.5.8.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/control_panel_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/control_panel_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/control_panel.iml" afterPath="$PROJECT_DIR$/control_panel.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/classes/struts.xml" afterPath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/classes/struts.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wiatec/control_panel/action/ActionUser1.java" afterPath="$PROJECT_DIR$/src/com/wiatec/control_panel/action/ActionUser1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wiatec/control_panel/repository/User1Dao.java" afterPath="$PROJECT_DIR$/src/com/wiatec/control_panel/repository/User1Dao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wiatec/control_panel/service/User1Service.java" afterPath="$PROJECT_DIR$/src/com/wiatec/control_panel/service/User1Service.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/struts.xml" afterPath="$PROJECT_DIR$/src/struts.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/classes/struts.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/struts.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/jsp/user1/show.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/jsp/user1/show.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,13 +75,42 @@
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="launcher@162.221.193.201" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="launcher" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="user1" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="control_panel" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="User1Service.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/wiatec/control_panel/service/User1Service.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="293">
+              <caret line="368" column="40" lean-forward="true" selection-start-line="368" selection-start-column="40" selection-end-line="368" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -89,8 +148,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/web/WEB-INF/jsp/kodiimage/show.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/jsp/kodiimage/edit.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/jsp/adimage/show.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/jsp/adimage/edit.jsp" />
         <option value="$PROJECT_DIR$/web/js/base.js" />
@@ -133,13 +190,15 @@
         <option value="$PROJECT_DIR$/web/failure.jsp" />
         <option value="$PROJECT_DIR$/web/success.jsp" />
         <option value="$PROJECT_DIR$/src/com/wiatec/control_panel/action/ActionUser.java" />
-        <option value="$PROJECT_DIR$/src/com/wiatec/control_panel/repository/User1Dao.java" />
-        <option value="$PROJECT_DIR$/src/struts.xml" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/com/wiatec/control_panel/action/ActionUser1.java" />
         <option value="$PROJECT_DIR$/src/com/wiatec/control_panel/action/BaseAction.java" />
-        <option value="$PROJECT_DIR$/src/com/wiatec/control_panel/service/User1Service.java" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/jsp/user1/show1.jsp" />
+        <option value="$PROJECT_DIR$/src/struts.xml" />
+        <option value="$PROJECT_DIR$/src/com/wiatec/control_panel/action/ActionUser1.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/jsp/user1/show.jsp" />
+        <option value="$PROJECT_DIR$/src/com/wiatec/control_panel/repository/User1Dao.java" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/jsp/user1/details.jsp" />
+        <option value="$PROJECT_DIR$/src/com/wiatec/control_panel/service/User1Service.java" />
       </list>
     </option>
   </component>
@@ -203,8 +262,19 @@
     <panes>
       <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="control_panel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+          </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="control_panel" />
@@ -294,50 +364,6 @@
               <option name="myItemId" value="jsp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="user" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="control_panel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="control_panel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jsp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="control_panel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="control_panel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="img" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -368,28 +394,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="control_panel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="control_panel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="control_panel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="control_panel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -455,42 +459,19 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="entities" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="control_panel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="control_panel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="control_panel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="action" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Java" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.18547596" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
@@ -1201,7 +1182,11 @@
       <workItem from="1497321334630" duration="302000" />
       <workItem from="1497321776929" duration="208000" />
       <workItem from="1497322115998" duration="558000" />
-      <workItem from="1497323900697" duration="144000" />
+      <workItem from="1497323900697" duration="282000" />
+      <workItem from="1497334358943" duration="2907000" />
+      <workItem from="1497407373708" duration="247000" />
+      <workItem from="1497417903035" duration="624000" />
+      <workItem from="1497429961306" duration="4020000" />
     </task>
     <task id="LOCAL-00001" summary="201704221230">
       <created>1492835453497</created>
@@ -1378,11 +1363,18 @@
       <option name="project" value="LOCAL" />
       <updated>1497322608211</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="201706131120">
+      <created>1497324064341</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1497324064341</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="295307000" />
+    <option name="totallyTimeSpent" value="303243000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="813" extended-state="6" />
@@ -1396,22 +1388,22 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11887608" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15850145" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15850145" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32753623" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3270349" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32994187" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35901162" sideWeight="0.49711815" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37209302" sideWeight="0.49711815" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896653" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32986626" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20821325" sideWeight="0.49209931" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20100865" sideWeight="0.49209931" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21757925" sideWeight="0.50790066" order="7" side_tool="true" content_ui="tabs" />
@@ -1494,7 +1486,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="201704221230" />
     <MESSAGE value="201704291100" />
     <MESSAGE value="201705031800" />
     <MESSAGE value="201705041453" />
@@ -1519,7 +1510,8 @@
     <MESSAGE value="201706101037" />
     <MESSAGE value="201706121700" />
     <MESSAGE value="201706131056" />
-    <option name="LAST_COMMIT_MESSAGE" value="201706131056" />
+    <MESSAGE value="201706131120" />
+    <option name="LAST_COMMIT_MESSAGE" value="201706131120" />
   </component>
   <component name="WindowStateProjectService">
     <state width="219" height="291" key="Git.Branch.Popup" />
@@ -1536,27 +1528,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/wiatec/control_panel/repository/ManagerDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/wiatec/control_panel/service/RollImageService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="28" column="31" lean-forward="false" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/wiatec/control_panel/action/ActionManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wiatec/control_panel/repository/BaseDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-45">
@@ -1673,13 +1644,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="2866" column="18" lean-forward="false" selection-start-line="2866" selection-start-column="18" selection-end-line="2866" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/wiatec/control_panel/utils/EmailMaster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="284" column="9" lean-forward="true" selection-start-line="284" selection-start-column="9" selection-end-line="284" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -1844,13 +1808,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/wiatec/control_panel/action/ActionMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="22" lean-forward="true" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/979292bf/d4c49b94-9d11-4ad0-be5d-a66f4c222b8f/launcher.user1">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1863,59 +1820,137 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/wiatec/control_panel/repository/User1Dao.java">
+    <entry file="file://$PROJECT_DIR$/src/com/wiatec/control_panel/utils/EmailMaster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1">
-          <caret line="267" column="27" lean-forward="false" selection-start-line="267" selection-start-column="27" selection-end-line="267" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/struts.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="151" column="75" lean-forward="false" selection-start-line="151" selection-start-column="75" selection-end-line="151" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="com.intellij.struts2.graph.fileEditor.Struts2GraphFileEditorProvider">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="26" lean-forward="false" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-          <folding />
+        <state relative-caret-position="306">
+          <caret line="18" column="4" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wiatec/control_panel/action/BaseAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="61" column="54" lean-forward="false" selection-start-line="61" selection-start-column="54" selection-end-line="61" selection-end-column="54" />
+        <state relative-caret-position="174">
+          <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/wiatec/control_panel/action/ActionMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="54" column="28" lean-forward="false" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/wiatec/control_panel/action/ActionAdImage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="20" column="32" lean-forward="false" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="46" column="10" lean-forward="true" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/user1/show1.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/struts.xml">
+      <provider editor-type-id="com.intellij.struts2.graph.fileEditor.Struts2GraphFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="152" column="61" lean-forward="false" selection-start-line="152" selection-start-column="61" selection-end-line="152" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/wiatec/control_panel/repository/User1Dao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding>
+            <marker date="1497434241000" expanded="true" signature="825:1051" ph="select id,us... user1" />
+            <marker date="1497434241000" expanded="true" signature="1312:1579" ph="select id, u... user1" />
+            <marker date="1497434241000" expanded="true" signature="1830:2224" ph="insert into user1... " />
+            <marker date="1497434241000" expanded="true" signature="2511:2573" ph="select count... user1" />
+            <marker date="1497434241000" expanded="true" signature="2837:2885" ph="select email... user1" />
+            <marker date="1497434241000" expanded="true" signature="3133:3173" ph="select mac f... user1" />
+            <marker date="1497434241000" expanded="true" signature="3428:3473" ph="select lastN... user1" />
+            <marker date="1497434241000" expanded="true" signature="3672:3714" ph="select token... user1" />
+            <marker date="1497434241000" expanded="true" signature="3914:3956" ph="select level... user1" />
+            <marker date="1497434241000" expanded="true" signature="4159:4206" ph="select membe... user1" />
+            <marker date="1497434241000" expanded="true" signature="4406:4453" ph="select activ... user1" />
+            <marker date="1497434241000" expanded="true" signature="4660:4702" ph="select userN... user1" />
+            <marker date="1497434241000" expanded="true" signature="4907:4952" ph="select count... user1" />
+            <marker date="1497434241000" expanded="true" signature="5191:5233" ph="select count... user1" />
+            <marker date="1497434241000" expanded="true" signature="5466:5506" ph="select mac f... user1" />
+            <marker date="1497434241000" expanded="true" signature="5764:5812" ph="select count... user1" />
+            <marker date="1497434241000" expanded="true" signature="6052:6092" ph="select count... user1" />
+            <marker date="1497434241000" expanded="true" signature="6326:6368" ph="select count... user1" />
+            <marker date="1497434241000" expanded="true" signature="6585:6639" ph="update user1... " />
+            <marker date="1497434241000" expanded="true" signature="6915:7072" ph="update user1... " />
+            <marker date="1497434241000" expanded="true" signature="7358:7407" ph="update user1... " />
+            <marker date="1497434241000" expanded="true" signature="7696:7751" ph="update user1... " />
+            <marker date="1497434241000" expanded="true" signature="8034:8088" ph="update user1... " />
+            <marker date="1497434241000" expanded="true" signature="8361:8484" ph="update user1... " />
+            <marker date="1497434241000" expanded="true" signature="9057:9348" ph="select id, u... user1" />
+            <marker date="1497434241000" expanded="true" signature="9476:9742" ph="select id, u... user1" />
+            <marker date="1497434241000" expanded="true" signature="10034:10076" ph="delete from " />
+            <marker date="1497434241000" expanded="true" signature="10399:10425" ph="select count... user1" />
+            <marker date="1497434241000" expanded="true" signature="10724:10960" ph="select id, u... user1" />
+            <marker date="1497434241000" expanded="true" signature="11334:11360" ph="select count... user1" />
+            <marker date="1497434241000" expanded="true" signature="11541:11619" ph="select count... user1" />
+            <marker date="1497434241000" expanded="true" signature="11747:11800" ph="select count... user1" />
+            <marker date="1497434241000" expanded="true" signature="12261:12519" ph="select id, u... user1" />
+            <marker date="1497434241000" expanded="true" signature="12711:13045" ph="select id, u... user1" />
+            <marker date="1497434241000" expanded="true" signature="13185:13506" ph="select id, u... user1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/user1/show.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1237">
+          <caret line="28" column="14" lean-forward="true" selection-start-line="28" selection-start-column="14" selection-end-line="30" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/user1/details.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="40" column="12" lean-forward="true" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#td#1;n#tr#7;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wiatec/control_panel/action/ActionUser1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="174" column="28" lean-forward="true" selection-start-line="174" selection-start-column="28" selection-end-line="174" selection-end-column="28" />
+        <state relative-caret-position="216">
+          <caret line="252" column="7" lean-forward="true" selection-start-line="252" selection-start-column="7" selection-end-line="252" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wiatec/control_panel/service/User1Service.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="153" column="45" lean-forward="false" selection-start-line="153" selection-start-column="45" selection-end-line="153" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/jsp/user1/show.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="39" column="61" lean-forward="true" selection-start-line="39" selection-start-column="61" selection-end-line="39" selection-end-column="61" />
+        <state relative-caret-position="293">
+          <caret line="368" column="40" lean-forward="true" selection-start-line="368" selection-start-column="40" selection-end-line="368" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -1986,7 +2021,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>jasper-el</last-edited>
+          <last-edited>activation</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -32,8 +32,8 @@ public class User1Dao extends BaseDao<List<User1Info>> {
 
     @Transactional(readOnly = true)
     public User1Info getUserInfoByUserName(String userName){
-        sql = "select id, userName, email, phone, firstName, lastName, level, mac, ethernetMac, country, " +
-                "region, city, timeZone, token, activeDate,activeTime, memberDate, memberTime, lastLoginDate from user1 " +
+        sql = "select id, userName, email, phone, firstName, lastName, level, emailStatus, mac, ethernetMac, country, " +
+                "region, city, timeZone, token, activeDate, activeTime, memberDate, memberTime, lastLoginDate from user1 " +
                 "where userName = ?";
         RowMapper<User1Info> rowMapper = new BeanPropertyRowMapper<>(User1Info.class);
         return jdbcTemplate.queryForObject(sql , rowMapper , userName);
