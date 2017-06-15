@@ -90,7 +90,7 @@
             </td>
             <td align="center" width="8%">
                 <a href="/control_panel/user/delete?userName=${userName}" onclick="return confirm('Confirm Delete')">
-                    <img src="img/delete1.png" alt="delete" width="20px" height="20px">
+                    <img src="img/delete.png" alt="delete" width="20px" height="20px">
                 </a>
             </td>
         </tr>
