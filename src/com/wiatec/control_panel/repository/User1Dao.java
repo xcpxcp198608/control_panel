@@ -24,7 +24,7 @@ public class User1Dao extends BaseDao<List<User1Info>> {
 
     @Override
     public List<User1Info> getAll(String countryCode, String timeZone) {
-        sql = "select id,userName, email, phone , firstName, lastName, level, emailStatus, mac, ethernetMac, " +
+        sql = "select id, userName, email, phone, firstName, lastName, level, emailStatus, mac, ethernetMac, " +
                 "country, region, city, timeZone, token, activeDate, activeTime, memberDate,memberTime, lastLoginDate from user1";
         RowMapper<User1Info> rowMapper = new BeanPropertyRowMapper<>(User1Info.class);
         return jdbcTemplate.query(sql , rowMapper);

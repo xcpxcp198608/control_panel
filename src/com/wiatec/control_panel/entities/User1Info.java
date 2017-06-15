@@ -28,6 +28,7 @@ public class User1Info {
     private String lastLoginDate;
 
     private String status;
+    private boolean online;
 
     public int getId() {
         return id;
@@ -205,6 +206,14 @@ public class User1Info {
         this.status = status;
     }
 
+    public boolean isOnline() {
+        return online;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
+    }
+
     @Override
     public String toString() {
         return "User1Info{" +
@@ -230,6 +239,7 @@ public class User1Info {
                 ", memberTime=" + memberTime +
                 ", lastLoginDate='" + lastLoginDate + '\'' +
                 ", status='" + status + '\'' +
+                ", online=" + online +
                 '}';
     }
 }

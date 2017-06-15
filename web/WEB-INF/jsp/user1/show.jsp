@@ -46,12 +46,17 @@
     <div style="height: 30px; width: 90%; margin: auto">
         <table bgcolor="#dcdcdc" cellspacing="0px" cellpadding="0px" width="100%">
             <tr>
-                <td width="84%">
+                <td width="60%">
                     <s:form method="POST" namespace="/user1" action="showByPage" theme="simple">
                         <s:select name="searchKey" label="search" listKey="key" listValue="value"
                                   list="#{1:'Id', 2:'FirstName',3:'LastName', 4:'Email', 5:'UserName', 6:'Status', 7:'Level'}"/>
                         <s:textfield name="condition"/>
                         <s:submit value="search"/>
+                    </s:form>
+                </td>
+                <td width="24%" align="center">
+                    <s:form theme="simple">
+                        Online: <span style="color: #008400"><s:property value="totalOnlineCount"/></span> / Total: <s:property value="totalCount"/>
                     </s:form>
                 </td>
                 <td width="3%">
@@ -93,16 +98,16 @@
     <div style="width: 90%; margin: auto" >
         <table id="data" border="1px" cellspacing="0px" cellpadding="0px" width="100%" bgcolor="white">
         <tr style="height: 40px; font-size: 16px; background-color: #000000; color: #d5d5d5" >
-            <th>Id</th><th>UserName</th><th>Email</th><th>Name</th><th>RegisterDate</th><th>Status</th>
-            <th>UserLevel</th><th>MemberExpireDate</th><th>Operation</th><th>Details</th><th>Delete</th>
+            <th>Id</th><th>UserName</th><th>Email</th><th>Phone</th><th>Name</th><th>EmailStatus</th>
+            <th>UserLevel</th><th>MemberExpireDate</th><th>Operation</th><th>Details</th><th>Online</th><th>Delete</th>
         </tr>
         <s:iterator value="user1InfoList" status="s">
         <tr style="font-size: 11px; height: 28px; line-height: 30px ; text-align: center">
             <td align="center" width="3%">${id}</td>
             <td align="center" width="7%">${userName}</td>
             <td align="center" width="13%">${email}</td>
+            <td align="center" width="11%">${phone}</td>
             <td align="center" width="8%">${firstName} ${lastName}</td>
-            <td align="center" width="11%">${activeDate}</td>
             <td align="center" width="12%">
                 <s:form action="active" method="POST" theme="simple" namespace="/user1">
                     <s:hidden name="userName"/>
@@ -126,8 +131,12 @@
             <td width="5%">
                 <a href="/control_panel/user1/details?userName=${userName}"><img src="img/details.png" alt="details"></a>
             </td>
+            <td>
+                <s:if test="online"><img src="img/online.png" alt="online" width="16px" height="16px"></s:if>
+                <s:else><img src="img/offline.png" alt="online" width="16px" height="16px"></s:else>
+            </td>
             <td align="center" width="6%">
-                <a href="/control_panel/user1/delete?userName=${userName}" onclick="return confirm('Confirm Delete')">
+                <a href="/control_panel/user1/delete?userName=${userName}" onclick="return confirm('Do you confirm delete this user')">
                     <img src="img/delete1.png" alt="delete" width="20px" height="20px">
                 </a>
             </td>

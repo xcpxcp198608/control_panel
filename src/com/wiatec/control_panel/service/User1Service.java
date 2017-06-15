@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * user handler
@@ -367,6 +368,27 @@ public class User1Service {
         user1Info.setMemberDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(memberTime));
         user1Info.setLevel(level);
         user1Dao.updateLevel(user1Info);
+    }
+
+    /**
+     * show user information by page
+     * @param selection
+     * @param condition
+     * @param currentPage
+     * @param countOfPage
+     * @return
+     */
+    @Transactional(readOnly = true)
+    public List<User1Info> searchOfPage(String selection, String condition, int currentPage,
+                                        int countOfPage){
+        List<User1Info> list = user1Dao.searchOfPage(selection, condition, currentPage, countOfPage);
+        Map<String, HttpSession> map = SessionListener.sessionMap;
+        for(User1Info user1Info: list){
+            if(map.containsKey(user1Info.getUserName())){
+                user1Info.setOnline(true);
+            }
+        }
+        return list;
     }
 
     /**

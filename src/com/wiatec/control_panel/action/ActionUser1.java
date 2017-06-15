@@ -41,6 +41,8 @@ public class ActionUser1 extends BaseAction {
     private int totalPage;
     private static final int COUNT_OF_PAGE = 15;
     private int turn;
+    private int totalCount; //the total count of table 'user1'
+    private int totalOnlineCount; //the total count of online user
 
     @Autowired
     private User1Service user1Service;
@@ -165,17 +167,16 @@ public class ActionUser1 extends BaseAction {
         }else if(turn == 1){ //previous page
             currentPage -= 1;
         }
-        totalPage = user1Dao.getTotalCountByCondition(selectionArray[searchKey], condition) / COUNT_OF_PAGE;
-        if(totalPage < 1){
-            totalPage = 1;
-        }
+        totalOnlineCount = SessionListener.sessionMap.size();
+        totalCount = user1Dao.getTotalCount();
+        totalPage = user1Dao.getTotalCountByCondition(selectionArray[searchKey], condition) / COUNT_OF_PAGE + 1;
         if(currentPage > totalPage){
             currentPage = totalPage;
         }
         if(currentPage < 1){
             currentPage = 1;
         }
-        user1InfoList = user1Dao.searchOfPage(selectionArray[searchKey], condition,currentPage , COUNT_OF_PAGE);
+        user1InfoList = user1Service.searchOfPage(selectionArray[searchKey], condition,currentPage , COUNT_OF_PAGE);
         return "show";
     }
 
@@ -232,9 +233,13 @@ public class ActionUser1 extends BaseAction {
         user1InfoList = new ArrayList<>();
         if(userSessionMap.size() > 0){
             for (Map.Entry<String, HttpSession> entry: userSessionMap.entrySet()){
-                User1Info user1Info = user1Dao.getUserInfoByUserName(entry.getKey());
-                if(user1Info != null){
-                    user1InfoList.add(user1Info);
+                User1Info user1Info = new User1Info();
+                user1Info.setUserName(entry.getKey());
+                if(user1Dao.isUserNameExists(user1Info)){
+                    user1Info = user1Dao.getUserInfoByUserName(entry.getKey());
+                    if(user1Info != null){
+                        user1InfoList.add(user1Info);
+                    }
                 }
             }
         }
@@ -387,5 +392,21 @@ public class ActionUser1 extends BaseAction {
 
     public void setTurn(int turn) {
         this.turn = turn;
+    }
+
+    public int getTotalCount() {
+        return totalCount;
+    }
+
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
+    }
+
+    public int getTotalOnlineCount() {
+        return totalOnlineCount;
+    }
+
+    public void setTotalOnlineCount(int totalOnlineCount) {
+        this.totalOnlineCount = totalOnlineCount;
     }
 }
