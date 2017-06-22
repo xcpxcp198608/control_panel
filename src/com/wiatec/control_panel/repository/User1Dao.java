@@ -71,6 +71,13 @@ public class User1Dao extends BaseDao<List<User1Info>> {
     }
 
     @Transactional(readOnly = true)
+    public boolean validateEthernetMacAndUserName(User1Info user1Info){
+        sql = "select ethernetMac from user1 where userName = ?";
+        String ethernetMac = jdbcTemplate.queryForObject(sql , String.class, user1Info.getUserName());
+        return user1Info.getEthernetMac().equals(ethernetMac);
+    }
+
+    @Transactional(readOnly = true)
     public String getLastName(User1Info user1Info){
         sql = "select lastName from user1 where userName = ?";
         return jdbcTemplate.queryForObject(sql , String.class, user1Info.getUserName());

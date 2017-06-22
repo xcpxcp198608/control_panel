@@ -26,7 +26,6 @@ public class User1Service {
 
     @Autowired
     private User1Dao user1Dao;
-    private ResultInfo resultInfo = new ResultInfo();
 
     /**
      * user register
@@ -38,6 +37,7 @@ public class User1Service {
      */
     @Transactional
     public ResultInfo register(User1Info user1Info, String language){
+        ResultInfo resultInfo = new ResultInfo();
         if(TextUtils.isEmpty(user1Info.getUserName())){
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
             resultInfo.setStatus("username error");
@@ -55,7 +55,7 @@ public class User1Service {
         }
         if(TextUtils.isEmpty(user1Info.getPhone())){
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
-            resultInfo.setStatus("phone error");
+            resultInfo.setStatus("Phone number can't be empty");
             return resultInfo;
         }
         if(TextUtils.isEmpty(user1Info.getMac())){
@@ -68,9 +68,14 @@ public class User1Service {
             resultInfo.setStatus("s/n(e) error");
             return resultInfo;
         }
+        if(user1Info.getPhone().length() < 7){
+            resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
+            resultInfo.setStatus("Phone number wrong format");
+            return resultInfo;
+        }
         if(!user1Info.getMac().startsWith("5c:41:e7")){
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
-            resultInfo.setStatus("S/N format error");
+            resultInfo.setStatus("S/N(W) format error, please contact customer support.");
             return resultInfo;
         }
         if(user1Dao.isUserNameExists(user1Info)){
@@ -125,6 +130,7 @@ public class User1Service {
      */
     @Transactional
     public ResultInfo login(User1Info user1Info, HttpServletRequest request){
+        ResultInfo resultInfo = new ResultInfo();
         if(TextUtils.isEmpty(user1Info.getUserName())){
             resultInfo.setCode(ResultInfo.CODE_LOGIN_INFO_ERROR);
             resultInfo.setStatus("username error");
@@ -135,9 +141,9 @@ public class User1Service {
             resultInfo.setStatus("password error");
             return resultInfo;
         }
-        if(TextUtils.isEmpty(user1Info.getMac())){
+        if(TextUtils.isEmpty(user1Info.getEthernetMac())){
             resultInfo.setCode(ResultInfo.CODE_LOGIN_INFO_ERROR);
-            resultInfo.setStatus("S/N(W) information error");
+            resultInfo.setStatus("S/N(E) error");
             return resultInfo;
         }
         if(!user1Dao.validate(user1Info)){
@@ -150,12 +156,12 @@ public class User1Service {
             resultInfo.setStatus("Account is not activated, please make sure to check the email to activate it.");
             return resultInfo;
         }
-        if(!user1Dao.isMacExists(user1Info)){
+        if(!user1Dao.isEthernetMacExists(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
             resultInfo.setStatus("this device is not registered");
             return resultInfo;
         }
-        if(!user1Dao.validateMacAndUserName(user1Info)){
+        if(!user1Dao.validateEthernetMacAndUserName(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
             resultInfo.setStatus("username and this BTVi3 S/N do not match");
             return resultInfo;
@@ -201,27 +207,29 @@ public class User1Service {
     public ResultInfo checkRepeat(User1Info user1Info , int count, HttpServletRequest request){
 //        System.out.println(user1Info);
         if(!user1Dao.isUserNameExists(user1Info)){
+            ResultInfo resultInfo = new ResultInfo();
             resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
             resultInfo.setStatus(ResultInfo.STATUS_LOGIN_ERROR + "username not exists");
             return resultInfo;
         }
-        HttpSession session = SessionListener.getSession(user1Info.getUserName());
-        if(session == null) {
-            session = request.getSession();
-            session.setAttribute("userName", user1Info.getUserName());
-            session.setAttribute("count", count);
-            setCheckResult(resultInfo , count , user1Info);
-        }else{
-            int currentCount = (int) session.getAttribute("count");
-            if(count >= currentCount) {
-                session.setAttribute("count", count);
-                setCheckResult(resultInfo , count , user1Info);
-            }else{
-                resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
-                resultInfo.setStatus(ResultInfo.STATUS_LOGIN_ERROR +
-                        " currentCount: "+currentCount +" count: "+count);
-            }
-        }
+//        HttpSession session = SessionListener.getSession(user1Info.getUserName());
+//        if(session == null) {
+//            session = request.getSession();
+//            session.setAttribute("userName", user1Info.getUserName());
+//            session.setAttribute("count", count);
+//            setCheckResult(resultInfo , count , user1Info);
+//        }else{
+//            int currentCount = (int) session.getAttribute("count");
+//            if(count >= currentCount) {
+//                session.setAttribute("count", count);
+//                setCheckResult(resultInfo , count , user1Info);
+//            }else{
+//                resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
+//                resultInfo.setStatus(ResultInfo.STATUS_LOGIN_ERROR +
+//                        " currentCount: "+currentCount +" count: "+count);
+//            }
+//        }
+        ResultInfo resultInfo = setCheckResult(count, user1Info);
         user1Info.setLastLoginDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                 .format(new Date(System.currentTimeMillis())));
         user1Dao.updateLocation(user1Info);
@@ -231,7 +239,8 @@ public class User1Service {
     /**
      * set user level and 7 days experience period
      */
-    private void setCheckResult(ResultInfo resultInfo, int count, User1Info user1Info){
+    private ResultInfo setCheckResult(int count, User1Info user1Info){
+        ResultInfo resultInfo = new ResultInfo();
         resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS);
         resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS);
         resultInfo.setLoginCount(count);
@@ -241,7 +250,8 @@ public class User1Service {
         if(level == 0){
             resultInfo.setUserLevel(level);
         }else {
-            if (memberTime < System.currentTimeMillis()) {
+            System.out.println(memberTime);
+            if (memberTime > 0 && memberTime < System.currentTimeMillis()) {
                 resultInfo.setUserLevel(1);
             } else {
                 resultInfo.setUserLevel(user1Dao.getLevel(user1Info));
@@ -256,6 +266,7 @@ public class User1Service {
         }else{
             resultInfo.setExtra("true");
         }
+        return resultInfo;
     }
 
     /**
@@ -265,6 +276,7 @@ public class User1Service {
      */
     @Transactional
     public ResultInfo resetPassword(User1Info user1Info){
+        ResultInfo resultInfo = new ResultInfo();
         System.out.println(user1Info);
         if(!user1Dao.isUserNameExists(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_REQUEST_FAILURE);
@@ -301,6 +313,7 @@ public class User1Service {
      */
     @Transactional
     public ResultInfo updatePassword(User1Info user1Info , String p1 , String p2){
+        ResultInfo resultInfo = new ResultInfo();
         if(!user1Dao.isTokenExists(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_REQUEST_FAILURE);
             resultInfo.setStatus("token not exists");
@@ -330,6 +343,7 @@ public class User1Service {
      */
     @Transactional
     public ResultInfo confirmEmail(User1Info user1Info){
+        ResultInfo resultInfo = new ResultInfo();
         if(!user1Dao.isTokenExists(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_EMAIL_CONFIRM_FAILURE);
             resultInfo.setStatus("token invalidate");
