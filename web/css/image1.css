@@ -1,0 +1,31 @@
+.a {
+    float: left;
+}
+
+.table_content {
+    float: left;
+    margin-left: 20px;
+}
+
+.url {
+    width: 998px;
+    height: 100px;
+    float: left;
+}
+
+.button {
+    width:25px;
+    height: 25px;
+    float: right;
+}
+
+#content1 {
+    border: 1px solid #333333;
+
+}
+
+.url1 {
+    width: 180px;
+    height: 150px;
+    float: left;
+}

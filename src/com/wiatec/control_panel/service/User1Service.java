@@ -5,6 +5,7 @@ import com.wiatec.control_panel.entities.User1Info;
 import com.wiatec.control_panel.listener.SessionListener;
 import com.wiatec.control_panel.repository.User1Dao;
 import com.wiatec.control_panel.utils.EmailMaster;
+import com.wiatec.control_panel.utils.RegularUtil;
 import com.wiatec.control_panel.utils.TextUtils;
 import com.wiatec.control_panel.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,11 @@ public class User1Service {
         if(TextUtils.isEmpty(user1Info.getEmail())){
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
             resultInfo.setStatus("email error");
+            return resultInfo;
+        }
+        if(!RegularUtil.validateEmail(user1Info.getEmail())){
+            resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
+            resultInfo.setStatus("email format error");
             return resultInfo;
         }
         if(TextUtils.isEmpty(user1Info.getPhone())){
@@ -115,7 +121,7 @@ public class User1Service {
             return resultInfo;
         }else {
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
-            resultInfo.setStatus("error code 101");
+            resultInfo.setStatus("server error , try again later");
             return resultInfo;
         }
     }
@@ -169,7 +175,7 @@ public class User1Service {
         user1Info.setToken(TokenUtils.create(user1Info.getUserName(), user1Info.getPassword()));
         if(!user1Dao.updateToken(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
-            resultInfo.setStatus("token update failure");
+            resultInfo.setStatus("Authorization update failure");
             return resultInfo;
         }
         user1Info.setLastLoginDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(System.currentTimeMillis())));
@@ -291,7 +297,7 @@ public class User1Service {
         String currentToken = user1Dao.getToken(user1Info);
         if(TextUtils.isEmpty(currentToken)){
             resultInfo.setCode(ResultInfo.CODE_REQUEST_FAILURE);
-            resultInfo.setStatus("token get error , please try again");
+            resultInfo.setStatus("Authorization error , please try again later");
             return resultInfo;
         }
         EmailMaster emailMaster = new EmailMaster();
@@ -316,7 +322,7 @@ public class User1Service {
         ResultInfo resultInfo = new ResultInfo();
         if(!user1Dao.isTokenExists(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_REQUEST_FAILURE);
-            resultInfo.setStatus("token not exists");
+            resultInfo.setStatus("Authorization error");
             return resultInfo;
         }
         if(!p1.equals(p2)){
@@ -346,7 +352,7 @@ public class User1Service {
         ResultInfo resultInfo = new ResultInfo();
         if(!user1Dao.isTokenExists(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_EMAIL_CONFIRM_FAILURE);
-            resultInfo.setStatus("token invalidate");
+            resultInfo.setStatus("Authorization error");
             return resultInfo;
         }
         if(user1Dao.updateEmailStatusByToken(user1Info)){
@@ -357,7 +363,7 @@ public class User1Service {
             user1Dao.updateToken(user1Info);
         }else{
             resultInfo.setCode(ResultInfo.CODE_EMAIL_CONFIRM_FAILURE);
-            resultInfo.setStatus("error code 102");
+            resultInfo.setStatus("server error, please try again later");
         }
         return resultInfo;
     }

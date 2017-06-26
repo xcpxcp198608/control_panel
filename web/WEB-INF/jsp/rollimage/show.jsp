@@ -19,7 +19,7 @@
     <meta http-equiv="description" content="This is my page">
 
     <link rel="stylesheet" type="text/css" href="css/base.css"/>
-    <link rel="stylesheet" type="text/css" href="css/image.css"/>
+    <link rel="stylesheet" type="text/css" href="css/image1.css"/>
     <link rel="shortcut icon" href="img/btv.ico"/>
 </head>
 
@@ -29,11 +29,8 @@
         <div id="head_content">
             <a id="title">BTVi3 CONTROL PANNEL</a>
             <a class="navigation" href="/control_panel/rollimage/show">RollImage</a>
-            <a class="navigation" href="/control_panel/rolloverimage/show">RollOverImage</a>
             <a class="navigation" href="/control_panel/adimage/show">AdImage</a>
             <a class="navigation" href="/control_panel/kodiimage/show">BTVImage</a>
-            <a class="navigation" href="/control_panel/message/show">Message</a>
-            <a class="navigation" href="/control_panel/message1/show">RSS</a>
             <a class="navigation_logout" href="/control_panel/manager/logout">Logout</a>
             <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
             <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,7 +48,7 @@
                 <a href="${url}" target="_blank" class="a"><img src="${url}" alt="img" class="url"></a>
                 <table class="table_content">
                     <tbody>
-                        <tr><td width="700px">${name}</td>
+                        <tr><td width="900px">${name}</td>
                             <td><a href="/control_panel/rollimage/edit?id=${id}"><img class="button" src="img/edit.png"/></a></td>
                             <td><a href="/control_panel/rollimage/delete?id=${id}"><img class="button" src="img/delete.png"/></a></td>
                         </tr>

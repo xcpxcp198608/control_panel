@@ -32,11 +32,8 @@
     <div id="head_content">
         <a id="title">BTVi3 CONTROL PANNEL</a>
         <a class="navigation" href="/control_panel/rollimage/show">RollImage</a>
-        <a class="navigation" href="/control_panel/rolloverimage/show">RollOverImage</a>
         <a class="navigation" href="/control_panel/adimage/show">AdImage</a>
         <a class="navigation" href="/control_panel/kodiimage/show">BTVImage</a>
-        <a class="navigation" href="/control_panel/message/show">Message</a>
-        <a class="navigation" href="/control_panel/message1/show">RSS</a>
         <a class="navigation_logout" href="/control_panel/manager/logout">Logout</a>
     </div>
 </div>
