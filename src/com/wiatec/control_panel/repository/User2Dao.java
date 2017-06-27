@@ -295,4 +295,12 @@ public class User2Dao extends BaseDao<List<User1Info>> {
         RowMapper<User1Info> rowMapper = new BeanPropertyRowMapper<>(User1Info.class);
         return jdbcTemplate.query(sql, rowMapper);
     }
-}
+
+    @Transactional(readOnly = true)
+    public List<User1Info> showAll(){
+        sql="select id, username, email, phone, firstname, lastname, level, emailStatus, mac," +
+                "ethernetMac, country, region, city, timeZone, token, activeDate, activeTime," +
+                "memberDate, memberTime from user1 where id > 100";
+        RowMapper<User1Info> rowMapper = new BeanPropertyRowMapper<>(User1Info.class);
+        return jdbcTemplate.query(sql, rowMapper);
+    }}

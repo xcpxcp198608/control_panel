@@ -83,6 +83,11 @@ public class ActionUser2 extends BaseAction {
         return "show";
     }
 
+    public String online(){
+        user1InfoList = user2Service.selectOnline();
+        return "online";
+    }
+
     /**
      * user control panel active user email
      */

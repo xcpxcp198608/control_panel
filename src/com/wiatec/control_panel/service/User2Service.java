@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +49,20 @@ public class User2Service {
             }
         }
         return list;
+    }
+
+    @Transactional(readOnly = true)
+    public List<User1Info> selectOnline(){
+        List<User1Info> list = user2Dao.showAll();
+        List<User1Info> list1 = new ArrayList<>();
+        Map<String, HttpSession> map = SessionListener.sessionMap;
+        for(User1Info user1Info: list){
+            if(map.containsKey(user1Info.getUserName())){
+                user1Info.setOnline(true);
+                list1.add(user1Info);
+            }
+        }
+        return list1;
     }
 
     /**

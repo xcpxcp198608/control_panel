@@ -56,7 +56,7 @@
                 </td>
                 <td width="24%" align="center">
                     <s:form theme="simple">
-                        Online: <span style="color: #008400"><s:property value="totalOnlineCount"/></span> / Total: <s:property value="totalCount"/>
+                        Online: <a href="/control_panel/user2/online"><span style="color: #008400"><s:property value="totalOnlineCount"/></span></a> / Total: <s:property value="totalCount"/>
                     </s:form>
                 </td>
                 <td width="3%">

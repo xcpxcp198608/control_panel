@@ -169,7 +169,7 @@ public class User1Service {
         }
         if(!user1Dao.validateEthernetMacAndUserName(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
-            resultInfo.setStatus("username and this BTVi3 S/N do not match");
+            resultInfo.setStatus("Login has already been used on other BTVi3");
             return resultInfo;
         }
         user1Info.setToken(TokenUtils.create(user1Info.getUserName(), user1Info.getPassword()));
