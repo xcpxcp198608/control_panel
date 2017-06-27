@@ -275,17 +275,17 @@ public class User2Dao extends BaseDao<List<User1Info>> {
                                         int countOfPage){
         int from = (currentPage -1)*countOfPage;
         if(TextUtils.isEmpty(selection) || TextUtils.isEmpty(condition)){
-            sql="select id, username, email, phone, firstname, lastname, level, emailStatus, mac," +
+            sql="select id, username,password, email, phone, firstname, lastname, level, emailStatus, mac," +
                     "ethernetMac, country, region, city, timeZone, token, activeDate, activeTime," +
                     "memberDate, memberTime from user1 where id > 100 LIMIT "+from +" , "+countOfPage;
         }else if("userName".equals(selection) || "firstName".equals(selection) ||
                 "lastName".equals(selection) || "email".equals(selection)){
-            sql = "select id, username, email, phone, firstname, lastname, level, emailStatus, mac," +
+            sql = "select id, username,password, email, phone, firstname, lastname, level, emailStatus, mac," +
                     "ethernetMac, country, region, city, timeZone, token, activeDate, activeTime," +
                     "memberDate, memberTime from user1 where id > 100 and " + selection + " like " + "'%"+condition+"%'"+
                     " LIMIT "+from +" , "+countOfPage;
         }else if("id".equals(selection) || "level".equals(selection) || "emailStatus".equals(selection)){
-            sql = "select id, username, email, phone, firstname, lastname, level, emailStatus, mac," +
+            sql = "select id, username,password, email, phone, firstname, lastname, level, emailStatus, mac," +
                     "ethernetMac, country, region, city, timeZone, token, activeDate, activeTime," +
                     "memberDate, memberTime from user1 where id > 100 and " + selection + " = " + condition+
                     " LIMIT "+from +" , "+countOfPage;
@@ -298,7 +298,7 @@ public class User2Dao extends BaseDao<List<User1Info>> {
 
     @Transactional(readOnly = true)
     public List<User1Info> showAll(){
-        sql="select id, username, email, phone, firstname, lastname, level, emailStatus, mac," +
+        sql="select id, username,password, email, phone, firstname, lastname, level, emailStatus, mac," +
                 "ethernetMac, country, region, city, timeZone, token, activeDate, activeTime," +
                 "memberDate, memberTime from user1 where id > 100";
         RowMapper<User1Info> rowMapper = new BeanPropertyRowMapper<>(User1Info.class);

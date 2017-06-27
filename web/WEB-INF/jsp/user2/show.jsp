@@ -98,18 +98,19 @@
     <div style="width: 90%; margin: auto" >
         <table id="data" border="1px" cellspacing="0px" cellpadding="0px" width="100%" bgcolor="white">
         <tr style="height: 40px; font-size: 16px; background-color: #000000; color: #d5d5d5" >
-            <th>Id</th><th>UserName</th><th>Email</th><th>Phone</th><th>FirstName</th><th>LastName</th><th>EmailStatus</th>
-            <th>UserLevel</th><th>MemberExpireDate</th><th>Online</th><th>Delete</th>
+            <th>Id</th><th>UserName</th><th>Password</th><th>Email</th><th>Phone</th><th>FirstName</th><th>LastName</th>
+            <th>EmailStatus</th><th>UserLevel</th><th>MemberExpireDate</th><th>Online</th><th>Delete</th>
         </tr>
         <s:iterator value="user1InfoList" status="s">
         <tr style="font-size: 11px; height: 28px; line-height: 30px ; text-align: center">
             <td align="center" width="3%">${id}</td>
             <td align="center" width="7%">${userName}</td>
-            <td align="center" width="16%">${email}</td>
-            <td align="center" width="12%">${phone}</td>
-            <td align="center" width="10%">${firstName}</td>
-            <td align="center" width="10%">${lastName}</td>
-            <td align="center" width="15%">
+            <td align="center" width="7%">${password}</td>
+            <td align="center" width="15%">${email}</td>
+            <td align="center" width="11%">${phone}</td>
+            <td align="center" width="9%">${firstName}</td>
+            <td align="center" width="9%">${lastName}</td>
+            <td align="center" width="13%">
                 <s:form action="active" method="POST" theme="simple" namespace="/user1">
                     <s:hidden name="userName"/>
                     <s:if test="emailStatus == 1">ACTIVE</s:if>
@@ -117,7 +118,7 @@
                 </s:form>
             </td>
             <td align="center" width="8%">${level}</td>
-            <td align="center" width="12%">${memberDate}</td>
+            <td align="center" width="11%">${memberDate}</td>
             <td>
                 <s:if test="online"><img src="img/online.png" alt="online" width="16px" height="16px"></s:if>
                 <s:else><img src="img/offline.png" alt="online" width="16px" height="16px"></s:else>

@@ -158,6 +158,7 @@
         <action name="*" class="com.wiatec.control_panel.action.ActionUser2" method="{1}">
             <result name="login" type="redirectAction">showByPage</result>
             <result name="show">/WEB-INF/jsp/user2/show.jsp</result>
+            <result name="online">/WEB-INF/jsp/user2/online.jsp</result>
             <result name="active" type="redirectAction">showByPage</result>
             <result name="delete" type="redirectAction">showByPage</result>
         </action>
