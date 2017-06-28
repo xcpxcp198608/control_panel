@@ -64,11 +64,6 @@ public class User1Service {
             resultInfo.setStatus("Phone number can't be empty");
             return resultInfo;
         }
-        if(TextUtils.isEmpty(user1Info.getMac())){
-            resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
-            resultInfo.setStatus("Please goto settings->network to turn on WIFI (s/n)");
-            return resultInfo;
-        }
         if(TextUtils.isEmpty(user1Info.getEthernetMac())){
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
             resultInfo.setStatus("s/n(e) error");
@@ -79,9 +74,9 @@ public class User1Service {
             resultInfo.setStatus("Phone number wrong format");
             return resultInfo;
         }
-        if(!user1Info.getMac().startsWith("5c:41:e7")){
+        if(!user1Info.getEthernetMac().startsWith("5C:41:E7")){
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
-            resultInfo.setStatus("S/N(W) format error, please contact customer support.");
+            resultInfo.setStatus("S/N(E) format error, please contact customer support.");
             return resultInfo;
         }
         if(user1Dao.isUserNameExists(user1Info)){
@@ -92,12 +87,6 @@ public class User1Service {
         if(user1Dao.isEmailExists(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
             resultInfo.setStatus("email exists, please use another email");
-            return resultInfo;
-        }
-        if(user1Dao.isMacExists(user1Info)){
-            resultInfo.setCode(ResultInfo.CODE_REGISTER_FAILURE);
-            resultInfo.setStatus("This BTVi3(W) already registered before, " +
-                    "please contact customer support. ");
             return resultInfo;
         }
         if(user1Dao.isEthernetMacExists(user1Info)){
@@ -335,6 +324,7 @@ public class User1Service {
         if(user1Dao.updatePasswordByToken(user1Info)){
             resultInfo.setCode(ResultInfo.CODE_REQUEST_SUCCESS);
             resultInfo.setStatus(ResultInfo.STATUS_REQUEST_SUCCESS);
+            resultInfo.setObject(user1Dao.getUserInfoByToken(user1Info.getToken()));
         }else{
             resultInfo.setCode(ResultInfo.CODE_REQUEST_FAILURE);
             resultInfo.setStatus("password reset error");
@@ -356,6 +346,8 @@ public class User1Service {
             return resultInfo;
         }
         if(user1Dao.updateEmailStatusByToken(user1Info)){
+            User1Info user1Info1 = user1Dao.getUserInfoByToken(user1Info.getToken());
+            resultInfo.setObject(user1Info1);
             resultInfo.setCode(ResultInfo.CODE_EMAIL_CONFIRM_SUCCESS);
             resultInfo.setStatus(ResultInfo.STATUS_EMAIL_CONFIRM_SUCCESS);
             user1Info.setUserName(user1Dao.getUserNameByToken(user1Info));

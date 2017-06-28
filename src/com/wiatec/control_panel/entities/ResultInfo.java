@@ -46,6 +46,7 @@ public class ResultInfo {
     private String token;
     private int userLevel;
     private String extra;
+    private Object object;
 
     public int getCode() {
         return code;
@@ -95,6 +96,14 @@ public class ResultInfo {
         this.extra = extra;
     }
 
+    public Object getObject() {
+        return object;
+    }
+
+    public void setObject(Object object) {
+        this.object = object;
+    }
+
     @Override
     public String toString() {
         return "ResultInfo{" +
@@ -104,6 +113,7 @@ public class ResultInfo {
                 ", token='" + token + '\'' +
                 ", userLevel=" + userLevel +
                 ", extra='" + extra + '\'' +
+                ", object=" + object +
                 '}';
     }
 }

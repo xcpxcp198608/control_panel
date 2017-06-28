@@ -151,6 +151,8 @@
             <result name="active" type="redirectAction">showByPage</result>
             <result name="delete" type="redirectAction">showByPage</result>
             <result name="details">/WEB-INF/jsp/user1/details.jsp</result>
+            <result name="success">/WEB-INF/jsp/user1/success.jsp</result>
+            <result name="failure">/WEB-INF/jsp/user1/failure.jsp</result>
         </action>
     </package>
 

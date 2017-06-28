@@ -44,6 +44,8 @@ public class ActionUser1 extends BaseAction {
     private int totalCount; //the total count of table 'user1'
     private int totalOnlineCount; //the total count of online user
 
+    private String userOperationMessage;
+
     @Autowired
     private User1Service user1Service;
     @Autowired
@@ -85,15 +87,16 @@ public class ActionUser1 extends BaseAction {
     /**
      * 用户确认激活邮件
      */
-    public void confirmEmail() {
+    public String confirmEmail() {
         resultInfo = user1Service.confirmEmail(user1Info);
         if (resultInfo.getCode() == ResultInfo.CODE_EMAIL_CONFIRM_SUCCESS) {
-            out.println("ACTIVATION SUCCESS");
+            user1Info = (User1Info) resultInfo.getObject();
+            userOperationMessage = "ACTIVATION SUCCESS";
+            return "success";
         } else {
-            out.println("ACTIVATION FAILURE " + resultInfo.getStatus());
+            userOperationMessage = "ACTIVATION FAILURE";
+            return "failure";
         }
-        out.flush();
-        out.close();
     }
 
     /**
@@ -117,11 +120,16 @@ public class ActionUser1 extends BaseAction {
     /**
      * 用户设置新密码后提交
      */
-    public void updatep() {
+    public String updatep() {
         resultInfo = user1Service.updatePassword(user1Info, p1, p2);
-        out.println(resultInfo.getStatus());
-        out.flush();
-        out.close();
+        if(resultInfo.getCode() == ResultInfo.CODE_REQUEST_SUCCESS){
+            user1Info = (User1Info) resultInfo.getObject();
+            userOperationMessage = "RESET SUCCESS";
+            return "success";
+        } else {
+            userOperationMessage = "RESET FAILURE";
+            return "failure";
+        }
     }
 
     /**
@@ -408,5 +416,13 @@ public class ActionUser1 extends BaseAction {
 
     public void setTotalOnlineCount(int totalOnlineCount) {
         this.totalOnlineCount = totalOnlineCount;
+    }
+
+    public String getUserOperationMessage() {
+        return userOperationMessage;
+    }
+
+    public void setUserOperationMessage(String userOperationMessage) {
+        this.userOperationMessage = userOperationMessage;
     }
 }

@@ -39,6 +39,15 @@ public class User1Dao extends BaseDao<List<User1Info>> {
         return jdbcTemplate.queryForObject(sql , rowMapper , userName);
     }
 
+    @Transactional(readOnly = true)
+    public User1Info getUserInfoByToken(String token){
+        sql = "select id, userName,password, email, phone, firstName, lastName, level, emailStatus, mac, ethernetMac, country, " +
+                "region, city, timeZone, token, activeDate, activeTime, memberDate, memberTime, lastLoginDate from user1 " +
+                "where token = ?";
+        RowMapper<User1Info> rowMapper = new BeanPropertyRowMapper<>(User1Info.class);
+        return jdbcTemplate.queryForObject(sql , rowMapper , token);
+    }
+
     @Transactional
     public boolean insert(User1Info user1Info){
         sql = "insert into user1 (userName, password, email, phone, firstName, lastName, level, emailStatus, " +
