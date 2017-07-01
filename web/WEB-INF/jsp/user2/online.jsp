@@ -46,7 +46,7 @@
 <div style="width: 90%; margin: auto" >
     <table id="data" border="1px" cellspacing="0px" cellpadding="0px" width="100%" bgcolor="white">
         <tr style="height: 40px; font-size: 16px; background-color: #000000; color: #d5d5d5" >
-            <th>Id</th><th>UserName</th><th>Email</th><th>Phone</th><th>FirstName</th><th>LastName</th><th>EmailStatus</th>
+            <th>Id</th><th>UserName</th><th>Password</th><th>Email</th><th>Phone</th><th>FirstName</th><th>LastName</th><th>EmailStatus</th>
             <th>UserLevel</th><th>MemberExpireDate</th><th>Online</th><th>Delete</th>
         </tr>
         <s:iterator value="user1InfoList" status="s">
