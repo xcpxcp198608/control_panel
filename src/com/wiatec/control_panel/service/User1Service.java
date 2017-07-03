@@ -207,6 +207,12 @@ public class User1Service {
             resultInfo.setStatus(ResultInfo.STATUS_LOGIN_ERROR + "username not exists");
             return resultInfo;
         }
+        HttpSession session = SessionListener.getSession(user1Info.getUserName());
+        if(session == null) {
+            session = request.getSession();
+            session.setAttribute("userName", user1Info.getUserName());
+            session.setAttribute("count", count);
+        }
 //        HttpSession session = SessionListener.getSession(user1Info.getUserName());
 //        if(session == null) {
 //            session = request.getSession();
