@@ -124,7 +124,7 @@
                 <s:else><img src="img/offline.png" alt="online" width="16px" height="16px"></s:else>
             </td>
             <td align="center" width="7%">
-                <a href="/control_panel/user1/delete?userName=${userName}" onclick="return confirm('Do you confirm delete this user')">
+                <a href="/control_panel/user2/delete?userName=${userName}" onclick="return confirm('Do you confirm delete this user')">
                     <img src="img/delete.png" alt="delete" width="20px" height="20px">
                 </a>
             </td>
