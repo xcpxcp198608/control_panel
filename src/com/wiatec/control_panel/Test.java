@@ -10,6 +10,6 @@ public class Test {
     @org.junit.Test
     public void testRegular(){
 
-        System.out.println(RegularUtil.validateEmail("sfdsf@"));
+        System.out.println(RegularUtil.validateEmail("sf_dsf_ds@gmail.com"));
     }
 }

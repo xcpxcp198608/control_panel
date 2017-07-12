@@ -111,7 +111,7 @@
             <td align="center" width="9%">${firstName}</td>
             <td align="center" width="9%">${lastName}</td>
             <td align="center" width="13%">
-                <s:form action="active" method="POST" theme="simple" namespace="/user1">
+                <s:form action="active" method="POST" theme="simple" namespace="/user2">
                     <s:hidden name="userName"/>
                     <s:if test="emailStatus == 1">ACTIVE</s:if>
                     <s:else><span style="color: red">NEGATIVE</span><s:submit value="Active"/></s:else>
