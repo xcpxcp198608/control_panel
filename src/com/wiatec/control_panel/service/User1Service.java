@@ -151,6 +151,7 @@ public class User1Service {
                 }else {
                     resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS);
                     resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS);
+                    resultInfo.setToken("test");
                     resultInfo.setUserLevel(user1Dao.getLevel(user1Info));
                     return resultInfo;
                 }
@@ -226,6 +227,20 @@ public class User1Service {
             resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
             resultInfo.setStatus(ResultInfo.STATUS_LOGIN_ERROR + "username not exists");
             return resultInfo;
+        }
+        if(user1Info.getUserName().startsWith("whd") && user1Info.getUserName().endsWith("n1")){
+            ResultInfo resultInfo = new ResultInfo();
+            long activeTime = user1Dao.getActiveTime(user1Info);
+            if(System.currentTimeMillis() > activeTime + 1296000000){
+                resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
+                resultInfo.setStatus("permission expired ");
+                return resultInfo;
+            }else {
+                resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS);
+                resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS);
+                resultInfo.setUserLevel(user1Dao.getLevel(user1Info));
+                return resultInfo;
+            }
         }
         HttpSession session = SessionListener.getSession(user1Info.getUserName());
         if(session == null) {
