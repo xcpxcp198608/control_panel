@@ -136,6 +136,26 @@ public class User1Service {
             resultInfo.setStatus("password error");
             return resultInfo;
         }
+        //验证测试账号
+        if(user1Info.getUserName().startsWith("whd") && user1Info.getUserName().endsWith("n1")){
+            if(!user1Dao.validate(user1Info)){
+                resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
+                resultInfo.setStatus("username and password not match");
+                return resultInfo;
+            }else{
+                long activeTime = user1Dao.getActiveTime(user1Info);
+                if(System.currentTimeMillis() > activeTime + 1296000000){
+                    resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
+                    resultInfo.setStatus("permission expired ");
+                    return resultInfo;
+                }else {
+                    resultInfo.setCode(ResultInfo.CODE_LOGIN_SUCCESS);
+                    resultInfo.setStatus(ResultInfo.STATUS_LOGIN_SUCCESS);
+                    resultInfo.setUserLevel(user1Dao.getLevel(user1Info));
+                    return resultInfo;
+                }
+            }
+        }
         if(TextUtils.isEmpty(user1Info.getEthernetMac())){
             resultInfo.setCode(ResultInfo.CODE_LOGIN_INFO_ERROR);
             resultInfo.setStatus("S/N(E) error");
@@ -213,23 +233,6 @@ public class User1Service {
             session.setAttribute("userName", user1Info.getUserName());
             session.setAttribute("count", count);
         }
-//        HttpSession session = SessionListener.getSession(user1Info.getUserName());
-//        if(session == null) {
-//            session = request.getSession();
-//            session.setAttribute("userName", user1Info.getUserName());
-//            session.setAttribute("count", count);
-//            setCheckResult(resultInfo , count , user1Info);
-//        }else{
-//            int currentCount = (int) session.getAttribute("count");
-//            if(count >= currentCount) {
-//                session.setAttribute("count", count);
-//                setCheckResult(resultInfo , count , user1Info);
-//            }else{
-//                resultInfo.setCode(ResultInfo.CODE_LOGIN_ERROR);
-//                resultInfo.setStatus(ResultInfo.STATUS_LOGIN_ERROR +
-//                        " currentCount: "+currentCount +" count: "+count);
-//            }
-//        }
         ResultInfo resultInfo = setCheckResult(count, user1Info);
         user1Info.setLastLoginDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                 .format(new Date(System.currentTimeMillis())));

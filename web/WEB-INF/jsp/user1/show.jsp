@@ -121,7 +121,7 @@
                 <s:form method="POST" action="changeMember" namespace="/user1" theme="simple">
                     <s:hidden name="userName"/>
                     <s:hidden name="memberTime"/>
-                    <s:select name="level1" label="Level" list="#{1:0 , 2:1 , 3:2 , 4:3}" listKey="key" listValue="value"
+                    <s:select name="level1" label="Level" list="#{1:0 , 2:1 , 3:2 , 4:3, 5:4}" listKey="key" listValue="value"
                                 headerKey="0" headerValue="Level"/>
                     <s:select name="month1" label="Month" list="#{1:0 , 2:1 , 3:3 , 4:6 , 5:12}" listKey="key" listValue="value"
                               headerKey="0" headerValue="Month"/>
