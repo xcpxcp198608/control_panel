@@ -49,7 +49,7 @@
                 <td width="60%">
                     <s:form method="POST" namespace="/user2" action="showByPage" theme="simple">
                         <s:select name="searchKey" label="search" listKey="key" listValue="value"
-                                  list="#{1:'Id', 2:'FirstName',3:'LastName', 4:'Email', 5:'UserName', 6:'Status'}"/>
+                                  list="#{1:'Id', 2:'FirstName',3:'LastName', 4:'Email', 5:'UserName', 6:'Status', 7:'Level'}"/>
                         <s:textfield name="condition"/>
                         <s:submit value="search"/>
                     </s:form>

@@ -177,8 +177,9 @@ public class EmailMaster {
 			stringBuilder.append("Dear "+userName+":<br/>");
 			stringBuilder.append("<br/>");
 			stringBuilder.append("BTVi3 by Legacy Direct"+"<br/>");
-			stringBuilder.append("Thank you for registering your BTVi3."+"<br/>");
-			stringBuilder.append("To finish your sign up process, please click on the link below to activate your account"+"<br/><br/>");
+			stringBuilder.append("Congratulations! You have successfully registered your BTVi3."+"<br/>");
+			stringBuilder.append("You can now enjoy the many benefits and features that come with your BTVi3. As a BONUS we would like to extend to you a FREE 7 DAY TRIAL TO LD GOLD so that you can experience the benefits including  NO ADS and access to our +Premium & +Movies & Radio Music Section."+"<br/><br/>");
+			stringBuilder.append("We know that you will enjoy it. Try it today!"+"<br/><br/>");
 			stringBuilder.append("<a href='http://www.ldlegacy.com:8080/control_panel/user/confirmEmail?userInfo.token="+token+"'>ACTIVATE MY ACCOUNT</a>"+"<br/><br/>");
 			stringBuilder.append("If you have any questions or if you’re encountering problems, our support team at support@legacy.direct is happy to assist you. Alternatively you can visit our Support Desk."+"<br/><br/>");
 			stringBuilder.append("Legacy Direct"+"<br/>");
@@ -277,8 +278,9 @@ public class EmailMaster {
 			stringBuilder.append("Dear "+userName+":<br/>");
 			stringBuilder.append("<br/>");
 			stringBuilder.append("BTVi3 by Legacy Direct"+"<br/>");
-			stringBuilder.append("Thank you for registering your BTVi3."+"<br/>");
-			stringBuilder.append("To finish your sign up process, please click on the link below to activate your account"+"<br/><br/>");
+			stringBuilder.append("Congratulations! You have successfully registered your BTVi3."+"<br/>");
+			stringBuilder.append("You can now enjoy the many benefits and features that come with your BTVi3. As a BONUS we would like to extend to you a FREE 7 DAY TRIAL TO LD GOLD so that you can experience the benefits including  NO ADS and access to our +Premium & +Movies & Radio Music Section."+"<br/><br/>");
+			stringBuilder.append("We know that you will enjoy it. Try it today!"+"<br/><br/>");
 			stringBuilder.append("<a href='http://www.ldlegacy.com:8080/control_panel/user1/confirmEmail?user1Info.token="+token+"'>ACTIVATE MY ACCOUNT</a>"+"<br/><br/>");
 			stringBuilder.append("If you have any questions or if you’re encountering problems, our support team at support@legacy.direct is happy to assist you. Alternatively you can visit our Support Desk."+"<br/><br/>");
 			stringBuilder.append("Legacy Direct"+"<br/>");

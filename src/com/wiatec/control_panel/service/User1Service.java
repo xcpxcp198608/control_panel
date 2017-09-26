@@ -423,6 +423,9 @@ public class User1Service {
             if(map.containsKey(user1Info.getUserName())){
                 user1Info.setOnline(true);
             }
+            if(System.currentTimeMillis() > user1Info.getMemberTime()){
+                user1Info.setLevel(1);
+            }
         }
         return list;
     }

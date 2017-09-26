@@ -29,7 +29,7 @@ public class ActionUser2 extends BaseAction {
     private int level1;
     private int month1;
     private String condition;
-    private String[] selectionArray = {"1", "id", "firstName", "lastName", "email", "userName", "emailStatus"};
+    private String[] selectionArray = {"1", "id", "firstName", "lastName", "email", "userName", "emailStatus", "level"};
     private int[] levelArray = {1, 0, 1, 2, 3};
     private int[] monthArray = {0, 0, 1, 3, 6, 12};
     private Map<String , HttpSession> userSessionMap;
@@ -51,7 +51,7 @@ public class ActionUser2 extends BaseAction {
      * @return
      */
     public String login() {
-        if ("LDadmin9#".equals(user1Info.getUserName()) && "mimaLD99*#".equals(user1Info.getPassword())){
+        if ("LDadmin9#".equals(user1Info.getUserName()) && "mimaLD77@#".equals(user1Info.getPassword())){
             session.setAttribute("countryCode","LDadmin9#");
             return "login";
         }else {
