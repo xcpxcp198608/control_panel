@@ -112,6 +112,15 @@ public class ActionUser2 extends BaseAction {
         return "delete";
     }
 
+    /**
+     * show user details by username
+     * @return
+     */
+    public String details(){
+        user1Info = user2Service.details(userName);
+        return "details";
+    }
+
     public List<User1Info> getUser1InfoList() {
         return user1InfoList;
     }
