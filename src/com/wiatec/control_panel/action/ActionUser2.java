@@ -30,7 +30,7 @@ public class ActionUser2 extends BaseAction {
     private int month1;
     private String condition;
     private String[] selectionArray = {"1", "id", "firstName", "lastName", "email", "userName", "emailStatus", "level"};
-    private int[] levelArray = {1, 0, 1, 2, 3};
+    private int[] levelArray = {1, 0, 1, 2, 3, 4, 5};
     private int[] monthArray = {0, 0, 1, 3, 6, 12};
     private Map<String , HttpSession> userSessionMap;
 

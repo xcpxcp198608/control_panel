@@ -117,7 +117,10 @@
                     <s:else><span style="color: red">NEGATIVE</span><s:submit value="Active"/></s:else>
                 </s:form>
             </td>
-            <td align="center" width="8%">${level}</td>
+            <td align="center" width="8%">
+                <s:if test="level == 5">fxo</s:if>
+                <s:else>${level}</s:else>
+            </td>
             <td align="center" width="11%">${memberDate}</td>
             <td>
                 <s:if test="online"><img src="img/online.png" alt="online" width="16px" height="16px"></s:if>

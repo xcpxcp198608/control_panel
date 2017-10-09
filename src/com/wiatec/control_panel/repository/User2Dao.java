@@ -263,6 +263,7 @@ public class User2Dao extends BaseDao<List<User1Info>> {
                 "lastName".equals(selection) || "email".equals(selection)){
             sql = "select count(*) from user1 where id > 100 and " + selection + " like " + "'%"+condition+"%'";
         }else if("id".equals(selection) || "level".equals(selection) || "emailStatus".equals(selection)){
+            if("fxo".equals(condition)) condition = 5+"";
             sql = "select count(*) from user1 where id > 100 and " + selection + " = " + condition;
         }else{
             return 0;
@@ -285,6 +286,7 @@ public class User2Dao extends BaseDao<List<User1Info>> {
                     "memberDate, memberTime from user1 where id > 100 and " + selection + " like " + "'%"+condition+"%'"+
                     " LIMIT "+from +" , "+countOfPage;
         }else if("id".equals(selection) || "level".equals(selection) || "emailStatus".equals(selection)){
+            if("fxo".equals(condition)) condition = 5+"";
             sql = "select id, username,password, email, phone, firstname, lastname, level, emailStatus, mac," +
                     "ethernetMac, country, region, city, timeZone, token, activeDate, activeTime," +
                     "memberDate, memberTime from user1 where id > 100 and " + selection + " = " + condition+

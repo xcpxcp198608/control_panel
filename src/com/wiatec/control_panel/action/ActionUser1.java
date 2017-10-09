@@ -26,6 +26,7 @@ public class ActionUser1 extends BaseAction {
     private int count;
     private String p1;
     private String p2;
+    private int id;
     private String userName;
     private long memberTime;
     private int searchKey;
@@ -33,7 +34,7 @@ public class ActionUser1 extends BaseAction {
     private int month1;
     private String condition;
     private String[] selectionArray = {"1", "id", "firstName", "lastName", "email", "userName", "emailStatus", "level"};
-    private int[] levelArray = {1, 0, 1, 2, 3, 4};
+    private int[] levelArray = {1, 0, 1, 2, 3, 4, 5};
     private int[] monthArray = {0, 0, 1, 3, 6, 12};
     private Map<String , HttpSession> userSessionMap;
 
@@ -210,6 +211,7 @@ public class ActionUser1 extends BaseAction {
             return "show";
         }
         user1Info = new User1Info();
+        user1Info.setId(id);
         user1Info.setUserName(userName);
         user1Info.setMemberTime(memberTime);
         user1Service.updateLevel(user1Info, levelArray[level1], monthArray[month1]);
@@ -424,5 +426,13 @@ public class ActionUser1 extends BaseAction {
 
     public void setUserOperationMessage(String userOperationMessage) {
         this.userOperationMessage = userOperationMessage;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

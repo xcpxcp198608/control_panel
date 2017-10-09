@@ -115,13 +115,17 @@
                     <s:else><span style="color: red">NEGATIVE</span><s:submit value="Active"/></s:else>
                 </s:form>
             </td>
-            <td align="center" width="5%">${level}</td>
+            <td align="center" width="5%">
+                <s:if test="level == 5">fxo</s:if>
+                <s:else>${level}</s:else>
+            </td>
             <td align="center" width="12%">${memberDate}</td>
             <td align="center" width="18%">
                 <s:form method="POST" action="changeMember" namespace="/user1" theme="simple">
                     <s:hidden name="userName"/>
+                    <s:hidden name="id"/>
                     <s:hidden name="memberTime"/>
-                    <s:select name="level1" label="Level" list="#{1:0 , 2:1 , 3:2 , 4:3, 5:4}" listKey="key" listValue="value"
+                    <s:select name="level1" label="Level" list="#{1:0 , 2:1 , 3:2 , 4:3, 5:4, 6:'fox'}" listKey="key" listValue="value"
                                 headerKey="0" headerValue="Level"/>
                     <s:select name="month1" label="Month" list="#{1:0 , 2:1 , 3:3 , 4:6 , 5:12}" listKey="key" listValue="value"
                               headerKey="0" headerValue="Month"/>

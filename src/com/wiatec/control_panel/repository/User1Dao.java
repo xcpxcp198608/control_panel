@@ -204,7 +204,7 @@ public class User1Dao extends BaseDao<List<User1Info>> {
     @Transactional
     public boolean updateLevel(User1Info user1Info){
         sql = "update user1 set level=:level, memberDate=:memberDate, memberTime=:memberTime " +
-                "where userName=:userName";
+                "where id=:id";
         SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(user1Info);
         return namedParameterJdbcTemplate.update(sql , sqlParameterSource) == 1;
     }
@@ -271,6 +271,7 @@ public class User1Dao extends BaseDao<List<User1Info>> {
                 "lastName".equals(selection) || "email".equals(selection)){
             sql = "select count(*) from user1 where " + selection + " like " + "'%"+condition+"%'";
         }else if("id".equals(selection) || "level".equals(selection) || "emailStatus".equals(selection)){
+            if("fxo".equals(condition)) condition = 5+"";
             sql = "select count(*) from user1 where " + selection + " = " + condition;
         }else{
             return 0;
@@ -295,6 +296,7 @@ public class User1Dao extends BaseDao<List<User1Info>> {
                     "memberDate, memberTime from user1 where " + selection + " like " + "'%"+condition+"%'"+
                     " LIMIT "+from +" , "+countOfPage;
         }else if("id".equals(selection) || "level".equals(selection) || "emailStatus".equals(selection)){
+            if("fxo".equals(condition)) condition = 5+"";
             sql = "select id, username, email, phone, firstname, lastname, level, emailStatus, mac," +
                     "ethernetMac, country, region, city, timeZone, token, activeDate, activeTime," +
                     "memberDate, memberTime from user1 where " + selection + " = " + condition+
