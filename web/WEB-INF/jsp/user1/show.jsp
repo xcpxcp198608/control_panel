@@ -116,7 +116,7 @@
                 </s:form>
             </td>
             <td align="center" width="5%">
-                <s:if test="level == 5">fxo</s:if>
+                <s:if test="level == 5">fto</s:if>
                 <s:else>${level}</s:else>
             </td>
             <td align="center" width="12%">${memberDate}</td>
@@ -125,9 +125,9 @@
                     <s:hidden name="userName"/>
                     <s:hidden name="id"/>
                     <s:hidden name="memberTime"/>
-                    <s:select name="level1" label="Level" list="#{1:0 , 2:1 , 3:2 , 4:3, 5:4, 6:'fox'}" listKey="key" listValue="value"
+                    <s:select name="level1" label="Level" list="#{1:0 , 2:1 , 3:2 , 4:3, 5:4, 6:'fto'}" listKey="key" listValue="value"
                                 headerKey="0" headerValue="Level"/>
-                    <s:select name="month1" label="Month" list="#{1:0 , 2:1 , 3:3 , 4:6 , 5:12}" listKey="key" listValue="value"
+                    <s:select name="month1" label="Month" list="#{1:0 , 2:7 , 3:15 , 4:30 , 5:92, 6:183, 7:365}" listKey="key" listValue="value"
                               headerKey="0" headerValue="Month"/>
                     <s:submit value="confirm"/>
                 </s:form>

@@ -393,7 +393,7 @@ public class User1Service {
     @Transactional
     public void updateLevel(User1Info user1Info , int level , int month){
         long memberTime;
-        long perMonthTimeMillis = 2592000000l * month;
+        long perMonthTimeMillis = 86400000L * month;
         System.out.println(user1Info);
         if(user1Info.getMemberTime() <= 0){
             memberTime = System.currentTimeMillis() + perMonthTimeMillis;

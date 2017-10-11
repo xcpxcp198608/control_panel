@@ -118,7 +118,7 @@
                 </s:form>
             </td>
             <td align="center" width="8%">
-                <s:if test="level == 5">fxo</s:if>
+                <s:if test="level == 5">fto</s:if>
                 <s:else>${level}</s:else>
             </td>
             <td align="center" width="11%">${memberDate}</td>
