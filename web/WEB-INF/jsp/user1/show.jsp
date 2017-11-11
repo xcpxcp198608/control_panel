@@ -127,7 +127,7 @@
                     <s:hidden name="memberTime"/>
                     <s:select name="level1" label="Level" list="#{1:0 , 2:1 , 3:2 , 4:3, 5:4, 6:'fto'}" listKey="key" listValue="value"
                                 headerKey="0" headerValue="Level"/>
-                    <s:select name="month1" label="Days" list="#{1:0 , 2:7 , 3:15 , 4:30 , 5:92, 6:183, 7:365}" listKey="key" listValue="value"
+                    <s:select name="month1" label="Days" list="#{1:0 , 2:1 , 3:7 , 4:15 , 5:30, 6:92, 7:183, 8:365}" listKey="key" listValue="value"
                               headerKey="0" headerValue="Days"/>
                     <s:submit value="confirm"/>
                 </s:form>
