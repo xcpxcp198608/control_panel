@@ -31,6 +31,7 @@
             <a class="navigation" href="/control_panel/rollimage/show">RollImage</a>
             <a class="navigation" href="/control_panel/adimage/show">AdImage</a>
             <a class="navigation" href="/control_panel/kodiimage/show">BTVImage</a>
+        <a class="navigation" href="/control_panel/rolloverimage/show">Eufonic</a>
             <a class="navigation_logout" href="/control_panel/manager/logout">Logout</a>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
