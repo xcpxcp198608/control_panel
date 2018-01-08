@@ -18,12 +18,14 @@ public class FileUtil {
 			return flag;
 		}
 		ServletContext servletContext = ServletActionContext.getServletContext();
-		String targetDir = servletContext.getRealPath(getImagePath(countryCode , timeZone , "/image/"));
+//		String targetDir = servletContext.getRealPath(getImagePath(countryCode , timeZone , "/image/"));
+		String targetDir = getImagePath(countryCode , timeZone);
 		File file1 = new File(targetDir);
 		if(!file1.exists()){
 			file1.mkdir();
 		}
-		String dir = servletContext.getRealPath(getImagePath(countryCode , timeZone , "/image/")+fileFileName);
+//		String dir = servletContext.getRealPath(getImagePath(countryCode , timeZone , "/image/")+fileFileName);
+		String dir = getImagePath(countryCode , timeZone)+fileFileName;
 		FileOutputStream fileOutputStream = null;
 		FileInputStream fileInputStream = null;
 		try {
@@ -35,6 +37,7 @@ public class FileUtil {
 				fileOutputStream.write(buffer , 0 , length);
 			}
 			flag = true;
+			Runtime.getRuntime().exec("chmod 755 " + dir);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			flag = false;
@@ -55,7 +58,42 @@ public class FileUtil {
 		}
 		return flag;
 	}
-	
+
+	public static String getImagePath(String countryCode ,String timeZone){
+		String imagePath = "/home/static/launcher/image/";
+		if("CN".equals(countryCode)){
+			imagePath += "china/";
+		}else if("MX".equals(countryCode)){
+			imagePath += "mexico/";
+		}else if("TW".equals(countryCode)){
+			imagePath += "tw/";
+		}else if("CZ".equals(countryCode)){
+			imagePath += "czechia/";
+		}else if("RO".equals(countryCode)){
+			imagePath += "romania/";
+		}else if("SK".equals(countryCode)){
+			imagePath += "slovak/";
+		}else if("US".equals(countryCode)){
+			if("losangeles".equals(timeZone)){
+				imagePath += "losangeles/";
+			}else if("chicago".equals(timeZone)){
+				imagePath += "chicago/";
+			}else if("denver".equals(timeZone)){
+				imagePath += "denver/";
+			}else if("newyork".equals(timeZone)){
+				imagePath += "newyork/";
+			}else if("honolulu".equals(timeZone)){
+				imagePath += "honolulu/";
+			}else{
+				imagePath += "losangeles/";
+			}
+		}else{
+			imagePath += "losangeles/";
+		}
+		return imagePath;
+	}
+
+
 	public static String getImagePath(String countryCode ,String timeZone, String imagePath){
 		if("CN".equals(countryCode)){
 			imagePath += "china/";

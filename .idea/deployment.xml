@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData">
+  <component name="PublishConfigData" serverName="wiatec-216.176.190.154">
     <serverData>
-      <paths name="wiaec">
+      <paths name="wiatec-216.176.190.154">
         <serverdata>
           <mappings>
-            <mapping deploy="/Launcher/control_panel" local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="wiatec_eu">
-        <serverdata>
-          <mappings>
-            <mapping deploy="/Launcher/control_panel" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/home/ftp/launcher/out" local="$PROJECT_DIR$/out/artifacts/control_panel_war_exploded" web="/" />
           </mappings>
         </serverdata>
       </paths>
