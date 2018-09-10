@@ -269,7 +269,6 @@ public class User1Service {
         if(level == 0){
             resultInfo.setUserLevel(level);
         }else {
-            System.out.println(memberTime);
             if (memberTime > 0 && memberTime < System.currentTimeMillis()) {
                 resultInfo.setUserLevel(1);
             } else {

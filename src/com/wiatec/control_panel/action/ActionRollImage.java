@@ -71,7 +71,7 @@ public class ActionRollImage extends BaseAction{
     public String update(){
         checkSession();
         if(id==0){
-            rollImageService.insert(imageInfo,countryCode , timeZone);
+            rollImageService.insert(imageInfo, countryCode , timeZone);
         }else{
             imageInfo.setId(id);
             rollImageService.update(imageInfo,countryCode , timeZone);

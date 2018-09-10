@@ -26,7 +26,7 @@ public class BaseAction implements ServletResponseAware ,ServletRequestAware{
     protected HttpSession session;
     protected String countryCode;
     protected String timeZone;
-    protected String imagePath = "http://www.ldlegacy.com:8899/static/launcher/image/" ;
+    protected String imagePath = "http://static.vipnow.work:8033/launcher/image/" ;
 //    protected String imagePath = "http://appotaeu.gobeyondtv.co:8081/launcher/image/" ; //europe server
 
     @Override

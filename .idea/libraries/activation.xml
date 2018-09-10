@@ -39,6 +39,7 @@
       <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/servlet-api.jar!/" />
       <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/standard.jar!/" />
       <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/struts2-spring-plugin-2.5.8.jar!/" />
+      <root url="jar://$USER_HOME$/CodeLibraries/java/jee/required/commons-net-3.6.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

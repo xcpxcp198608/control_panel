@@ -14,12 +14,12 @@ public class SessionListener implements HttpSessionListener ,HttpSessionAttribut
 
     @Override
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {
-        System.out.println(httpSessionEvent.getSession().getId()+" created");
+//        System.out.println(httpSessionEvent.getSession().getId()+" created");
     }
 
     @Override
     public void sessionDestroyed(HttpSessionEvent httpSessionEvent) {
-        System.out.println(httpSessionEvent.getSession().getId()+" destroyed");
+//        System.out.println(httpSessionEvent.getSession().getId()+" destroyed");
     }
 
     @Override
